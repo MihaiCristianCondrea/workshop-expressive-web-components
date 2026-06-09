@@ -1,0 +1,24 @@
+@import url('./colors.css');
+@import url('./spacing.css');
+@import url('./shapes.css');
+@import url('./typography.css');
+@import url('./motion.css');
+@import url('./elevation.css');
+
+:root[data-ws-theme='dark'],
+[data-ws-theme='dark'] {
+  --ws-color-background: #0f172a;
+  --ws-color-surface: #1e293b;
+  --ws-color-surface-variant: #334155;
+
+  --ws-color-primary-container: #312e81;
+  --ws-color-secondary-container: #334155;
+
+  --ws-color-outline: #334155;
+  --ws-color-outline-variant: #334155;
+
+  --ws-color-on-primary: #f8fafc;
+  --ws-color-on-surface: #f8fafc;
+  --ws-color-on-surface-variant: #94a3b8;
+  --ws-color-on-secondary-container: #f8fafc;
+}
