@@ -7,6 +7,10 @@ index.js
 index.js.map
 index.d.ts
 index.d.ts.map
+docs-entry.js
+docs-entry.js.map
+docs-entry.d.ts
+docs-entry.d.ts.map
 /components/
 /foundation/
 # legacy starter output
