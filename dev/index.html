@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
   <head>
@@ -82,13 +82,52 @@
         border-radius: var(--ws-shape-large);
         padding: var(--ws-spacing-lg);
       }
+
+      .drawer-demo {
+        align-items: stretch;
+        display: grid;
+        gap: var(--ws-spacing-xl);
+        grid-template-columns: minmax(280px, 320px) 1fr;
+      }
+
+      .drawer-header,
+      .drawer-footer {
+        display: grid;
+        gap: var(--ws-spacing-xs);
+      }
+
+      .drawer-header strong {
+        font: var(--ws-typography-title-medium);
+      }
+
+      .drawer-header span,
+      .drawer-footer {
+        color: var(--ws-color-on-surface-variant);
+        font: var(--ws-typography-label-medium);
+      }
+
+      .drawer-output {
+        background: var(--ws-color-surface-variant);
+        border: 1px solid var(--ws-color-outline);
+        border-radius: var(--ws-shape-large);
+        padding: var(--ws-spacing-lg);
+      }
+
+      @media (max-width: 760px) {
+        .drawer-demo {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
     <main>
       <header>
         <h1>Workshop Web Components</h1>
-        <p>Milestone 1: theme tokens, button component, and a state-focused demo.</p>
+        <p>
+          Theme tokens, button component, drawer navigation, and state-focused
+          demos.
+        </p>
       </header>
 
       <section>
@@ -133,7 +172,74 @@
           <ws-button loading>Saving</ws-button>
           <ws-button variant="secondary" loading>Syncing</ws-button>
           <ws-button variant="outlined" disabled>Disabled</ws-button>
-          <ws-button variant="ghost" size="large" disabled>Disabled ghost</ws-button>
+          <ws-button variant="ghost" size="large" disabled
+            >Disabled ghost</ws-button
+          >
+        </div>
+      </section>
+
+      <section>
+        <h2>Drawer navigation</h2>
+        <div class="drawer-demo">
+          <ws-drawer id="demo-drawer" selected-item-id="home">
+            <div slot="header" class="drawer-header">
+              <strong>Workshop</strong>
+              <span>Expressive</span>
+            </div>
+
+            <ws-drawer-item
+              item-id="home"
+              title="Home"
+              icon="home"
+            ></ws-drawer-item>
+
+            <ws-drawer-item
+              item-id="learn"
+              title="Learn"
+              icon="school"
+              badge="3"
+              expanded
+            >
+              <ws-drawer-item
+                item-id="compose"
+                title="Compose"
+                subtitle="Declarative UI"
+                progress="0.4"
+              ></ws-drawer-item>
+              <ws-drawer-item
+                item-id="kmp"
+                title="KMP"
+                subtitle="Shared Kotlin"
+                progress="0.7"
+              ></ws-drawer-item>
+            </ws-drawer-item>
+
+            <ws-drawer-item
+              item-id="reports"
+              title="Reports"
+              icon="analytics"
+              badge="12"
+            ></ws-drawer-item>
+            <ws-drawer-item
+              item-id="locked"
+              title="Locked lesson"
+              subtitle="Disabled"
+              icon="lock"
+              disabled
+            ></ws-drawer-item>
+            <ws-drawer-item
+              item-id="settings"
+              title="Settings"
+              icon="settings"
+            ></ws-drawer-item>
+
+            <div slot="footer" class="drawer-footer">Version 0.1.0</div>
+          </ws-drawer>
+
+          <div class="drawer-output">
+            <h2>Selected item</h2>
+            <p id="drawer-selection">home</p>
+          </div>
         </div>
       </section>
 
@@ -158,5 +264,13 @@
         </div>
       </section>
     </main>
+    <script>
+      const drawer = document.querySelector('#demo-drawer');
+      const output = document.querySelector('#drawer-selection');
+      drawer?.addEventListener('ws-drawer-item-click', (event) => {
+        drawer.selectedItemId = event.detail.itemId;
+        output.textContent = event.detail.itemId;
+      });
+    </script>
   </body>
 </html>

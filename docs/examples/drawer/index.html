@@ -1,0 +1,94 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Expressive Web Components ⌲ Examples ⌲ Drawer navigation</title>
+    <link rel="stylesheet" href="../../docs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0">
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+    <script type="module" src="../../ws-button.bundled.js"></script>
+  </head>
+  <body>
+
+<header>
+  <h1>Workshop Expressive Web Components</h1>
+  <h2>Lit-powered design system primitives.</h2>
+</header>
+
+<nav>
+  <a href="../../">Home</a>
+  <a href="../">Examples</a>
+  <a href="../../api/">API</a>
+  <a href="../../install/">Install</a>
+</nav>
+    <div id="main-wrapper">
+      <main>
+
+    <h1>Example: Drawer navigation</h1>
+    <section class="examples">
+      <nav class="collection">
+        <ul>
+
+                  <li class=>
+                    <a href="../">Preview every ws-button visual treatment</a>
+                  </li>
+
+                  <li class=>
+                    <a href="../name-property/">Compare ws-button density options</a>
+                  </li>
+
+                  <li class=selected>
+                    <a href="">Tree navigation with nested items, selection, badges, progress, disabled state, header, and footer</a>
+                  </li>
+
+        </ul>
+      </nav>
+      <div>
+        <div class="demo-panel">
+  <ws-drawer id="example-drawer" selected-item-id="home">
+    <div slot="header" class="drawer-header">
+      <strong>Workshop</strong>
+      <span>Expressive</span>
+    </div>
+<pre><code>&lt;ws-drawer-item item-id=&quot;home&quot; title=&quot;Home&quot; icon=&quot;home&quot;&gt;&lt;/ws-drawer-item&gt;
+
+&lt;ws-drawer-item item-id=&quot;learn&quot; title=&quot;Learn&quot; icon=&quot;school&quot; badge=&quot;3&quot; expanded&gt;
+  &lt;ws-drawer-item item-id=&quot;compose&quot; title=&quot;Compose&quot; subtitle=&quot;Declarative UI&quot; progress=&quot;0.4&quot;&gt;&lt;/ws-drawer-item&gt;
+  &lt;ws-drawer-item item-id=&quot;kmp&quot; title=&quot;KMP&quot; subtitle=&quot;Shared Kotlin&quot; progress=&quot;0.7&quot;&gt;&lt;/ws-drawer-item&gt;
+&lt;/ws-drawer-item&gt;
+
+&lt;ws-drawer-item item-id=&quot;reports&quot; title=&quot;Reports&quot; icon=&quot;analytics&quot; badge=&quot;12&quot;&gt;&lt;/ws-drawer-item&gt;
+&lt;ws-drawer-item item-id=&quot;locked&quot; title=&quot;Locked lesson&quot; subtitle=&quot;Disabled&quot; icon=&quot;lock&quot; disabled&gt;&lt;/ws-drawer-item&gt;
+&lt;ws-drawer-item item-id=&quot;settings&quot; title=&quot;Settings&quot; icon=&quot;settings&quot;&gt;&lt;/ws-drawer-item&gt;
+
+&lt;div slot=&quot;footer&quot;&gt;Version 0.1.0&lt;/div&gt;
+</code></pre>
+  </ws-drawer>
+</div>
+<script type="module">
+  const drawer = document.querySelector('#example-drawer');
+  drawer?.addEventListener('ws-drawer-item-click', event => {
+    drawer.selectedItemId = event.detail.itemId;
+  });
+</script>
+<h3>HTML</h3>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer</span> <span class="token attr-name">selected-item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>home<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drawer-header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>Workshop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Expressive<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span> <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>home<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Home<span class="token punctuation">"</span></span> <span class="token attr-name">icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>home<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span><br><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span><br>    <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>learn<span class="token punctuation">"</span></span><br>    <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Learn<span class="token punctuation">"</span></span><br>    <span class="token attr-name">icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>school<span class="token punctuation">"</span></span><br>    <span class="token attr-name">badge</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><br>    <span class="token attr-name">expanded</span><br>  <span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span><br>      <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>compose<span class="token punctuation">"</span></span><br>      <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Compose<span class="token punctuation">"</span></span><br>      <span class="token attr-name">progress</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.4<span class="token punctuation">"</span></span><br>    <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span> <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kmp<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>KMP<span class="token punctuation">"</span></span> <span class="token attr-name">progress</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.7<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span><br><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span><br>    <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>settings<span class="token punctuation">"</span></span><br>    <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Settings<span class="token punctuation">"</span></span><br>    <span class="token attr-name">icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>settings<span class="token punctuation">"</span></span><br>  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span><br><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Version 0.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer</span><span class="token punctuation">></span></span></code></pre>
+
+      </div>
+    </section>
+
+      </main>
+    </div>
+
+<footer>
+  <p>
+    Made with
+    <a href="https://github.com/lit/lit-element-starter-ts">lit-starter-ts</a>
+  </p>
+</footer>
+  </body>
+</html>

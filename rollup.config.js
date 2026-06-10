@@ -10,7 +10,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
 export default {
-  input: 'components/button/ws-button.js',
+  input: 'docs-entry.js',
   output: {
     file: 'ws-button.bundled.js',
     format: 'esm',
