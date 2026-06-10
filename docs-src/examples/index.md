@@ -1,34 +1,29 @@
 ---
 layout: example.11ty.cjs
-title: <my-element> ⌲ Examples ⌲ Basic
+title: Workshop Expressive Web Components ⌲ Examples ⌲ Button states
 tags: example
-name: Basic
-description: A basic example
+name: Button states
+description: Preview every ws-button visual treatment
 ---
 
-<style>
-  my-element p {
-    border: solid 1px blue;
-    padding: 8px;
-  }
-</style>
-<my-element>
-  <p>This is child content</p>
-</my-element>
-
-<h3>CSS</h3>
-
-```css
-p {
-  border: solid 1px blue;
-  padding: 8px;
-}
-```
+<div class="demo-panel">
+  <div class="button-grid">
+    <ws-button variant="primary">Primary</ws-button>
+    <ws-button variant="secondary">Secondary</ws-button>
+    <ws-button variant="outlined">Outlined</ws-button>
+    <ws-button variant="ghost">Ghost</ws-button>
+    <ws-button variant="primary" disabled>Disabled</ws-button>
+    <ws-button variant="secondary" loading>Loading</ws-button>
+  </div>
+</div>
 
 <h3>HTML</h3>
 
 ```html
-<my-element>
-  <p>This is child content</p>
-</my-element>
+<ws-button variant="primary">Primary</ws-button>
+<ws-button variant="secondary">Secondary</ws-button>
+<ws-button variant="outlined">Outlined</ws-button>
+<ws-button variant="ghost">Ghost</ws-button>
+<ws-button variant="primary" disabled>Disabled</ws-button>
+<ws-button variant="secondary" loading>Loading</ws-button>
 ```

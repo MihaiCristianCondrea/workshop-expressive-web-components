@@ -1,32 +1,23 @@
 ---
 layout: page.11ty.cjs
-title: <my-element> ⌲ Install
+title: Workshop Expressive Web Components ⌲ Local usage
 ---
 
-# Install
+# Local usage
 
-`<my-element>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
+This project is currently a demo site for the Workshop component library. Build the package and documentation locally before publishing the `/docs` folder with GitHub Pages.
 
-## Local Installation
+## Build the component library
 
 ```bash
-npm i my-element
+npm install
+npm run build
 ```
 
-## CDN
+## Generate the GitHub Pages demo
 
-npm CDNs like [unpkg.com]() can directly serve files that have been published to npm. This works great for standard JavaScript modules that the browser can load natively.
-
-For this element to work from unpkg.com specifically, you need to include the `?module` query parameter, which tells unpkg.com to rewrite "bare" module specifiers to full URLs.
-
-### HTML
-
-```html
-<script type="module" src="https://unpkg.com/my-element?module"></script>
+```bash
+npm run docs
 ```
 
-### JavaScript
-
-```html
-import {MyElement} from 'https://unpkg.com/my-element?module';
-```
+The generated `/docs/index.html` loads the bundled demo with a relative module path so it works from a GitHub Pages project URL such as `/workshop-expressive-web-components/`.

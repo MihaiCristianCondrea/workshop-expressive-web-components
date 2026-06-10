@@ -1,7 +1,7 @@
-module.exports = function (data) {
+module.exports = function () {
   return `
 <header>
-  <h1>&lt;my-element></h1>
-  <h2>A web component just for me.</h2>
+  <h1>Workshop Expressive Web Components</h1>
+  <h2>Lit-powered design system primitives.</h2>
 </header>`;
 };

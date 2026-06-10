@@ -1,76 +1,64 @@
 ---
 layout: page.11ty.cjs
-title: <my-element> ⌲ Home
+title: Workshop Expressive Web Components ⌲ Home
 ---
 
-# &lt;my-element>
+# Workshop Expressive Web Components
 
-`<my-element>` is an awesome element. It's a great introduction to building web components with LitElement, with nice documentation site as well.
+A tiny Lit component playground for expressive Workshop UI primitives. The first component is `<ws-button>`, with variants, sizes, icons, disabled states, and loading feedback ready to preview on GitHub Pages.
 
-## As easy as HTML
+## Button variants
 
-<section class="columns">
-  <div>
-
-`<my-element>` is just an HTML element. You can it anywhere you can use HTML!
+<section class="demo-panel">
+  <div class="button-row" aria-label="Button variants">
+    <ws-button variant="primary" size="medium">Continue</ws-button>
+    <ws-button variant="secondary" size="medium">Save</ws-button>
+    <ws-button variant="outlined" size="medium">Cancel</ws-button>
+    <ws-button variant="ghost" size="medium">Learn more</ws-button>
+  </div>
+</section>
 
 ```html
-<my-element></my-element>
+<ws-button variant="primary" size="medium">Continue</ws-button>
+<ws-button variant="secondary" size="medium">Save</ws-button>
+<ws-button variant="outlined" size="medium">Cancel</ws-button>
+<ws-button variant="ghost" size="medium">Learn more</ws-button>
 ```
 
-  </div>
-  <div>
+## Sizes
 
-<my-element></my-element>
-
+<section class="demo-panel">
+  <div class="button-row" aria-label="Button sizes">
+    <ws-button variant="primary" size="small">Small</ws-button>
+    <ws-button variant="primary" size="medium">Medium</ws-button>
+    <ws-button variant="primary" size="large">Large</ws-button>
   </div>
 </section>
-
-## Configure with attributes
-
-<section class="columns">
-  <div>
-
-`<my-element>` can be configured with attributed in plain HTML.
 
 ```html
-<my-element name="HTML"></my-element>
+<ws-button variant="primary" size="small">Small</ws-button>
+<ws-button variant="primary" size="medium">Medium</ws-button>
+<ws-button variant="primary" size="large">Large</ws-button>
 ```
 
-  </div>
-  <div>
+## Interaction states
 
-<my-element name="HTML"></my-element>
-
+<section class="demo-panel">
+  <div class="button-row" aria-label="Button states">
+    <ws-button variant="primary" disabled>Disabled</ws-button>
+    <ws-button variant="secondary" loading>Saving</ws-button>
+    <ws-button variant="outlined">
+      <span slot="icon" aria-hidden="true">↗</span>
+      Open details
+    </ws-button>
   </div>
 </section>
 
-## Declarative rendering
-
-<section class="columns">
-  <div>
-
-`<my-element>` can be used with declarative rendering libraries like Angular, React, Vue, and lit-html
-
-```js
-import {html, render} from 'lit-html';
-
-const name = 'lit-html';
-
-render(
-  html`
-    <h2>This is a &lt;my-element&gt;</h2>
-    <my-element .name=${name}></my-element>
-  `,
-  document.body
-);
+```html
+<ws-button variant="primary" disabled>Disabled</ws-button>
+<ws-button variant="secondary" loading>Saving</ws-button>
+<ws-button variant="outlined">
+  <span slot="icon" aria-hidden="true">↗</span>
+  Open details
+</ws-button>
 ```
-
-  </div>
-  <div>
-
-<h2>This is a &lt;my-element&gt;</h2>
-<my-element name="lit-html"></my-element>
-
-  </div>
-</section>

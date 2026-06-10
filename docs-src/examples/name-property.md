@@ -1,15 +1,23 @@
 ---
 layout: example.11ty.cjs
-title: <my-element> ⌲ Examples ⌲ Name Property
+title: Workshop Expressive Web Components ⌲ Examples ⌲ Button sizes
 tags: example
-name: Name Property
-description: Setting the name property
+name: Button sizes
+description: Compare ws-button density options
 ---
 
-<my-element name="Earth"></my-element>
+<div class="demo-panel">
+  <div class="button-row">
+    <ws-button size="small">Small</ws-button>
+    <ws-button size="medium">Medium</ws-button>
+    <ws-button size="large">Large</ws-button>
+  </div>
+</div>
 
 <h3>HTML</h3>
 
 ```html
-<my-element name="Earth"></my-element>
+<ws-button size="small">Small</ws-button>
+<ws-button size="medium">Medium</ws-button>
+<ws-button size="large">Large</ws-button>
 ```
