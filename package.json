@@ -19,7 +19,7 @@
     "docs:gen": "eleventy --config=.eleventy.cjs",
     "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
     "docs:build": "rollup -c --file docs/ws-button.bundled.js",
-    "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
+    "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/ && if [ -d node_modules/remixicon/fonts ]; then mkdir -p docs/remixicon && cp -R node_modules/remixicon/fonts docs/remixicon/; else echo \"Skipping Remix Icon asset copy; run npm install to fetch remixicon.\"; fi",
     "docs:serve": "wds --root-dir=docs --node-resolve --watch",
     "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
     "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
@@ -41,7 +41,8 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "lit": "^3.2.0"
+    "lit": "^3.2.0",
+    "remixicon": "^4.9.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",

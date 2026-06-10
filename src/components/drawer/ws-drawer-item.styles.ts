@@ -2,6 +2,14 @@ import {css} from 'lit';
 
 export const wsDrawerItemStyles = css`
   :host {
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      'Google Sans',
+      Roboto,
+      system-ui,
+      sans-serif
+    );
     --ws-drawer-item-depth: 0;
     display: block;
     color: var(--ws-color-on-surface, #0f172a);
@@ -94,7 +102,6 @@ export const wsDrawerItemStyles = css`
 
   .icon {
     block-size: 20px;
-    font-family: 'Material Symbols Outlined', 'Material Icons', sans-serif;
     font-size: 20px;
     font-weight: normal;
     inline-size: 20px;
@@ -107,11 +114,21 @@ export const wsDrawerItemStyles = css`
     inline-size: 16px;
   }
 
+  .icon > i,
   .icon ::slotted(*) {
+    align-items: center;
+    block-size: 1em;
     display: inline-flex;
     font-size: 1em;
-    block-size: 1em;
     inline-size: 1em;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  :host([data-settings-spin]) .icon > i,
+  :host([data-settings-spin]) .icon ::slotted(*) {
+    animation: ws-drawer-settings-spin 320ms
+      var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1));
   }
 
   .bullet {
@@ -203,8 +220,15 @@ export const wsDrawerItemStyles = css`
   }
 
   .arrow {
-    font-size: 20px;
+    block-size: 20px;
+    inline-size: 20px;
     margin-inline-start: calc(-1 * var(--ws-spacing-xs, 4px));
+  }
+
+  .arrow svg {
+    block-size: 100%;
+    fill: currentcolor;
+    inline-size: 100%;
   }
 
   :host([expanded]) .arrow {
@@ -212,14 +236,30 @@ export const wsDrawerItemStyles = css`
   }
 
   .children {
-    display: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-block-start: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1)),
+      margin-block-start var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      opacity var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease);
+  }
+
+  .children-inner {
+    display: flex;
     flex-direction: column;
     gap: var(--ws-spacing-xs, 4px);
-    margin-block-start: var(--ws-spacing-xs, 4px);
+    min-block-size: 0;
   }
 
   :host([expanded]) .children {
-    display: flex;
+    grid-template-rows: 1fr;
+    margin-block-start: var(--ws-spacing-xs, 4px);
+    opacity: 1;
   }
 
   .progress-track {
@@ -245,5 +285,15 @@ export const wsDrawerItemStyles = css`
 
   :host([selected]) .progress-fill {
     background: currentcolor;
+  }
+
+  @keyframes ws-drawer-settings-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;

@@ -13,16 +13,17 @@ description: ws-drawer header, footer, nested items, badges, progress, disabled,
       <span>Expressive</span>
     </div>
 
-    <ws-drawer-item item-id="home" title="Home" icon="home"></ws-drawer-item>
+    <ws-drawer-item item-id="home" title="Home"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i></ws-drawer-item>
 
-    <ws-drawer-item item-id="learn" title="Learn" icon="school" badge="3" expanded>
+    <ws-drawer-item item-id="learn" title="Learn" badge="3" expanded>
+      <i slot="icon" class="ri-graduation-cap-line" aria-hidden="true"></i>
       <ws-drawer-item item-id="compose" title="Compose" subtitle="Declarative UI" progress="0.4"></ws-drawer-item>
       <ws-drawer-item item-id="kmp" title="KMP" subtitle="Shared Kotlin" progress="0.7"></ws-drawer-item>
     </ws-drawer-item>
 
-    <ws-drawer-item item-id="reports" title="Reports" icon="analytics" badge="12"></ws-drawer-item>
-    <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
-    <ws-drawer-item item-id="settings" title="Settings" icon="settings"></ws-drawer-item>
+    <ws-drawer-item item-id="reports" title="Reports" badge="12"><i slot="icon" class="ri-bar-chart-line" aria-hidden="true"></i></ws-drawer-item>
+    <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" disabled><i slot="icon" class="ri-lock-line" aria-hidden="true"></i></ws-drawer-item>
+    <ws-drawer-item item-id="settings" title="Settings"><i slot="icon" class="ri-settings-3-line" aria-hidden="true"></i></ws-drawer-item>
 
     <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
 
@@ -45,15 +46,12 @@ description: ws-drawer header, footer, nested items, badges, progress, disabled,
     <span>Expressive</span>
   </div>
 
-  <ws-drawer-item item-id="home" title="Home" icon="home"></ws-drawer-item>
+  <ws-drawer-item item-id="home" title="Home"
+    ><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i
+  ></ws-drawer-item>
 
-  <ws-drawer-item
-    item-id="learn"
-    title="Learn"
-    icon="school"
-    badge="3"
-    expanded
-  >
+  <ws-drawer-item item-id="learn" title="Learn" badge="3" expanded>
+    <i slot="icon" class="ri-graduation-cap-line" aria-hidden="true"></i>
     <ws-drawer-item
       item-id="compose"
       title="Compose"
@@ -68,9 +66,19 @@ description: ws-drawer header, footer, nested items, badges, progress, disabled,
     ></ws-drawer-item>
   </ws-drawer-item>
 
-  <ws-drawer-item item-id="reports" title="Reports" icon="analytics" badge="12"></ws-drawer-item>
-  <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
-  <ws-drawer-item item-id="settings" title="Settings" icon="settings"></ws-drawer-item>
+  <ws-drawer-item item-id="reports" title="Reports" badge="12"
+    ><i slot="icon" class="ri-bar-chart-line" aria-hidden="true"></i
+  ></ws-drawer-item>
+  <ws-drawer-item
+    item-id="locked"
+    title="Locked lesson"
+    subtitle="Disabled"
+    disabled
+    ><i slot="icon" class="ri-lock-line" aria-hidden="true"></i
+  ></ws-drawer-item>
+  <ws-drawer-item item-id="settings" title="Settings"
+    ><i slot="icon" class="ri-settings-3-line" aria-hidden="true"></i
+  ></ws-drawer-item>
 
   <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
 </ws-drawer>

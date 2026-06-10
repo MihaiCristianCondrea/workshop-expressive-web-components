@@ -13,3 +13,8 @@
 
   --ws-typography-code: 400 13px / 22px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+
+
+.ws-theme {
+  font-family: var(--ws-font-family);
+}

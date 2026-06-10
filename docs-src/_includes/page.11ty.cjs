@@ -13,16 +13,21 @@ module.exports = function (data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto+Mono:wght@400;500;700&display=swap"
+    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
     <link rel="stylesheet" href="${relative(page.url, '/docs.css')}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0">
     <link href="${relative(page.url, '/prism-okaidia.css')}" rel="stylesheet" />
     <script type="module" src="${relative(
       page.url,
       '/ws-button.bundled.js'
     )}"></script>
   </head>
-  <body>
+  <body class="ws-theme">
     ${header()}
     ${nav(data)}
     <div id="main-wrapper">

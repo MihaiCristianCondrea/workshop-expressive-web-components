@@ -2,6 +2,14 @@ import {css} from 'lit';
 
 export const wsDrawerStyles = css`
   :host {
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      'Google Sans',
+      Roboto,
+      system-ui,
+      sans-serif
+    );
     display: block;
     inline-size: var(--ws-drawer-width, 280px);
     min-inline-size: 0;

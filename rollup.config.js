@@ -9,6 +9,16 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
+const remixIconCssImport = () => ({
+  name: 'remixicon-css-import',
+  resolveId(id) {
+    return id === 'remixicon/fonts/remixicon.css' ? id : null;
+  },
+  load(id) {
+    return id === 'remixicon/fonts/remixicon.css' ? '' : null;
+  },
+});
+
 export default {
   input: 'docs-entry.js',
   output: {
@@ -22,6 +32,7 @@ export default {
   },
   plugins: [
     replace({preventAssignment: false, 'Reflect.decorate': 'undefined'}),
+    remixIconCssImport(),
     resolve(),
     /**
      * This minification setup serves the static site generation.
