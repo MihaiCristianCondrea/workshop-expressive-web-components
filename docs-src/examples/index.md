@@ -1,19 +1,38 @@
 ---
 layout: example.11ty.cjs
-title: Workshop Expressive Web Components ⌲ Examples ⌲ Button states
+title: Workshop Expressive Web Components ⌲ Examples ⌲ Buttons
 tags: example
-name: Button states
-description: Preview every ws-button visual treatment
+name: Buttons
+description: ws-button variants, sizes, icons, and interaction states
 ---
 
 <div class="demo-panel">
-  <div class="button-grid">
+  <h3>Variants</h3>
+  <div class="button-row">
     <ws-button variant="primary">Primary</ws-button>
     <ws-button variant="secondary">Secondary</ws-button>
     <ws-button variant="outlined">Outlined</ws-button>
     <ws-button variant="ghost">Ghost</ws-button>
+  </div>
+
+  <h3>Sizes</h3>
+  <div class="button-row">
+    <ws-button size="small">Small</ws-button>
+    <ws-button size="medium">Medium</ws-button>
+    <ws-button size="large">Large</ws-button>
+  </div>
+
+  <h3>States and icons</h3>
+  <div class="button-row">
     <ws-button variant="primary" disabled>Disabled</ws-button>
-    <ws-button variant="secondary" loading>Loading</ws-button>
+    <ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>
+    <ws-button variant="outlined" aria-label="Favorite">
+      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">star</span>
+    </ws-button>
+    <ws-button variant="primary">
+      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+      Create
+    </ws-button>
   </div>
 </div>
 
@@ -24,6 +43,18 @@ description: Preview every ws-button visual treatment
 <ws-button variant="secondary">Secondary</ws-button>
 <ws-button variant="outlined">Outlined</ws-button>
 <ws-button variant="ghost">Ghost</ws-button>
+
+<ws-button size="small">Small</ws-button>
+<ws-button size="medium">Medium</ws-button>
+<ws-button size="large">Large</ws-button>
+
 <ws-button variant="primary" disabled>Disabled</ws-button>
-<ws-button variant="secondary" loading>Loading</ws-button>
+<ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>
+<ws-button variant="outlined" aria-label="Favorite">
+  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">star</span>
+</ws-button>
+<ws-button variant="primary">
+  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  Create
+</ws-button>
 ```

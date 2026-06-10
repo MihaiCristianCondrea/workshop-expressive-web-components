@@ -1,9 +1,10 @@
-module.exports = function (data) {
+module.exports = function () {
   return `
-<footer>
-  <p>
-    Made with
-    <a href="https://github.com/lit/lit-element-starter-ts">lit-starter-ts</a>
-  </p>
+<footer class="site-footer">
+  <div>
+    <strong>Workshop Expressive Web Components</strong>
+    <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
+  </div>
+  <a href="https://lit.dev/">Built with Lit</a>
 </footer>`;
 };

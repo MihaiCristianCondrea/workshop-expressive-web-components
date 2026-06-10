@@ -1,9 +1,9 @@
 ---
 layout: example.11ty.cjs
-title: Workshop Expressive Web Components ⌲ Examples ⌲ Button sizes
+title: Workshop Expressive Web Components ⌲ Examples ⌲ Button sizing
 tags: example
-name: Button sizes
-description: Compare ws-button density options
+name: Button sizing
+description: Compare ws-button size and icon-only behavior
 ---
 
 <div class="demo-panel">
@@ -11,6 +11,15 @@ description: Compare ws-button density options
     <ws-button size="small">Small</ws-button>
     <ws-button size="medium">Medium</ws-button>
     <ws-button size="large">Large</ws-button>
+    <ws-button size="small" aria-label="Small add">
+      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+    </ws-button>
+    <ws-button size="medium" aria-label="Medium add">
+      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+    </ws-button>
+    <ws-button size="large" aria-label="Large add">
+      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+    </ws-button>
   </div>
 </div>
 
@@ -20,4 +29,13 @@ description: Compare ws-button density options
 <ws-button size="small">Small</ws-button>
 <ws-button size="medium">Medium</ws-button>
 <ws-button size="large">Large</ws-button>
+<ws-button size="small" aria-label="Small add">
+  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+</ws-button>
+<ws-button size="medium" aria-label="Medium add">
+  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+</ws-button>
+<ws-button size="large" aria-label="Large add">
+  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+</ws-button>
 ```

@@ -14,33 +14,45 @@ export const wsButtonStyles = css`
   .button {
     align-items: center;
     border: 1px solid transparent;
-    border-radius: var(--ws-button-radius, var(--ws-shape-full, 999px));
+    border-radius: var(--ws-button-radius, var(--ws-shape-medium, 8px));
     box-sizing: border-box;
     cursor: pointer;
     display: inline-flex;
-    font: var(--ws-button-font, var(--ws-typography-label-large, 600 14px / 20px system-ui, sans-serif));
-    gap: var(--ws-spacing-sm, 8px);
+    font: var(
+      --ws-button-font,
+      var(--ws-typography-label-large, 600 14px / 20px system-ui, sans-serif)
+    );
+    gap: var(--ws-button-icon-spacing, var(--ws-spacing-sm, 8px));
     justify-content: center;
     min-inline-size: var(--ws-button-min-width, 64px);
     outline: none;
     position: relative;
     text-decoration: none;
     transform: translateY(0) scale(1);
-    transition:
-      background-color var(--ws-motion-duration-medium, 180ms) var(--ws-motion-easing-standard, ease),
-      border-color var(--ws-motion-duration-medium, 180ms) var(--ws-motion-easing-standard, ease),
-      box-shadow var(--ws-motion-duration-medium, 180ms) var(--ws-motion-easing-standard, ease),
-      color var(--ws-motion-duration-medium, 180ms) var(--ws-motion-easing-standard, ease),
-      opacity var(--ws-motion-duration-medium, 180ms) var(--ws-motion-easing-standard, ease),
-      transform var(--ws-motion-duration-fast, 120ms) var(--ws-motion-easing-emphasized, ease);
+    transition: background-color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      border-color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      box-shadow var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      opacity var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      transform var(--ws-motion-duration-fast, 120ms)
+        var(--ws-motion-easing-emphasized, ease);
     user-select: none;
     width: 100%;
   }
 
   .button:focus-visible {
-    box-shadow:
-      0 0 0 2px var(--ws-color-background, #f8fafc),
-      0 0 0 5px color-mix(in srgb, var(--ws-button-focus-color, var(--ws-color-primary, #6c5cff)) 45%, transparent);
+    box-shadow: 0 0 0 2px var(--ws-color-background, #f8fafc),
+      0 0 0 5px
+        color-mix(
+          in srgb,
+          var(--ws-button-focus-color, var(--ws-color-primary, #6c5cff)) 45%,
+          transparent
+        );
   }
 
   .button:not(:disabled):active {
@@ -69,8 +81,16 @@ export const wsButtonStyles = css`
   }
 
   :host([variant='secondary']) .button:not(:disabled):hover {
-    background: color-mix(in srgb, var(--ws-color-secondary, #3b82f6) 14%, var(--ws-color-secondary-container, #f1f5f9));
-    border-color: color-mix(in srgb, var(--ws-color-secondary, #3b82f6) 26%, var(--ws-color-outline-variant, #e2e8f0));
+    background: color-mix(
+      in srgb,
+      var(--ws-color-secondary, #3b82f6) 14%,
+      var(--ws-color-secondary-container, #f1f5f9)
+    );
+    border-color: color-mix(
+      in srgb,
+      var(--ws-color-secondary, #3b82f6) 26%,
+      var(--ws-color-outline-variant, #e2e8f0)
+    );
   }
 
   :host([variant='outlined']) .button {
@@ -96,23 +116,57 @@ export const wsButtonStyles = css`
   }
 
   :host([size='small']) .button {
-    block-size: 32px;
-    font: var(--ws-typography-label-medium, 600 12px / 16px system-ui, sans-serif);
-    gap: var(--ws-spacing-xs, 4px);
-    padding: 0 var(--ws-spacing-md, 12px);
+    --ws-button-icon-size: 16px;
+    --ws-button-icon-spacing: 6px;
+    block-size: 36px;
+    font: var(
+      --ws-typography-label-small,
+      600 11px / 16px system-ui,
+      sans-serif
+    );
+    padding: 0 14px;
   }
 
   :host([size='medium']) .button,
   :host(:not([size])) .button {
-    block-size: 40px;
-    padding: 0 var(--ws-spacing-lg, 16px);
+    --ws-button-icon-size: 18px;
+    --ws-button-icon-spacing: 8px;
+    block-size: 44px;
+    font: var(
+      --ws-typography-label-medium,
+      600 12px / 16px system-ui,
+      sans-serif
+    );
+    padding: 0 18px;
   }
 
   :host([size='large']) .button {
-    block-size: 48px;
-    font: var(--ws-typography-label-large, 600 14px / 20px system-ui, sans-serif);
-    gap: var(--ws-spacing-md, 12px);
-    padding: 0 var(--ws-spacing-xl, 24px);
+    --ws-button-icon-size: 20px;
+    --ws-button-icon-spacing: 10px;
+    block-size: 52px;
+    font: var(
+      --ws-typography-label-large,
+      600 14px / 20px system-ui,
+      sans-serif
+    );
+    padding: 0 24px;
+  }
+
+  :host([icon-only]) .button {
+    padding-inline: 0;
+  }
+
+  :host([icon-only][size='small']) .button {
+    min-inline-size: 36px;
+  }
+
+  :host([icon-only][size='medium']) .button,
+  :host([icon-only]:not([size])) .button {
+    min-inline-size: 44px;
+  }
+
+  :host([icon-only][size='large']) .button {
+    min-inline-size: 52px;
   }
 
   .button:disabled {
@@ -130,9 +184,9 @@ export const wsButtonStyles = css`
 
   .icon ::slotted(*) {
     display: inline-flex;
-    font-size: 1.25em;
-    inline-size: 1.25em;
-    block-size: 1.25em;
+    block-size: var(--ws-button-icon-size, 18px);
+    font-size: var(--ws-button-icon-size, 18px);
+    inline-size: var(--ws-button-icon-size, 18px);
   }
 
   :host([loading]) .icon {
@@ -140,12 +194,12 @@ export const wsButtonStyles = css`
   }
 
   .spinner {
-    block-size: 1em;
+    block-size: 18px;
     border: 2px solid currentcolor;
     border-block-start-color: transparent;
     border-radius: var(--ws-shape-full, 999px);
     box-sizing: border-box;
-    inline-size: 1em;
+    inline-size: 18px;
     animation: ws-button-spin 800ms linear infinite;
   }
 
