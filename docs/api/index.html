@@ -5,19 +5,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><my-element> ⌲ Docs</title>
+    <title>Workshop Expressive Web Components ⌲ API</title>
     <link rel="stylesheet" href="../docs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link href="../prism-okaidia.css" rel="stylesheet" />
-    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="/node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../my-element.bundled.js"></script>
+    <script type="module" src="../ws-button.bundled.js"></script>
   </head>
   <body>
     
 <header>
-  <h1>&lt;my-element></h1>
-  <h2>A web component just for me.</h2>
+  <h1>Workshop Expressive Web Components</h1>
+  <h2>Lit-powered design system primitives.</h2>
 </header>
     
 <nav>
@@ -31,9 +29,9 @@
         
      <h1>API</h1>
      
-       <h2>&lt;my-element></h2>
+       <h2>&lt;ws-button></h2>
        <div>
-         An example element.
+         Workshop button primitive.
        </div>
        
    <h3>Attributes</h3>
@@ -43,11 +41,23 @@
      </tr>
      
        <tr>
-         <td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>'World'</td>
+         <td>variant</td><td>Visual treatment matching the Workshop button variants.</td><td>WsButtonVariant</td><td>'primary'</td>
        </tr>
      
        <tr>
-         <td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+         <td>size</td><td>Button density and height.</td><td>WsButtonSize</td><td>'medium'</td>
+       </tr>
+     
+       <tr>
+         <td>disabled</td><td>Disables interaction.</td><td>boolean</td><td>false</td>
+       </tr>
+     
+       <tr>
+         <td>loading</td><td>Shows progress and temporarily disables interaction.</td><td>boolean</td><td>false</td>
+       </tr>
+     
+       <tr>
+         <td>aria-label</td><td>Accessible label forwarded to the internal native button.</td><td>string | undefined</td><td></td>
        </tr>
      
    </table>
@@ -60,53 +70,29 @@
      </tr>
      
        <tr>
-         <td>name</td><td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>'World'</td>
+         <td>variant</td><td>variant</td><td>Visual treatment matching the Workshop button variants.</td><td>WsButtonVariant</td><td>'primary'</td>
        </tr>
      
        <tr>
-         <td>count</td><td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+         <td>size</td><td>size</td><td>Button density and height.</td><td>WsButtonSize</td><td>'medium'</td>
+       </tr>
+     
+       <tr>
+         <td>disabled</td><td>disabled</td><td>Disables interaction.</td><td>boolean</td><td>false</td>
+       </tr>
+     
+       <tr>
+         <td>loading</td><td>loading</td><td>Shows progress and temporarily disables interaction.</td><td>boolean</td><td>false</td>
+       </tr>
+     
+       <tr>
+         <td>accessibleLabel</td><td>aria-label</td><td>Accessible label forwarded to the internal native button.</td><td>string | undefined</td><td></td>
        </tr>
      
    </table>
    
        
-   <h3>Methods</h3>
-   <table>
-     <tr>
-       <th>Name</th><th>Parameters</th><th>Description</th><th>Return</th>
-     </tr>
-     
-       <tr>
-         <td>sayHello</td><td>
-   
-   <table>
-     <tr>
-       <th>Name</th><th>Description</th><th>Type</th>
-     </tr>
-     
-       <tr>
-         <td>name</td><td>The name to say "Hello" to</td><td>string</td>
-       </tr>
-     
-   </table>
- </td><td>Formats a greeting</td><td>string</td>
-       </tr>
-     
-   </table>
- 
-       
-   <h3>Events</h3>
-   <table>
-     <tr>
-       <th>Name</th><th>Description</th>
-     </tr>
-     
-       <tr>
-         <td>count-changed</td><td>Indicates when the count changes</td>
-       </tr>
-     
-   </table>
-     
+           
        
    <h3>Slots</h3>
    <table>
@@ -115,7 +101,11 @@
      </tr>
      
        <tr>
-         <td>(default)</td><td>This element has a slot</td>
+         <td>(default)</td><td>Button label content.</td>
+       </tr>
+     
+       <tr>
+         <td>icon</td><td>Optional leading icon content.</td>
        </tr>
      
    </table>
@@ -128,7 +118,7 @@
      </tr>
      
        <tr>
-         <td>button</td><td>The button</td>
+         <td>button</td><td>The native button element.</td>
        </tr>
      
    </table>
