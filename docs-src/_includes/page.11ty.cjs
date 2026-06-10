@@ -13,6 +13,15 @@ module.exports = function (data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
+    <link rel="icon" href="${relative(page.url, '/favicon.svg')}" type="image/svg+xml">
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem('ws-docs-theme');
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.dataset.wsTheme = storedTheme;
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -36,6 +45,40 @@ module.exports = function (data) {
       </main>
     </div>
     ${footer()}
+    <script>
+      (() => {
+        const toggle = document.querySelector('[data-theme-toggle]');
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const preferredTheme = () =>
+          document.documentElement.dataset.wsTheme || (media.matches ? 'dark' : 'light');
+
+        const syncToggle = () => {
+          const theme = preferredTheme();
+          toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+          toggle?.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+          );
+        };
+
+        toggle?.addEventListener('click', () => {
+          const next = preferredTheme() === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.wsTheme = next;
+          localStorage.setItem('ws-docs-theme', next);
+          syncToggle();
+        });
+
+        media.addEventListener?.('change', () => {
+          if (!localStorage.getItem('ws-docs-theme')) {
+            delete document.documentElement.dataset.wsTheme;
+            syncToggle();
+          }
+        });
+
+        syncToggle();
+      })();
+    </script>
   </body>
 </html>`;
 

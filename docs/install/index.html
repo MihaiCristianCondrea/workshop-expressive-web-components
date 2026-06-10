@@ -6,6 +6,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workshop Expressive Web Components ⌲ Local usage</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem('ws-docs-theme');
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.dataset.wsTheme = storedTheme;
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,7 +30,7 @@
 
 <header class="site-hero">
   <div class="hero-shell">
-    <div class="hero-mark" aria-hidden="true">✦</div>
+    <ws-brand-mark class="hero-mark" title="" size="96px" aria-label="Workshop language logo"></ws-brand-mark>
     <div>
       <p class="eyebrow">Workshop Expressive</p>
       <h1>Web Components</h1>
@@ -31,10 +40,32 @@
 </header>
 
 <nav class="site-nav" aria-label="Primary">
-  <a href="../">⌂ Home</a>
-  <a href="../examples/">▦ Examples</a>
-  <a href="../api/">⌘ API</a>
-  <a href="">⇩ Install</a>
+  <div class="site-tabs" role="tablist" aria-label="Documentation sections">
+  <a class="site-tab" role="tab" aria-selected="false" href="../">
+    <i class="ri-home-5-line" aria-hidden="true"></i>
+    <span>Home</span>
+  </a>
+  <a class="site-tab" role="tab" aria-selected="false" href="../examples/">
+    <i class="ri-layout-grid-line" aria-hidden="true"></i>
+    <span>Examples</span>
+  </a>
+  <a class="site-tab" role="tab" aria-selected="false" href="../api/">
+    <i class="ri-code-box-line" aria-hidden="true"></i>
+    <span>API</span>
+  </a>
+  <a class="site-tab selected" role="tab" aria-selected="true" href="" aria-current="page">
+    <i class="ri-download-cloud-2-line" aria-hidden="true"></i>
+    <span>Install</span>
+  </a>
+  </div>
+  <button class="theme-switch" type="button" aria-label="Use dark theme" aria-pressed="false" data-theme-toggle>
+    <span class="theme-switch__track" aria-hidden="true">
+      <span class="theme-switch__handle">
+        <i class="ri-sun-line theme-switch__sun" aria-hidden="true"></i>
+        <i class="ri-moon-line theme-switch__moon" aria-hidden="true"></i>
+      </span>
+    </span>
+  </button>
 </nav>
     <div id="main-wrapper">
       <main>
@@ -46,14 +77,14 @@
 <pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run docs</code></pre>
 <p>The generated <code>/docs/index.html</code> loads the bundled demo with a relative module path so it works from a GitHub Pages project URL such as <code>/workshop-expressive-web-components/</code>.</p>
 <h2>Icons and typography</h2>
-<p>The component library exposes icon slots and does not inject an icon font or Google Fonts into consuming apps. Install Remix Icon in your app when you want the documented default icon set:</p>
+<p>The component library exposes icon slots and does not inject an icon font into consuming apps. Install Remix Icon in your app when you want the documented default icon set:</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> remixicon</code></pre>
 <p>Then import the Remix Icon stylesheet once in the app or docs bundle entry:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'remixicon/fonts/remixicon.css'</span><span class="token punctuation">;</span></code></pre>
 <p>Use icon slots so the app, not the component, chooses the icon library:</p>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-add-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br>  Create<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-drawer-item</span> <span class="token attr-name">item-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>settings<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Settings<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-settings-3-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-drawer-item</span><span class="token punctuation">></span></span></code></pre>
-<p>For the recommended docs typography, load Google Sans Flex with <code>&lt;link&gt;</code> tags in the document <code>&lt;head&gt;</code> and opt into the theme font with <code>class=&quot;ws-theme&quot;</code>:</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.googleapis.com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.gstatic.com<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span> <span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span><br>  <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span><br>  <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&amp;display=swap<span class="token punctuation">"</span></span><br><span class="token punctuation">/></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ws-theme<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>Google Sans Flex is loaded by the Workshop foundation theme so apps and documentation that import the design library receive the font family automatically. You can still add the preconnect hints in your document <code>&lt;head&gt;</code> for faster font startup:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.googleapis.com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.gstatic.com<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span> <span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span><br>  <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span><br>  <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&amp;display=swap<span class="token punctuation">"</span></span><br><span class="token punctuation">/></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 
       </main>
     </div>
@@ -65,5 +96,39 @@
   </div>
   <a href="https://lit.dev/">Built with Lit</a>
 </footer>
+    <script>
+      (() => {
+        const toggle = document.querySelector('[data-theme-toggle]');
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const preferredTheme = () =>
+          document.documentElement.dataset.wsTheme || (media.matches ? 'dark' : 'light');
+
+        const syncToggle = () => {
+          const theme = preferredTheme();
+          toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+          toggle?.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+          );
+        };
+
+        toggle?.addEventListener('click', () => {
+          const next = preferredTheme() === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.wsTheme = next;
+          localStorage.setItem('ws-docs-theme', next);
+          syncToggle();
+        });
+
+        media.addEventListener?.('change', () => {
+          if (!localStorage.getItem('ws-docs-theme')) {
+            delete document.documentElement.dataset.wsTheme;
+            syncToggle();
+          }
+        });
+
+        syncToggle();
+      })();
+    </script>
   </body>
 </html>

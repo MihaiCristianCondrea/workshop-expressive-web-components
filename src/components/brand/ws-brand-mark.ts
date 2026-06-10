@@ -48,7 +48,7 @@ export class WsBrandMark extends LitElement {
     return html`
       <div class="root" style=${styleMap(hostStyles)}>
         <span class="mark" part="mark" aria-hidden="true">
-          <slot name="mark">${this.markText}</slot>
+          <slot name="mark">${this.renderDefaultMark()}</slot>
         </span>
         <span class="text">
           <slot>
@@ -61,6 +61,31 @@ export class WsBrandMark extends LitElement {
           </slot>
         </span>
       </div>
+    `;
+  }
+
+  private renderDefaultMark() {
+    if (this.markText !== 'W') {
+      return this.markText;
+    }
+
+    return html`
+      <svg
+        class="logo"
+        viewBox="0 0 100 100"
+        focusable="false"
+        aria-hidden="true"
+      >
+        <path
+          d="M 18 25 L 34 76 L 50 56 L 66 76 L 82 25"
+          fill="none"
+          stroke="#7066F5"
+          stroke-width="25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+        <circle cx="50" cy="30" r="10" fill="#DE7283"></circle>
+      </svg>
     `;
   }
 
