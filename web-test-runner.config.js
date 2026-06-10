@@ -5,7 +5,7 @@
  */
 
 import {legacyPlugin} from '@web/dev-server-legacy';
-import {playwrightLauncher} from '@web/test-runner-playwright';
+import {chromeLauncher} from '@web/test-runner';
 
 const mode = process.env.MODE || 'dev';
 if (!['dev', 'prod'].includes(mode)) {
@@ -51,11 +51,9 @@ if (!['dev', 'prod'].includes(mode)) {
 // });
 
 const browsers = {
-  // Local browser testing via playwright
+  // Local browser testing via Puppeteer/Chrome.
   // ===========
-  chromium: playwrightLauncher({product: 'chromium'}),
-  firefox: playwrightLauncher({product: 'firefox'}),
-  webkit: playwrightLauncher({product: 'webkit'}),
+  chromium: chromeLauncher(),
 
   // Uncomment example launchers for running on Sauce Labs
   // ===========
@@ -71,7 +69,7 @@ const browsers = {
 };
 
 // Prepend BROWSERS=x,y to `npm run test` to run a subset of browsers
-// e.g. `BROWSERS=chromium,firefox npm run test`
+// e.g. `BROWSERS=chromium npm run test`
 const noBrowser = (b) => {
   throw new Error(`No browser configured named '${b}'; using defaults`);
 };

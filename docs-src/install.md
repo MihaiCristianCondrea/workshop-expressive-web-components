@@ -49,15 +49,25 @@ Use icon slots so the app, not the component, chooses the icon library:
 </ws-drawer-item>
 ```
 
-Google Sans Flex is loaded by the Workshop foundation theme so apps and documentation that import the design library receive the font family automatically. You can still add the preconnect hints in your document `<head>` for faster font startup:
+Google Sans Flex is loaded by the Workshop foundation theme so apps and documentation that import the design library receive the font family automatically. Code samples use Google Sans Code. Add the preconnect hints and stylesheet in your document `<head>` for faster font startup:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
 />
+```
 
-<body></body>
+Use the code font token or a scoped class for monospaced UI:
+
+```css
+.google-sans-code-snippet {
+  font-family: 'Google Sans Code', monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: 'MONO' 1;
+}
 ```

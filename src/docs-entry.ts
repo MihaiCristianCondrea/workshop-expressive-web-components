@@ -3,3 +3,6 @@ import './components/button/ws-button.js';
 import './components/drawer/ws-drawer.js';
 import './components/drawer/ws-drawer-item.js';
 import './components/brand/ws-brand-mark.js';
+import './components/tabs/ws-tabs.js';
+import './components/tabs/ws-tab.js';
+import './components/breadcrumbs/ws-breadcrumbs.js';

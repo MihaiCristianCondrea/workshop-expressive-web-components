@@ -1,6 +1,7 @@
 const header = require('./header.11ty.cjs');
 const footer = require('./footer.11ty.cjs');
 const nav = require('./nav.11ty.cjs');
+const breadcrumbs = require('./breadcrumbs.11ty.cjs');
 const relative = require('./relative-path.cjs');
 
 module.exports = function (data) {
@@ -13,7 +14,10 @@ module.exports = function (data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
-    <link rel="icon" href="${relative(page.url, '/favicon.svg')}" type="image/svg+xml">
+    <link rel="icon" href="${relative(
+      page.url,
+      '/favicon.svg'
+    )}" type="image/svg+xml">
     <script>
       (() => {
         const storedTheme = localStorage.getItem('ws-docs-theme');
@@ -26,7 +30,7 @@ module.exports = function (data) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
     >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
     <link rel="stylesheet" href="${relative(page.url, '/docs.css')}">
@@ -41,6 +45,7 @@ module.exports = function (data) {
     ${nav(data)}
     <div id="main-wrapper">
       <main>
+        ${breadcrumbs(data)}
         ${content}
       </main>
     </div>

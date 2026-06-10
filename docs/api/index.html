@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
     >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
     <link rel="stylesheet" href="../docs.css">
@@ -40,24 +40,24 @@
 </header>
 
 <nav class="site-nav" aria-label="Primary">
-  <div class="site-tabs" role="tablist" aria-label="Documentation sections">
-  <a class="site-tab" role="tab" aria-selected="false" href="../">
-    <i class="ri-home-5-line" aria-hidden="true"></i>
+  <ws-tabs class="site-tabs" aria-label="Documentation sections">
+  <ws-tab href="../">
+    <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
     <span>Home</span>
-  </a>
-  <a class="site-tab" role="tab" aria-selected="false" href="../examples/">
-    <i class="ri-layout-grid-line" aria-hidden="true"></i>
+  </ws-tab>
+  <ws-tab href="../examples/">
+    <i slot="icon" class="ri-layout-grid-line" aria-hidden="true"></i>
     <span>Examples</span>
-  </a>
-  <a class="site-tab selected" role="tab" aria-selected="true" href="" aria-current="page">
-    <i class="ri-code-box-line" aria-hidden="true"></i>
+  </ws-tab>
+  <ws-tab selected href="" aria-current="page">
+    <i slot="icon" class="ri-code-box-line" aria-hidden="true"></i>
     <span>API</span>
-  </a>
-  <a class="site-tab" role="tab" aria-selected="false" href="../install/">
-    <i class="ri-download-cloud-2-line" aria-hidden="true"></i>
+  </ws-tab>
+  <ws-tab href="../install/">
+    <i slot="icon" class="ri-download-cloud-2-line" aria-hidden="true"></i>
     <span>Install</span>
-  </a>
-  </div>
+  </ws-tab>
+  </ws-tabs>
   <button class="theme-switch" type="button" aria-label="Use dark theme" aria-pressed="false" data-theme-toggle>
     <span class="theme-switch__track" aria-hidden="true">
       <span class="theme-switch__handle">
@@ -69,6 +69,7 @@
 </nav>
     <div id="main-wrapper">
       <main>
+        <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../"},{"id":"api","label":"API"}]'></ws-breadcrumbs>
 
      <h1>API</h1>
 
@@ -174,6 +175,62 @@
 
        <tr>
          <td>subtitle</td><td>The subtitle text.</td>
+       </tr>
+
+   </table>
+
+
+
+       <h2>&lt;ws-breadcrumbs></h2>
+       <div>
+         Workshop breadcrumb navigation.
+       </div>
+
+   <h3>Attributes</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>crumbs</td><td>Crumbs to render. Use the `crumbs` attribute with JSON or set this property.</td><td>WsCrumb[]</td><td>[]</td>
+       </tr>
+
+   </table>
+
+
+   <h3>Properties</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>crumbs</td><td>crumbs</td><td>Crumbs to render. Use the `crumbs` attribute with JSON or set this property.</td><td>WsCrumb[]</td><td>[]</td>
+       </tr>
+
+   </table>
+
+
+
+
+
+   <h3>CSS Shadow Parts</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th>
+     </tr>
+
+       <tr>
+         <td>nav</td><td>The breadcrumb navigation element.</td>
+       </tr>
+
+       <tr>
+         <td>crumb</td><td>Each breadcrumb label/link.</td>
+       </tr>
+
+       <tr>
+         <td>separator</td><td>The separator icon between crumbs.</td>
        </tr>
 
    </table>
@@ -499,6 +556,146 @@
 
    </table>
 
+
+
+
+       <h2>&lt;ws-tab></h2>
+       <div>
+         Workshop navigation tab.
+       </div>
+
+   <h3>Attributes</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>href</td><td>Link destination for the tab.</td><td>string</td><td>'#'</td>
+       </tr>
+
+       <tr>
+         <td>selected</td><td>Whether this tab represents the current page or view.</td><td>boolean</td><td>false</td>
+       </tr>
+
+       <tr>
+         <td>current-when-selected</td><td>Accessible current-state token forwarded when selected.</td><td>'page' | 'step' | 'location' | 'date' | 'time' | 'true'</td><td>'page'</td>
+       </tr>
+
+   </table>
+
+
+   <h3>Properties</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>href</td><td>href</td><td>Link destination for the tab.</td><td>string</td><td>'#'</td>
+       </tr>
+
+       <tr>
+         <td>selected</td><td>selected</td><td>Whether this tab represents the current page or view.</td><td>boolean</td><td>false</td>
+       </tr>
+
+       <tr>
+         <td>currentWhenSelected</td><td>current-when-selected</td><td>Accessible current-state token forwarded when selected.</td><td>'page' | 'step' | 'location' | 'date' | 'time' | 'true'</td><td>'page'</td>
+       </tr>
+
+   </table>
+
+
+
+
+   <h3>Slots</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th>
+     </tr>
+
+       <tr>
+         <td>(default)</td><td>Tab label.</td>
+       </tr>
+
+       <tr>
+         <td>icon</td><td>Optional leading icon.</td>
+       </tr>
+
+   </table>
+
+
+   <h3>CSS Shadow Parts</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th>
+     </tr>
+
+       <tr>
+         <td>tab</td><td>The interactive anchor.</td>
+       </tr>
+
+   </table>
+
+
+
+       <h2>&lt;ws-tabs></h2>
+       <div>
+         Workshop tabs container for top-level navigation.
+       </div>
+
+   <h3>Attributes</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>aria-label</td><td>Accessible label forwarded to the internal tablist.</td><td>string | undefined</td><td></td>
+       </tr>
+
+   </table>
+
+
+   <h3>Properties</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
+     </tr>
+
+       <tr>
+         <td>accessibleLabel</td><td>aria-label</td><td>Accessible label forwarded to the internal tablist.</td><td>string | undefined</td><td></td>
+       </tr>
+
+   </table>
+
+
+
+
+   <h3>Slots</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th>
+     </tr>
+
+       <tr>
+         <td>(default)</td><td>One or more `ws-tab` elements.</td>
+       </tr>
+
+   </table>
+
+
+   <h3>CSS Shadow Parts</h3>
+   <table>
+     <tr>
+       <th>Name</th><th>Description</th>
+     </tr>
+
+       <tr>
+         <td>tabs</td><td>The tablist container.</td>
+       </tr>
+
+   </table>
 
 
 
