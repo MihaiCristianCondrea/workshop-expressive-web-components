@@ -2,6 +2,14 @@ import {css} from 'lit';
 
 export const wsButtonStyles = css`
   :host {
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      'Google Sans',
+      Roboto,
+      system-ui,
+      sans-serif
+    );
     display: inline-flex;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;

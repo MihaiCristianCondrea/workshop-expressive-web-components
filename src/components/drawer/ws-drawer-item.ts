@@ -22,7 +22,7 @@ export class WsDrawerItem extends LitElement {
   @property()
   override title = '';
 
-  /** Optional Material Symbols icon name rendered before the title. */
+  /** Optional icon CSS class rendered before the title. Prefer the `icon` slot for app-chosen icon libraries. */
   @property()
   icon = '';
 
@@ -90,23 +90,28 @@ export class WsDrawerItem extends LitElement {
         </div>
 
         ${this.badge ? html`<span class="badge">${this.badge}</span>` : nothing}
-        ${this.hasChildren
-          ? html`<span class="arrow" aria-hidden="true">⌄</span>`
-          : nothing}
+        ${this.hasChildren ? this.renderDisclosureIcon() : nothing}
       </div>
 
-      <div class="children">
-        <slot @slotchange=${this.updateTreeState}></slot>
+      <div
+        class="children"
+        aria-hidden=${this.hasChildren && !this.expanded ? 'true' : 'false'}
+      >
+        <div class="children-inner">
+          <slot @slotchange=${this.updateTreeState}></slot>
+        </div>
       </div>
     `;
   }
 
   private renderLeadingIcon() {
-    const shouldShowBullet = this.getNestingLevel() > 0 && !this.icon;
+    const hasSlottedIcon = this.querySelector('[slot="icon"]') !== null;
+    const shouldShowBullet =
+      this.getNestingLevel() > 0 && !this.icon && !hasSlottedIcon;
 
-    if (this.icon) {
+    if (this.icon || hasSlottedIcon) {
       return html`<span class="icon" aria-hidden="true"
-        ><slot name="icon">${this.icon}</slot></span
+        ><slot name="icon">${this.renderIconClass()}</slot></span
       >`;
     }
 
@@ -117,6 +122,24 @@ export class WsDrawerItem extends LitElement {
     return html`<span class="icon" aria-hidden="true"
       ><slot name="icon"></slot
     ></span>`;
+  }
+
+  private renderIconClass() {
+    return this.icon
+      ? html`<i class=${this.icon} aria-hidden="true"></i>`
+      : nothing;
+  }
+
+  private renderDisclosureIcon() {
+    return html`
+      <span class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path
+            d="M12 15.5 5.5 9l1.4-1.4 5.1 5.1 5.1-5.1L18.5 9 12 15.5Z"
+          ></path>
+        </svg>
+      </span>
+    `;
   }
 
   private renderProgress(progressValue: number) {
@@ -160,6 +183,10 @@ export class WsDrawerItem extends LitElement {
       return;
     }
 
+    if (this.itemId === 'settings') {
+      this.animateSettingsIcon();
+    }
+
     this.dispatchEvent(
       new CustomEvent<WsDrawerItemClickDetail>('ws-drawer-item-activate', {
         bubbles: true,
@@ -167,6 +194,17 @@ export class WsDrawerItem extends LitElement {
         detail: {itemId: this.itemId},
       })
     );
+  }
+
+  private animateSettingsIcon() {
+    this.toggleAttribute('data-settings-spin', false);
+
+    window.requestAnimationFrame(() => {
+      this.toggleAttribute('data-settings-spin', true);
+      window.setTimeout(() => {
+        this.toggleAttribute('data-settings-spin', false);
+      }, 360);
+    });
   }
 
   private updateTreeState() {

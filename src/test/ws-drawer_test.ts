@@ -122,7 +122,7 @@ suite('ws-drawer', () => {
         badge="3"
         progress="0.4"
       >
-        <span slot="icon">school</span>
+        <i slot="icon" class="ri-graduation-cap-line"></i>
       </ws-drawer-item>
     `);
 
@@ -138,8 +138,9 @@ suite('ws-drawer', () => {
     assert.equal(
       item
         .shadowRoot!.querySelector<HTMLSlotElement>('slot[name="icon"]')!
-        .assignedElements()[0].textContent,
-      'school'
+        .assignedElements()[0]
+        .getAttribute('class'),
+      'ri-graduation-cap-line'
     );
     assert.equal(
       item.shadowRoot!.querySelector('.progress-fill')!.getAttribute('style'),

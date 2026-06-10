@@ -21,3 +21,43 @@ npm run docs
 ```
 
 The generated `/docs/index.html` loads the bundled demo with a relative module path so it works from a GitHub Pages project URL such as `/workshop-expressive-web-components/`.
+
+## Icons and typography
+
+The component library exposes icon slots and does not inject an icon font or Google Fonts into consuming apps. Install Remix Icon in your app when you want the documented default icon set:
+
+```bash
+npm install remixicon
+```
+
+Then import the Remix Icon stylesheet once in the app or docs bundle entry:
+
+```ts
+import 'remixicon/fonts/remixicon.css';
+```
+
+Use icon slots so the app, not the component, chooses the icon library:
+
+```html
+<ws-button variant="primary">
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
+  Create
+</ws-button>
+
+<ws-drawer-item item-id="settings" title="Settings">
+  <i slot="icon" class="ri-settings-3-line" aria-hidden="true"></i>
+</ws-drawer-item>
+```
+
+For the recommended docs typography, load Google Sans Flex with `<link>` tags in the document `<head>` and opt into the theme font with `class="ws-theme"`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+/>
+
+<body class="ws-theme"></body>
+```

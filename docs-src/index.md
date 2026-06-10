@@ -57,10 +57,10 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
       <ws-button variant="primary" size="medium">Medium</ws-button>
       <ws-button variant="primary" size="large">Large</ws-button>
       <ws-button variant="outlined" aria-label="Add">
-        <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+        <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
       </ws-button>
       <ws-button variant="secondary">
-        <span slot="icon" class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        <i slot="icon" class="ri-external-link-line" aria-hidden="true"></i>
         Open
       </ws-button>
     </div>
@@ -71,10 +71,10 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
 <ws-button variant="primary" size="medium">Medium</ws-button>
 <ws-button variant="primary" size="large">Large</ws-button>
 <ws-button variant="outlined" aria-label="Add">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
 </ws-button>
 <ws-button variant="secondary">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+  <i slot="icon" class="ri-external-link-line" aria-hidden="true"></i>
   Open
 </ws-button>
 ```
@@ -86,7 +86,7 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
       <ws-button variant="primary" disabled>Disabled</ws-button>
       <ws-button variant="secondary" loading aria-label="Saving">Saving</ws-button>
       <ws-button variant="outlined">
-        <span slot="icon" class="material-symbols-outlined" aria-hidden="true">north_east</span>
+        <i slot="icon" class="ri-arrow-right-up-line" aria-hidden="true"></i>
         Open details
       </ws-button>
     </div>
@@ -96,7 +96,7 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
 <ws-button variant="primary" disabled>Disabled</ws-button>
 <ws-button variant="secondary" loading aria-label="Saving">Saving</ws-button>
 <ws-button variant="outlined">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">north_east</span>
+  <i slot="icon" class="ri-arrow-right-up-line" aria-hidden="true"></i>
   Open details
 </ws-button>
 ```
@@ -111,13 +111,14 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
         <strong>Workshop</strong>
         <span>Expressive docs</span>
       </div>
-      <ws-drawer-item item-id="overview" title="Overview" icon="home"></ws-drawer-item>
-      <ws-drawer-item item-id="components" title="Components" icon="widgets" badge="2" expanded>
+      <ws-drawer-item item-id="overview" title="Overview"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i></ws-drawer-item>
+      <ws-drawer-item item-id="components" title="Components" badge="2" expanded>
+        <i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>
         <ws-drawer-item item-id="button" title="Button" subtitle="Variants and states" progress="1"></ws-drawer-item>
         <ws-drawer-item item-id="drawer" title="Drawer" subtitle="Tree navigation" progress="0.8"></ws-drawer-item>
       </ws-drawer-item>
-      <ws-drawer-item item-id="api" title="API reference" icon="data_object"></ws-drawer-item>
-      <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
+      <ws-drawer-item item-id="api" title="API reference"><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i></ws-drawer-item>
+      <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" disabled><i slot="icon" class="ri-lock-line" aria-hidden="true"></i></ws-drawer-item>
       <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
     </ws-drawer>
 </section>
@@ -129,13 +130,34 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
     <span>Expressive docs</span>
   </div>
 
-  <ws-drawer-item item-id="overview" title="Overview" icon="home"></ws-drawer-item>
-  <ws-drawer-item item-id="components" title="Components" icon="widgets" badge="2" expanded>
-    <ws-drawer-item item-id="button" title="Button" subtitle="Variants and states" progress="1"></ws-drawer-item>
-    <ws-drawer-item item-id="drawer" title="Drawer" subtitle="Tree navigation" progress="0.8"></ws-drawer-item>
+  <ws-drawer-item item-id="overview" title="Overview"
+    ><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i
+  ></ws-drawer-item>
+  <ws-drawer-item item-id="components" title="Components" badge="2" expanded>
+    <i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>
+    <ws-drawer-item
+      item-id="button"
+      title="Button"
+      subtitle="Variants and states"
+      progress="1"
+    ></ws-drawer-item>
+    <ws-drawer-item
+      item-id="drawer"
+      title="Drawer"
+      subtitle="Tree navigation"
+      progress="0.8"
+    ></ws-drawer-item>
   </ws-drawer-item>
-  <ws-drawer-item item-id="api" title="API reference" icon="data_object"></ws-drawer-item>
-  <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
+  <ws-drawer-item item-id="api" title="API reference"
+    ><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i
+  ></ws-drawer-item>
+  <ws-drawer-item
+    item-id="locked"
+    title="Locked lesson"
+    subtitle="Disabled"
+    disabled
+    ><i slot="icon" class="ri-lock-line" aria-hidden="true"></i
+  ></ws-drawer-item>
 
   <div slot="footer">Version 0.1.0</div>
 </ws-drawer>

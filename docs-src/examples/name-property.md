@@ -12,13 +12,13 @@ description: Compare ws-button size and icon-only behavior
     <ws-button size="medium">Medium</ws-button>
     <ws-button size="large">Large</ws-button>
     <ws-button size="small" aria-label="Small add">
-      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+      <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
     </ws-button>
     <ws-button size="medium" aria-label="Medium add">
-      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+      <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
     </ws-button>
     <ws-button size="large" aria-label="Large add">
-      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+      <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
     </ws-button>
   </div>
 </div>
@@ -30,12 +30,12 @@ description: Compare ws-button size and icon-only behavior
 <ws-button size="medium">Medium</ws-button>
 <ws-button size="large">Large</ws-button>
 <ws-button size="small" aria-label="Small add">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
 </ws-button>
 <ws-button size="medium" aria-label="Medium add">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
 </ws-button>
 <ws-button size="large" aria-label="Large add">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
 </ws-button>
 ```

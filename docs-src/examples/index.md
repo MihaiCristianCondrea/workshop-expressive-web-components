@@ -27,10 +27,10 @@ description: ws-button variants, sizes, icons, and interaction states
     <ws-button variant="primary" disabled>Disabled</ws-button>
     <ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>
     <ws-button variant="outlined" aria-label="Favorite">
-      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">star</span>
+      <i slot="icon" class="ri-star-line" aria-hidden="true"></i>
     </ws-button>
     <ws-button variant="primary">
-      <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+      <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
       Create
     </ws-button>
   </div>
@@ -51,10 +51,10 @@ description: ws-button variants, sizes, icons, and interaction states
 <ws-button variant="primary" disabled>Disabled</ws-button>
 <ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>
 <ws-button variant="outlined" aria-label="Favorite">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">star</span>
+  <i slot="icon" class="ri-star-line" aria-hidden="true"></i>
 </ws-button>
 <ws-button variant="primary">
-  <span slot="icon" class="material-symbols-outlined" aria-hidden="true">add</span>
+  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
   Create
 </ws-button>
 ```
