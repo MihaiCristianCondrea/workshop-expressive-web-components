@@ -24,10 +24,7 @@ export const wsBreadcrumbsStyles = css`
   .crumb {
     border-radius: var(--ws-shape-extra-small, 4px);
     color: inherit;
-    font: var(
-      --ws-typography-body-medium,
-      500 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-body-medium);
     font-weight: 500;
     padding: var(--ws-spacing-xs, 4px) var(--ws-spacing-sm, 8px);
     text-decoration: none;

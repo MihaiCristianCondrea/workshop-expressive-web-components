@@ -63,17 +63,11 @@ export const wsBrandMarkStyles = css`
 
   .title {
     color: var(--ws-color-on-surface, #0f172a);
-    font: var(
-      --ws-typography-title-medium,
-      600 18px / 24px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-title-medium);
   }
 
   .subtitle {
     color: var(--ws-color-on-surface-variant, #64748b);
-    font: var(
-      --ws-typography-label-medium,
-      600 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-label-medium);
   }
 `;

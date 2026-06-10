@@ -41,15 +41,21 @@ module.exports = function (data) {
     )}"></script>
   </head>
   <body class="ws-theme">
-    ${header()}
-    ${nav(data)}
-    <div id="main-wrapper">
-      <main>
+    <ws-docs-shell>
+      <div slot="nav">
+        ${nav(data)}
+      </div>
+      <div slot="hero">
+        ${header(data)}
+      </div>
+      <ws-page>
         ${breadcrumbs(data)}
         ${content}
-      </main>
-    </div>
-    ${footer()}
+      </ws-page>
+      <div slot="footer">
+        ${footer(data)}
+      </div>
+    </ws-docs-shell>
     <script>
       (() => {
         const toggle = document.querySelector('[data-theme-toggle]');

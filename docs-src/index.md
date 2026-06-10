@@ -12,11 +12,11 @@ Lit implementations of the Workshop Expressive primitives. The web package now d
 The radius scale matches the original Workshop Compose `WsShapes` scale: 4, 6, 8, 12, and 16 px. Components use these tokens instead of pill-shaped defaults unless the component explicitly needs a fully round shape.
 
 <section class="token-grid" aria-label="Shape tokens">
-  <div class="token-card"><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p>4px</p></div>
-  <div class="token-card"><div class="shape-swatch" style="border-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p>6px</p></div>
-  <div class="token-card"><div class="shape-swatch" style="border-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p>8px</p></div>
-  <div class="token-card"><div class="shape-swatch" style="border-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p>12px</p></div>
-  <div class="token-card"><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p>16px</p></div>
+  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p>4px</p></ws-card>
+  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p>6px</p></ws-card>
+  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p>8px</p></ws-card>
+  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p>12px</p></ws-card>
+  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p>16px</p></ws-card>
 </section>
 
 ```css

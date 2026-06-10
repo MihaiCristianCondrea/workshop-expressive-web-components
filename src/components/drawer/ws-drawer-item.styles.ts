@@ -155,10 +155,7 @@ export const wsDrawerItemStyles = css`
 
   .title {
     color: currentcolor;
-    font: var(
-      --ws-typography-body-medium,
-      500 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-body-medium);
     font-weight: 500;
   }
 
@@ -168,18 +165,12 @@ export const wsDrawerItemStyles = css`
   }
 
   :host([data-nested]) .title {
-    font: var(
-      --ws-typography-label-medium,
-      600 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-label-medium);
   }
 
   .subtitle {
     color: var(--ws-color-on-surface-variant, #64748b);
-    font: var(
-      --ws-typography-label-small,
-      500 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-label-small);
   }
 
   :host([selected]) .subtitle {
@@ -195,10 +186,7 @@ export const wsDrawerItemStyles = css`
     border-radius: var(--ws-shape-extra-small, 4px);
     color: var(--ws-color-primary, #6c5cff);
     flex: 0 0 auto;
-    font: var(
-      --ws-typography-label-small,
-      600 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
-    );
+    font: var(--ws-typography-label-small);
     font-weight: 700;
     padding: 2px var(--ws-spacing-sm, 8px);
   }

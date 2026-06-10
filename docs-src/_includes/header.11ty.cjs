@@ -1,13 +1,6 @@
 module.exports = function () {
   return `
-<header class="site-hero">
-  <div class="hero-shell">
-    <ws-brand-mark class="hero-mark" title="" size="96px" aria-label="Workshop language logo"></ws-brand-mark>
-    <div>
-      <p class="eyebrow">Workshop Expressive</p>
-      <h1>Web Components</h1>
-      <p class="hero-subtitle">Lit-powered design system primitives with Workshop theme tokens.</p>
-    </div>
-  </div>
-</header>`;
+<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
+  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
+</ws-hero>`;
 };
