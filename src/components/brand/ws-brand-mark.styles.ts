@@ -6,14 +6,7 @@ export const wsBrandMarkStyles = css`
     --ws-brand-mark-gradient: var(--ws-color-surface, #ffffff);
     color: var(--ws-color-on-surface, #0f172a);
     display: inline-block;
-    font-family: var(
-      --ws-font-family,
-      'Google Sans Flex',
-      'Google Sans',
-      Roboto,
-      system-ui,
-      sans-serif
-    );
+    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
     gap: var(--ws-spacing-md, 12px);
     min-inline-size: 0;
   }
@@ -72,7 +65,7 @@ export const wsBrandMarkStyles = css`
     color: var(--ws-color-on-surface, #0f172a);
     font: var(
       --ws-typography-title-medium,
-      600 18px / 24px var(--ws-font-family, system-ui, sans-serif)
+      600 18px / 24px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
   }
 
@@ -80,7 +73,7 @@ export const wsBrandMarkStyles = css`
     color: var(--ws-color-on-surface-variant, #64748b);
     font: var(
       --ws-typography-label-medium,
-      600 12px / 16px var(--ws-font-family, system-ui, sans-serif)
+      600 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
   }
 `;

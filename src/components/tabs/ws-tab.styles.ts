@@ -4,14 +4,7 @@ export const wsTabStyles = css`
   :host {
     color: var(--ws-color-on-surface-variant, #64748b);
     display: inline-flex;
-    font-family: var(
-      --ws-font-family,
-      'Google Sans Flex',
-      'Google Sans',
-      Roboto,
-      system-ui,
-      sans-serif
-    );
+    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
   }
 
   :host([hidden]) {
@@ -27,7 +20,7 @@ export const wsTabStyles = css`
     gap: var(--ws-spacing-sm, 8px);
     font: var(
       --ws-typography-label-medium,
-      700 12px / 16px var(--ws-font-family, system-ui, sans-serif)
+      700 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     min-block-size: var(--ws-tab-height, 48px);
     padding: 0 var(--ws-spacing-lg, 16px);

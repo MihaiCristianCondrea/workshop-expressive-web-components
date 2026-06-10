@@ -2,14 +2,7 @@ import {css} from 'lit';
 
 export const wsDrawerItemStyles = css`
   :host {
-    font-family: var(
-      --ws-font-family,
-      'Google Sans Flex',
-      'Google Sans',
-      Roboto,
-      system-ui,
-      sans-serif
-    );
+    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
     --ws-drawer-item-depth: 0;
     display: block;
     color: var(--ws-color-on-surface, #0f172a);
@@ -164,7 +157,8 @@ export const wsDrawerItemStyles = css`
     color: currentcolor;
     font: var(
       --ws-typography-body-medium,
-      500 14px / 20px system-ui,
+      500 14px / 20px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
     font-weight: 500;
@@ -178,7 +172,8 @@ export const wsDrawerItemStyles = css`
   :host([data-nested]) .title {
     font: var(
       --ws-typography-label-medium,
-      600 12px / 16px system-ui,
+      600 12px / 16px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
   }
@@ -187,7 +182,8 @@ export const wsDrawerItemStyles = css`
     color: var(--ws-color-on-surface-variant, #64748b);
     font: var(
       --ws-typography-label-small,
-      500 11px / 16px system-ui,
+      500 11px / 16px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
   }
@@ -207,7 +203,8 @@ export const wsDrawerItemStyles = css`
     flex: 0 0 auto;
     font: var(
       --ws-typography-label-small,
-      600 11px / 16px system-ui,
+      600 11px / 16px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
     font-weight: 700;

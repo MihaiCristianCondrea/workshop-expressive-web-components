@@ -7,14 +7,7 @@ export const wsBreadcrumbsStyles = css`
       var(--ws-color-on-surface-variant, #64748b)
     );
     display: block;
-    font-family: var(
-      --ws-font-family,
-      'Google Sans Flex',
-      'Google Sans',
-      Roboto,
-      system-ui,
-      sans-serif
-    );
+    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
   }
 
   :host([hidden]) {
@@ -33,7 +26,7 @@ export const wsBreadcrumbsStyles = css`
     color: inherit;
     font: var(
       --ws-typography-body-medium,
-      500 14px / 20px var(--ws-font-family, system-ui, sans-serif)
+      500 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     font-weight: 500;
     padding: var(--ws-spacing-xs, 4px) var(--ws-spacing-sm, 8px);

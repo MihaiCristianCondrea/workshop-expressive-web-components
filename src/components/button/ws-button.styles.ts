@@ -2,14 +2,7 @@ import {css} from 'lit';
 
 export const wsButtonStyles = css`
   :host {
-    font-family: var(
-      --ws-font-family,
-      'Google Sans Flex',
-      'Google Sans',
-      Roboto,
-      system-ui,
-      sans-serif
-    );
+    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
     font-optical-sizing: auto;
     font-variation-settings: 'slnt' 0, 'wdth' 100, 'GRAD' 0, 'ROND' 0;
     display: inline-flex;
@@ -30,7 +23,7 @@ export const wsButtonStyles = css`
     display: inline-flex;
     font: var(
       --ws-button-font,
-      var(--ws-typography-label-large, 600 14px / 20px system-ui, sans-serif)
+      var(--ws-typography-label-large, 600 14px / 20px 'Google Sans Flex', system-ui, sans-serif)
     );
     gap: var(--ws-button-icon-spacing, var(--ws-spacing-sm, 8px));
     justify-content: center;
@@ -131,7 +124,8 @@ export const wsButtonStyles = css`
     block-size: 36px;
     font: var(
       --ws-typography-label-small,
-      600 11px / 16px system-ui,
+      600 11px / 16px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
     padding: 0 14px;
@@ -144,7 +138,8 @@ export const wsButtonStyles = css`
     block-size: 44px;
     font: var(
       --ws-typography-label-medium,
-      600 12px / 16px system-ui,
+      600 12px / 16px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
     padding: 0 18px;
@@ -156,7 +151,8 @@ export const wsButtonStyles = css`
     block-size: 52px;
     font: var(
       --ws-typography-label-large,
-      600 14px / 20px system-ui,
+      600 14px / 20px 'Google Sans Flex',
+      system-ui,
       sans-serif
     );
     padding: 0 24px;
