@@ -10,6 +10,8 @@ export const wsButtonStyles = css`
       system-ui,
       sans-serif
     );
+    font-optical-sizing: auto;
+    font-variation-settings: 'slnt' 0, 'wdth' 100, 'GRAD' 0, 'ROND' 0;
     display: inline-flex;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
@@ -191,9 +193,19 @@ export const wsButtonStyles = css`
   }
 
   .icon ::slotted(*) {
-    display: inline-flex;
+    align-items: center;
     block-size: var(--ws-button-icon-size, 18px);
+    display: inline-flex;
+    flex: 0 0 var(--ws-button-icon-size, 18px);
     font-size: var(--ws-button-icon-size, 18px);
+    inline-size: var(--ws-button-icon-size, 18px);
+    justify-content: center;
+    line-height: 1;
+    min-inline-size: var(--ws-button-icon-size, 18px);
+  }
+
+  .icon ::slotted(svg) {
+    block-size: var(--ws-button-icon-size, 18px);
     inline-size: var(--ws-button-icon-size, 18px);
   }
 

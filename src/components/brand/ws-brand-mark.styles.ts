@@ -3,11 +3,7 @@ import {css} from 'lit';
 export const wsBrandMarkStyles = css`
   :host {
     --ws-brand-mark-size: 48px;
-    --ws-brand-mark-gradient: linear-gradient(
-      135deg,
-      var(--ws-color-primary, #6c5cff),
-      var(--ws-gradient-accent, #06b6d4)
-    );
+    --ws-brand-mark-gradient: var(--ws-color-surface, #ffffff);
     color: var(--ws-color-on-surface, #0f172a);
     display: inline-block;
     font-family: var(
@@ -39,7 +35,7 @@ export const wsBrandMarkStyles = css`
     block-size: var(--ws-brand-mark-size);
     border-radius: var(--ws-brand-mark-radius, var(--ws-shape-large, 12px));
     box-sizing: border-box;
-    color: var(--ws-color-on-primary, #ffffff);
+    color: var(--ws-color-primary, #6c5cff);
     display: inline-flex;
     flex: 0 0 auto;
     font-size: calc(var(--ws-brand-mark-size) * 0.42);
@@ -49,7 +45,14 @@ export const wsBrandMarkStyles = css`
     letter-spacing: -0.04em;
     line-height: 1;
     overflow: hidden;
+    padding: calc(var(--ws-brand-mark-size) * 0.08);
     user-select: none;
+  }
+
+  .logo {
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
   }
 
   .text {

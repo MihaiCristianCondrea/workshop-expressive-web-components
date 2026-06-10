@@ -24,7 +24,7 @@ The generated `/docs/index.html` loads the bundled demo with a relative module p
 
 ## Icons and typography
 
-The component library exposes icon slots and does not inject an icon font or Google Fonts into consuming apps. Install Remix Icon in your app when you want the documented default icon set:
+The component library exposes icon slots and does not inject an icon font into consuming apps. Install Remix Icon in your app when you want the documented default icon set:
 
 ```bash
 npm install remixicon
@@ -49,7 +49,7 @@ Use icon slots so the app, not the component, chooses the icon library:
 </ws-drawer-item>
 ```
 
-For the recommended docs typography, load Google Sans Flex with `<link>` tags in the document `<head>` and opt into the theme font with `class="ws-theme"`:
+Google Sans Flex is loaded by the Workshop foundation theme so apps and documentation that import the design library receive the font family automatically. You can still add the preconnect hints in your document `<head>` for faster font startup:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,5 +59,5 @@ For the recommended docs typography, load Google Sans Flex with `<link>` tags in
   href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
 />
 
-<body class="ws-theme"></body>
+<body></body>
 ```
