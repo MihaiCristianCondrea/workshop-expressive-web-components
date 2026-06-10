@@ -5,7 +5,7 @@ const relative = require('./relative-path.cjs');
 
 module.exports = function (data) {
   const {title, page, content} = data;
-  return `
+  const html = `
 <!doctype html>
 
 <html lang="en">
@@ -33,4 +33,6 @@ module.exports = function (data) {
     ${footer()}
   </body>
 </html>`;
+
+  return html.replace(/[ \t]+$/gm, '');
 };

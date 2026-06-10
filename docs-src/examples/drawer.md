@@ -3,7 +3,7 @@ layout: example.11ty.cjs
 title: Workshop Expressive Web Components ⌲ Examples ⌲ Drawer navigation
 tags: example
 name: Drawer navigation
-description: Tree navigation with nested items, selection, badges, progress, disabled state, header, and footer
+description: ws-drawer header, footer, nested items, badges, progress, disabled, and selection
 ---
 
 <div class="demo-panel">
@@ -24,7 +24,7 @@ description: Tree navigation with nested items, selection, badges, progress, dis
     <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
     <ws-drawer-item item-id="settings" title="Settings" icon="settings"></ws-drawer-item>
 
-    <div slot="footer">Version 0.1.0</div>
+    <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
 
   </ws-drawer>
 </div>
@@ -57,17 +57,21 @@ description: Tree navigation with nested items, selection, badges, progress, dis
     <ws-drawer-item
       item-id="compose"
       title="Compose"
+      subtitle="Declarative UI"
       progress="0.4"
     ></ws-drawer-item>
-    <ws-drawer-item item-id="kmp" title="KMP" progress="0.7"></ws-drawer-item>
+    <ws-drawer-item
+      item-id="kmp"
+      title="KMP"
+      subtitle="Shared Kotlin"
+      progress="0.7"
+    ></ws-drawer-item>
   </ws-drawer-item>
 
-  <ws-drawer-item
-    item-id="settings"
-    title="Settings"
-    icon="settings"
-  ></ws-drawer-item>
+  <ws-drawer-item item-id="reports" title="Reports" icon="analytics" badge="12"></ws-drawer-item>
+  <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" icon="lock" disabled></ws-drawer-item>
+  <ws-drawer-item item-id="settings" title="Settings" icon="settings"></ws-drawer-item>
 
-  <div slot="footer">Version 0.1.0</div>
+  <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
 </ws-drawer>
 ```

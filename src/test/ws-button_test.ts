@@ -20,11 +20,11 @@ suite('ws-button', () => {
       el,
       `
         <button class="button" part="button" type="button">
-          <span class="icon"><slot name="icon"></slot></span>
           <span class="label"><slot></slot></span>
         </button>
       `
     );
+    assert.isNull(el.shadowRoot!.querySelector('.icon'));
   });
 
   test('reflects variant and size attributes', async () => {
@@ -37,14 +37,18 @@ suite('ws-button', () => {
   });
 
   test('disables the native button when disabled', async () => {
-    const el = await fixture<WsButton>(html`<ws-button disabled>Disabled</ws-button>`);
+    const el = await fixture<WsButton>(
+      html`<ws-button disabled>Disabled</ws-button>`
+    );
     const button = el.shadowRoot!.querySelector('button')!;
 
     assert.isTrue(button.disabled);
   });
 
   test('shows loading spinner and marks button busy', async () => {
-    const el = await fixture<WsButton>(html`<ws-button loading>Saving</ws-button>`);
+    const el = await fixture<WsButton>(
+      html`<ws-button loading>Saving</ws-button>`
+    );
     const button = el.shadowRoot!.querySelector('button')!;
     const spinner = el.shadowRoot!.querySelector('.spinner');
 
@@ -60,9 +64,28 @@ suite('ws-button', () => {
         Create
       </ws-button>
     `);
-    const iconSlot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="icon"]')!;
+    const iconSlot =
+      el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="icon"]')!;
 
     assert.equal(iconSlot.assignedElements()[0].textContent, 'add');
+  });
+
+  test('does not reserve icon space when no icon slot is provided', async () => {
+    const el = await fixture<WsButton>(html`<ws-button>Centered</ws-button>`);
+
+    assert.isNull(el.shadowRoot!.querySelector('.icon'));
+    assert.isFalse(el.hasAttribute('icon-only'));
+  });
+
+  test('supports icon-only buttons', async () => {
+    const el = await fixture<WsButton>(html`
+      <ws-button aria-label="Add">
+        <span slot="icon">add</span>
+      </ws-button>
+    `);
+
+    assert.exists(el.shadowRoot!.querySelector('.icon'));
+    assert.isTrue(el.hasAttribute('icon-only'));
   });
 
   test('emits native click events from the host', async () => {

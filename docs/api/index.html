@@ -14,16 +14,22 @@
   </head>
   <body>
 
-<header>
-  <h1>Workshop Expressive Web Components</h1>
-  <h2>Lit-powered design system primitives.</h2>
+<header class="site-hero">
+  <div class="hero-shell">
+    <div class="hero-mark" aria-hidden="true">✦</div>
+    <div>
+      <p class="eyebrow">Workshop Expressive</p>
+      <h1>Web Components</h1>
+      <p class="hero-subtitle">Lit-powered design system primitives with Workshop theme tokens.</p>
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="../">Home</a>
-  <a href="../examples/">Examples</a>
-  <a href="">API</a>
-  <a href="../install/">Install</a>
+<nav class="site-nav" aria-label="Primary">
+  <a href="../">⌂ Home</a>
+  <a href="../examples/">▦ Examples</a>
+  <a href="">⌘ API</a>
+  <a href="../install/">⇩ Install</a>
 </nav>
     <div id="main-wrapper">
       <main>
@@ -88,6 +94,20 @@
 
        <tr>
          <td>accessibleLabel</td><td>aria-label</td><td>Accessible label forwarded to the internal native button.</td><td>string | undefined</td><td></td>
+       </tr>
+
+       <tr>
+         <td>hasIcon</td><td></td><td></td><td>boolean</td><td>false</td>
+       </tr>
+
+       <tr>
+         <td>hasLabel</td><td></td><td></td><td>boolean</td><td>false</td>
+       </tr>
+
+       <tr>
+         <td>contentObserver</td><td></td><td></td><td></td><td>new MutationObserver(() => {
+    this.syncSlottedState();
+  })</td>
        </tr>
 
    </table>
@@ -291,6 +311,10 @@
        </tr>
 
        <tr>
+         <td>syncSelection</td><td></td><td></td><td></td><td></td>
+       </tr>
+
+       <tr>
          <td>onItemActivate</td><td></td><td></td><td></td><td></td>
        </tr>
 
@@ -338,11 +362,12 @@
       </main>
     </div>
 
-<footer>
-  <p>
-    Made with
-    <a href="https://github.com/lit/lit-element-starter-ts">lit-starter-ts</a>
-  </p>
+<footer class="site-footer">
+  <div>
+    <strong>Workshop Expressive Web Components</strong>
+    <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
+  </div>
+  <a href="https://lit.dev/">Built with Lit</a>
 </footer>
   </body>
 </html>
