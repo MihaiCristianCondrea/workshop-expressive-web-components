@@ -170,6 +170,49 @@ Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws
   });
 </script>
 
+## Navigation tabs and breadcrumbs
+
+Tabs and breadcrumbs are part of the Workshop component library so app shells and documentation can share the same navigation treatments.
+
+<section class="demo-panel">
+  <div class="button-row" aria-label="Navigation components">
+    <ws-tabs aria-label="Demo sections">
+      <ws-tab selected href="#overview"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>Overview</ws-tab>
+      <ws-tab href="#components"><i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>Components</ws-tab>
+      <ws-tab href="#api"><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i>API</ws-tab>
+    </ws-tabs>
+    <ws-breadcrumbs id="demo-breadcrumbs"></ws-breadcrumbs>
+  </div>
+</section>
+
+```html
+<ws-tabs aria-label="Demo sections">
+  <ws-tab selected href="#overview">
+    <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
+    Overview
+  </ws-tab>
+  <ws-tab href="#components">Components</ws-tab>
+  <ws-tab href="#api">API</ws-tab>
+</ws-tabs>
+
+<ws-breadcrumbs id="demo-breadcrumbs"></ws-breadcrumbs>
+<script>
+  document.querySelector('#demo-breadcrumbs').crumbs = [
+    {id: 'home', label: 'Home', href: '/'},
+    {id: 'components', label: 'Components', href: '/components/'},
+    {id: 'tabs', label: 'Tabs'},
+  ];
+</script>
+```
+
+<script>
+  document.querySelector('#demo-breadcrumbs').crumbs = [
+    {id: 'home', label: 'Home', href: '#'},
+    {id: 'components', label: 'Components', href: '#'},
+    {id: 'tabs', label: 'Tabs'},
+  ];
+</script>
+
 ## Next steps
 
 - Browse the examples for focused button and drawer recipes.

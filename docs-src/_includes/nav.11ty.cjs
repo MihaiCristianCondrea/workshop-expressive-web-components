@@ -17,23 +17,21 @@ module.exports = function ({page}) {
           : currentUrl === item.url || currentUrl.startsWith(item.url);
       const current = selected ? ' aria-current="page"' : '';
 
-      return `<a class="site-tab${
-        selected ? ' selected' : ''
-      }" role="tab" aria-selected="${String(selected)}" href="${relative(
+      return `<ws-tab${selected ? ' selected' : ''} href="${relative(
         page.url,
         item.url
       )}"${current}>
-    <i class="${item.icon}" aria-hidden="true"></i>
+    <i slot="icon" class="${item.icon}" aria-hidden="true"></i>
     <span>${item.label}</span>
-  </a>`;
+  </ws-tab>`;
     })
     .join('\n  ');
 
   return `
 <nav class="site-nav" aria-label="Primary">
-  <div class="site-tabs" role="tablist" aria-label="Documentation sections">
+  <ws-tabs class="site-tabs" aria-label="Documentation sections">
   ${links}
-  </div>
+  </ws-tabs>
   <button class="theme-switch" type="button" aria-label="Use dark theme" aria-pressed="false" data-theme-toggle>
     <span class="theme-switch__track" aria-hidden="true">
       <span class="theme-switch__handle">

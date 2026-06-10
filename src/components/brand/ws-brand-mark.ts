@@ -76,15 +76,26 @@ export class WsBrandMark extends LitElement {
         focusable="false"
         aria-hidden="true"
       >
+        <defs>
+          <linearGradient id="wGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#AA42FF"></stop>
+            <stop offset="50%" stop-color="#7066F5"></stop>
+            <stop offset="100%" stop-color="#4B3BFF"></stop>
+          </linearGradient>
+          <linearGradient id="dotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF94A5"></stop>
+            <stop offset="100%" stop-color="#DE7283"></stop>
+          </linearGradient>
+        </defs>
         <path
-          d="M 18 25 L 34 76 L 50 56 L 66 76 L 82 25"
+          d="M 18 25 L 34 76 L 50 55 L 66 76 L 82 25"
           fill="none"
-          stroke="#7066F5"
-          stroke-width="25"
+          stroke="url(#wGrad)"
+          stroke-width="20"
           stroke-linecap="round"
           stroke-linejoin="round"
         ></path>
-        <circle cx="50" cy="30" r="10" fill="#DE7283"></circle>
+        <circle cx="50" cy="28" r="10" fill="url(#dotGrad)"></circle>
       </svg>
     `;
   }
