@@ -163,7 +163,7 @@ a:visited {
 
 .eyebrow {
   margin: 0 0 8px;
-  font: var(--ws-typography-label-large, 700 14px / 20px 'Google Sans Flex', system-ui, sans-serif);
+  font: var(--ws-typography-label-large, 700 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif));
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.76;
@@ -174,9 +174,7 @@ a:visited {
   max-width: 680px;
   font: var(
     --ws-typography-display-medium,
-    800 44px / 52px 'Google Sans Flex',
-    system-ui,
-    sans-serif
+    800 44px / 52px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
   );
   letter-spacing: -0.04em;
 }
@@ -184,7 +182,7 @@ a:visited {
 .hero-subtitle {
   margin: 12px 0 0;
   max-width: 620px;
-  font: var(--ws-typography-body-large, 500 16px / 24px 'Google Sans Flex', system-ui, sans-serif);
+  font: var(--ws-typography-body-large, 500 16px / 24px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif));
   opacity: 0.88;
 }
 
@@ -301,9 +299,12 @@ ws-tabs.site-tabs {
 
 h1,
 h2,
-h3 {
+h3,
+strong,
+b {
   color: var(--ws-color-on-background, #0f172a);
   letter-spacing: -0.03em;
+  font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
 }
 
 main > h1:first-child {
@@ -314,9 +315,7 @@ h1 {
   margin: 0 0 16px;
   font: var(
     --ws-typography-headline-large,
-    800 32px / 40px 'Google Sans Flex',
-    system-ui,
-    sans-serif
+    800 32px / 40px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
   );
 }
 
@@ -324,9 +323,7 @@ h2 {
   margin: 56px 0 16px;
   font: var(
     --ws-typography-headline-small,
-    750 24px / 32px 'Google Sans Flex',
-    system-ui,
-    sans-serif
+    750 24px / 32px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
   );
 }
 
@@ -334,9 +331,7 @@ h3 {
   margin: 32px 0 12px;
   font: var(
     --ws-typography-title-medium,
-    700 16px / 24px 'Google Sans Flex',
-    system-ui,
-    sans-serif
+    700 16px / 24px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
   );
 }
 
@@ -431,7 +426,7 @@ pre[class*='language-'] {
 .drawer-header span,
 .drawer-footer-note {
   color: var(--ws-color-on-surface-variant, #64748b);
-  font: var(--ws-typography-label-small, 600 11px / 16px 'Google Sans Flex', system-ui, sans-serif);
+  font: var(--ws-typography-label-small, 600 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif));
 }
 
 .token-grid {

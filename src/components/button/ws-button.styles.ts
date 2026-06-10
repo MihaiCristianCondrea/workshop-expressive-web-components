@@ -23,7 +23,7 @@ export const wsButtonStyles = css`
     display: inline-flex;
     font: var(
       --ws-button-font,
-      var(--ws-typography-label-large, 600 14px / 20px 'Google Sans Flex', system-ui, sans-serif)
+      var(--ws-typography-label-large, 600 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif))
     );
     gap: var(--ws-button-icon-spacing, var(--ws-spacing-sm, 8px));
     justify-content: center;
@@ -124,9 +124,7 @@ export const wsButtonStyles = css`
     block-size: 36px;
     font: var(
       --ws-typography-label-small,
-      600 11px / 16px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      600 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     padding: 0 14px;
   }
@@ -138,9 +136,7 @@ export const wsButtonStyles = css`
     block-size: 44px;
     font: var(
       --ws-typography-label-medium,
-      600 12px / 16px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      600 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     padding: 0 18px;
   }
@@ -151,9 +147,7 @@ export const wsButtonStyles = css`
     block-size: 52px;
     font: var(
       --ws-typography-label-large,
-      600 14px / 20px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      600 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     padding: 0 24px;
   }

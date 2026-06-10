@@ -157,9 +157,7 @@ export const wsDrawerItemStyles = css`
     color: currentcolor;
     font: var(
       --ws-typography-body-medium,
-      500 14px / 20px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      500 14px / 20px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     font-weight: 500;
   }
@@ -172,9 +170,7 @@ export const wsDrawerItemStyles = css`
   :host([data-nested]) .title {
     font: var(
       --ws-typography-label-medium,
-      600 12px / 16px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      600 12px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
   }
 
@@ -182,9 +178,7 @@ export const wsDrawerItemStyles = css`
     color: var(--ws-color-on-surface-variant, #64748b);
     font: var(
       --ws-typography-label-small,
-      500 11px / 16px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      500 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
   }
 
@@ -203,9 +197,7 @@ export const wsDrawerItemStyles = css`
     flex: 0 0 auto;
     font: var(
       --ws-typography-label-small,
-      600 11px / 16px 'Google Sans Flex',
-      system-ui,
-      sans-serif
+      600 11px / 16px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
     );
     font-weight: 700;
     padding: 2px var(--ws-spacing-sm, 8px);
