@@ -26,13 +26,13 @@ module.exports = function ({page}) {
     .join('\n  ');
 
   return `
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   ${links}
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>`;
+</ws-app-bar>`;
 };

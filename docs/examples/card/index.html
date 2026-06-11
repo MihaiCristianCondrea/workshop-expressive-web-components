@@ -29,7 +29,7 @@
     <ws-docs-shell>
       <div slot="nav">
 
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   <ws-tab href="../../">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
@@ -40,21 +40,15 @@
     <span>Examples</span>
   </ws-tab>
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>
-      </div>
-      <div slot="hero">
-
-<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
-  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
-</ws-hero>
+</ws-app-bar>
       </div>
       <ws-page>
         <div class="docs-content">
-          <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../../"},{"id":"examples","label":"Examples","href":"../"},{"id":"current","label":"Cards"}]'></ws-breadcrumbs>
+
 
     <h1>Cards</h1>
     <section class="examples">
@@ -99,17 +93,37 @@
       <div class="example-content">
         <div class="demo-panel card-grid">
   <ws-card>
-    <h3>Project health</h3>
+    <h3 id="project-health">Project health</h3>
     <p>Use cards to group related content on a consistent surface.</p>
   </ws-card>
   <ws-card>
-    <h3>Token ready</h3>
+    <h3 id="token-ready">Token ready</h3>
     <p>Cards automatically inherit the active light or dark theme tokens.</p>
   </ws-card>
 </div>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-card</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Project health<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Use cards to group related content on a consistent surface.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-card</span><span class="token punctuation">></span></span></code></pre>
+<ws-code-block language="html" copy code="&lt;ws-card&gt;
+  &lt;h3&gt;Project health&lt;/h3&gt;
+  &lt;p&gt;Use cards to group related content on a consistent surface.&lt;/p&gt;
+&lt;/ws-card&gt;
+"></ws-code-block>
 
       </div>
+
+    <aside class="example-toc" aria-label="Table of contents">
+      <strong>Table of contents</strong>
+      <ul>
+
+              <li class="toc-level-3">
+                <a href="#project-health">Project health</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#token-ready">Token ready</a>
+              </li>
+
+      </ul>
+    </aside>
+
     </section>
 
         </div>

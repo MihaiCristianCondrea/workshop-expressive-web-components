@@ -29,7 +29,7 @@
     <ws-docs-shell>
       <div slot="nav">
 
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   <ws-tab selected href="" aria-current="page">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
@@ -40,17 +40,11 @@
     <span>Examples</span>
   </ws-tab>
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>
-      </div>
-      <div slot="hero">
-
-<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
-  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
-</ws-hero>
+</ws-app-bar>
       </div>
       <ws-page>
         <div class="docs-content">
@@ -60,11 +54,18 @@
 <div class="demo-panel intro-panel">
   <h2>Install</h2>
   <p>Install dependencies, build the component library, and import the theme plus the components you need.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span><br><span class="token function">npm</span> run build</code></pre>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/foundation/theme.css'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/components/button/ws-button.js'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/components/switch/ws-switch.js'</span><span class="token punctuation">;</span></code></pre>
+<ws-code-block language="bash" copy code="npm install
+npm run build
+"></ws-code-block>
+<ws-code-block language="ts" copy code="import '@workshop/expressive-web-components/foundation/theme.css';
+import '@workshop/expressive-web-components/components/button/ws-button.js';
+import '@workshop/expressive-web-components/components/switch/ws-switch.js';
+"></ws-code-block>
   <p>The library exposes icon slots and does not inject an icon font into consuming apps. Install Remix Icon when you want to use the icon classes shown in these docs.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> remixicon</code></pre>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'remixicon/fonts/remixicon.css'</span><span class="token punctuation">;</span></code></pre>
+<ws-code-block language="bash" copy code="npm install remixicon
+"></ws-code-block>
+<ws-code-block language="ts" copy code="import 'remixicon/fonts/remixicon.css';
+"></ws-code-block>
 </div>
 <h2>What is included</h2>
 <ul>
@@ -77,7 +78,8 @@
 <p><a class="button-link" href="/examples/">Browse examples</a></p>
 <h2>Local documentation workflow</h2>
 <p>Generate the GitHub Pages demo locally when you want to preview the full documentation site:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run docs</code></pre>
+<ws-code-block language="bash" copy code="npm run docs
+"></ws-code-block>
 <p>The generated <code>/docs/index.html</code> loads the bundled demo with relative module paths so it works from a GitHub Pages project URL such as <code>/workshop-expressive-web-components/</code>.</p>
 
         </div>

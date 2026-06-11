@@ -29,7 +29,7 @@
     <ws-docs-shell>
       <div slot="nav">
 
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   <ws-tab href="../">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
@@ -40,21 +40,15 @@
     <span>Examples</span>
   </ws-tab>
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>
-      </div>
-      <div slot="hero">
-
-<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
-  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
-</ws-hero>
+</ws-app-bar>
       </div>
       <ws-page>
         <div class="docs-content">
-          <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../"},{"id":"examples","label":"Examples"}]'></ws-breadcrumbs>
+
 
     <h1>Buttons</h1>
     <section class="examples">
@@ -98,20 +92,20 @@
       </nav>
       <div class="example-content">
         <div class="demo-panel">
-  <h3>Variants</h3>
+  <h3 id="variants">Variants</h3>
   <div class="button-row">
     <ws-button variant="primary">Primary</ws-button>
     <ws-button variant="secondary">Secondary</ws-button>
     <ws-button variant="outlined">Outlined</ws-button>
     <ws-button variant="ghost">Ghost</ws-button>
   </div>
-  <h3>Sizes</h3>
+  <h3 id="sizes">Sizes</h3>
   <div class="button-row">
     <ws-button size="small">Small</ws-button>
     <ws-button size="medium">Medium</ws-button>
     <ws-button size="large">Large</ws-button>
   </div>
-  <h3>States and icons</h3>
+  <h3 id="states-and-icons">States and icons</h3>
   <div class="button-row">
     <ws-button variant="primary" disabled>Disabled</ws-button>
     <ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>
@@ -124,10 +118,52 @@
     </ws-button>
   </div>
 </div>
-<h3>HTML</h3>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>secondary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Secondary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>outlined<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Outlined<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ghost<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Ghost<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Small<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>medium<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Medium<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>large<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Large<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span> <span class="token attr-name">disabled</span><span class="token punctuation">></span></span>Disabled<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>secondary<span class="token punctuation">"</span></span> <span class="token attr-name">loading</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Loading<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Loading<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>outlined<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Favorite<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-star-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-add-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br>  Create<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="html">HTML</h3>
+<ws-code-block language="html" copy code="&lt;ws-button variant=&quot;primary&quot;&gt;Primary&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;secondary&quot;&gt;Secondary&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;outlined&quot;&gt;Outlined&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;ghost&quot;&gt;Ghost&lt;/ws-button&gt;
+
+&lt;ws-button size=&quot;small&quot;&gt;Small&lt;/ws-button&gt;
+&lt;ws-button size=&quot;medium&quot;&gt;Medium&lt;/ws-button&gt;
+&lt;ws-button size=&quot;large&quot;&gt;Large&lt;/ws-button&gt;
+
+&lt;ws-button variant=&quot;primary&quot; disabled&gt;Disabled&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;secondary&quot; loading aria-label=&quot;Loading&quot;&gt;Loading&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;outlined&quot; aria-label=&quot;Favorite&quot;&gt;
+  &lt;i slot=&quot;icon&quot; class=&quot;ri-star-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+&lt;/ws-button&gt;
+&lt;ws-button variant=&quot;primary&quot;&gt;
+  &lt;i slot=&quot;icon&quot; class=&quot;ri-add-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+  Create
+&lt;/ws-button&gt;
+"></ws-code-block>
 
       </div>
+
+    <aside class="example-toc" aria-label="Table of contents">
+      <strong>Table of contents</strong>
+      <ul>
+
+              <li class="toc-level-3">
+                <a href="#variants">Variants</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#sizes">Sizes</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#states-and-icons">States and icons</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#html">HTML</a>
+              </li>
+
+      </ul>
+    </aside>
+
     </section>
 
         </div>
