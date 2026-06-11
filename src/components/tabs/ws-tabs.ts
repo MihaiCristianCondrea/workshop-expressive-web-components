@@ -32,32 +32,41 @@ export class WsTabs extends LitElement {
   @query('slot')
   private slotElement?: HTMLSlotElement;
 
+  private hasMeasuredIndicator = false;
   private indicatorAnimationTimeout = 0;
+  private indicatorUpdateFrame = 0;
+  private lastSelectedTab: WsTab | null = null;
+
+  private readonly mutationObserver = new MutationObserver(() => {
+    this.scheduleIndicatorUpdate();
+  });
 
   private readonly resizeObserver = new ResizeObserver(() => {
-    this.updateIndicator();
+    this.scheduleIndicatorUpdate({animate: false});
   });
 
   override connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('resize', this.updateIndicator);
+    window.addEventListener('resize', this.handleResize);
   }
 
   override disconnectedCallback() {
-    window.removeEventListener('resize', this.updateIndicator);
+    window.removeEventListener('resize', this.handleResize);
     window.clearTimeout(this.indicatorAnimationTimeout);
+    window.cancelAnimationFrame(this.indicatorUpdateFrame);
+    this.mutationObserver.disconnect();
     this.resizeObserver.disconnect();
     super.disconnectedCallback();
   }
 
   override firstUpdated() {
     this.observeTabs();
-    this.updateIndicator();
+    this.updateIndicator({animate: false});
   }
 
   override updated(changedProperties: Map<string, unknown>) {
     if (changedProperties.has('orientation')) {
-      this.updateComplete.then(() => this.updateIndicator());
+      this.scheduleIndicatorUpdate({animate: false});
     }
   }
 
@@ -96,13 +105,34 @@ export class WsTabs extends LitElement {
     this.toggleAttribute('indicator-animated', false);
   }
 
-  private readonly updateIndicator = () => {
+  private readonly handleResize = () => {
+    this.scheduleIndicatorUpdate({animate: false});
+  };
+
+  private scheduleIndicatorUpdate(options: {animate?: boolean} = {}) {
+    window.cancelAnimationFrame(this.indicatorUpdateFrame);
+    this.indicatorUpdateFrame = window.requestAnimationFrame(() => {
+      this.updateIndicator(options);
+    });
+  }
+
+  private readonly updateIndicator = (options: {animate?: boolean} = {}) => {
     const tabsElement = this.tabsElement;
     const selectedTab = this.selectedTab;
+    const selectedChanged = selectedTab !== this.lastSelectedTab;
+    const shouldAnimate =
+      options.animate !== false && this.hasMeasuredIndicator && selectedChanged;
+
+    this.lastSelectedTab = selectedTab;
 
     if (!tabsElement || !selectedTab) {
       this.style.setProperty('--ws-tabs-indicator-opacity', '0');
+      this.hasMeasuredIndicator = true;
       return;
+    }
+
+    if (shouldAnimate) {
+      this.animateIndicator();
     }
 
     const hostRect = tabsElement.getBoundingClientRect();
@@ -133,6 +163,7 @@ export class WsTabs extends LitElement {
     }
 
     this.style.setProperty('--ws-tabs-indicator-opacity', '1');
+    this.hasMeasuredIndicator = true;
   };
 
   private get selectedTab() {
@@ -149,15 +180,21 @@ export class WsTabs extends LitElement {
 
   private observeTabs() {
     this.resizeObserver.disconnect();
+    this.mutationObserver.disconnect();
+
     if (this.tabsElement) this.resizeObserver.observe(this.tabsElement);
     this.tabs.forEach((tab) => {
       this.resizeObserver.observe(tab);
+      this.mutationObserver.observe(tab, {
+        attributeFilter: ['selected'],
+        attributes: true,
+      });
     });
   }
 
   private handleSlotChange() {
     this.observeTabs();
-    this.updateComplete.then(() => this.updateIndicator());
+    this.scheduleIndicatorUpdate();
   }
 
   private selectClickedTab(event: MouseEvent) {
@@ -177,15 +214,11 @@ export class WsTabs extends LitElement {
       event.preventDefault();
     }
 
-    if (clickedTab !== this.selectedTab) {
-      this.animateIndicator();
-    }
-
     this.tabs.forEach((tab) => {
       tab.selected = tab === clickedTab;
     });
 
-    this.updateComplete.then(() => this.updateIndicator());
+    this.scheduleIndicatorUpdate();
 
     this.dispatchEvent(
       new CustomEvent('ws-tab-change', {

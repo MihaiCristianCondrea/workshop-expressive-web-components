@@ -77,6 +77,13 @@ order: 6
 | --------------- | --------------- | ----------------------------------------- |
 | `ws-tab-change` | `{ tab, href }` | Fired when a tab is clicked and selected. |
 
+## Motion and navigation
+
+- The active indicator animates whenever the selected tab changes after the first render, including changes made by app state, router updates, or direct `selected` property changes.
+- Hash links such as `#overview` stay on the current page, so `ws-tabs` can update selection immediately.
+- Full-page docs navigation keeps normal anchor semantics and adds a tiny progressive enhancement: same-origin docs tabs prefetch likely destinations and wait for the shared tab motion duration before navigating, so users see the same smooth selection feedback as the live demo.
+- Customize tab motion with the shared `--ws-motion-*` custom properties; tabs also honor `prefers-reduced-motion`.
+
 ## Accessibility notes
 
 - Provide an `aria-label` that describes the tab group.
