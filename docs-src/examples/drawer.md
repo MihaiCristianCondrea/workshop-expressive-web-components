@@ -11,26 +11,33 @@ order: 4
 
 ## Live demo
 
-<div class="demo-panel component-demo">
-  <ws-drawer id="example-drawer" selected-item-id="home">
+<div class="demo-panel component-demo drawer-demo-panel">
+  <ws-drawer id="example-drawer" selected-item-id="lesson-2">
     <div slot="header" class="drawer-header">
-      <strong>Workshop</strong>
-      <span>Expressive</span>
+      <strong>Design systems - Learn</strong>
+      <span>3 lessons · 1 complete</span>
     </div>
 
-    <ws-drawer-item item-id="home" title="Home"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i></ws-drawer-item>
-
-    <ws-drawer-item item-id="learn" title="Learn" badge="3" expanded>
+    <ws-drawer-item item-id="learn" title="Design systems - Learn" expanded>
       <i slot="icon" class="ri-graduation-cap-line" aria-hidden="true"></i>
-      <ws-drawer-item item-id="compose" title="Compose" subtitle="Declarative UI" progress="0.4"></ws-drawer-item>
-      <ws-drawer-item item-id="kmp" title="KMP" subtitle="Shared Kotlin" progress="0.7"></ws-drawer-item>
+      <ws-drawer-item item-id="chapter-1" title="Chapter 1: Foundations" expanded>
+        <ws-drawer-item item-id="lesson-1" title="Lesson 1" subtitle="Tokens and theme" progress="0.45"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-2" title="Lesson 2" subtitle="Components" progress="0.75"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-3" title="Lesson 3" subtitle="Patterns" progress="1"></ws-drawer-item>
+      </ws-drawer-item>
+      <ws-drawer-item item-id="chapter-2" title="Chapter 2: Application">
+        <ws-drawer-item item-id="lesson-4" title="Lesson 4" subtitle="Production handoff" progress="0.2"></ws-drawer-item>
+      </ws-drawer-item>
     </ws-drawer-item>
 
-    <ws-drawer-item item-id="reports" title="Reports" badge="12"><i slot="icon" class="ri-bar-chart-line" aria-hidden="true"></i></ws-drawer-item>
-    <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" disabled><i slot="icon" class="ri-lock-line" aria-hidden="true"></i></ws-drawer-item>
-    <ws-drawer-item item-id="settings" title="Settings"><i slot="icon" class="ri-settings-3-line" aria-hidden="true"></i></ws-drawer-item>
+    <ws-drawer-item item-id="resources" title="Resources" badge="4">
+      <i slot="icon" class="ri-book-open-line" aria-hidden="true"></i>
+    </ws-drawer-item>
+    <ws-drawer-item item-id="locked" title="Assessment" subtitle="Complete chapter 1 first" disabled>
+      <i slot="icon" class="ri-lock-line" aria-hidden="true"></i>
+    </ws-drawer-item>
 
-    <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
+    <div slot="footer" class="drawer-footer-note">Course progress updates as lessons are selected.</div>
 
   </ws-drawer>
 </div>
@@ -45,56 +52,52 @@ order: 4
 ## Code
 
 ```html
-<ws-drawer selected-item-id="home">
+<ws-drawer selected-item-id="lesson-2">
   <div slot="header" class="drawer-header">
-    <strong>Workshop</strong>
-    <span>Expressive</span>
+    <strong>Design systems - Learn</strong>
+    <span>3 lessons · 1 complete</span>
   </div>
 
-  <ws-drawer-item item-id="home" title="Home">
-    <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
-  </ws-drawer-item>
-
-  <ws-drawer-item item-id="learn" title="Learn" badge="3" expanded>
+  <ws-drawer-item item-id="learn" title="Design systems - Learn" expanded>
     <i slot="icon" class="ri-graduation-cap-line" aria-hidden="true"></i>
-    <ws-drawer-item
-      item-id="compose"
-      title="Compose"
-      subtitle="Declarative UI"
-      progress="0.4"
-    ></ws-drawer-item>
-    <ws-drawer-item
-      item-id="kmp"
-      title="KMP"
-      subtitle="Shared Kotlin"
-      progress="0.7"
-    ></ws-drawer-item>
+    <ws-drawer-item item-id="chapter-1" title="Chapter 1: Foundations" expanded>
+      <ws-drawer-item
+        item-id="lesson-1"
+        title="Lesson 1"
+        subtitle="Tokens and theme"
+        progress="0.45"
+      ></ws-drawer-item>
+      <ws-drawer-item
+        item-id="lesson-2"
+        title="Lesson 2"
+        subtitle="Components"
+        progress="0.75"
+      ></ws-drawer-item>
+      <ws-drawer-item
+        item-id="lesson-3"
+        title="Lesson 3"
+        subtitle="Patterns"
+        progress="1"
+      ></ws-drawer-item>
+    </ws-drawer-item>
+    <ws-drawer-item item-id="chapter-2" title="Chapter 2: Application">
+      <ws-drawer-item
+        item-id="lesson-4"
+        title="Lesson 4"
+        subtitle="Production handoff"
+        progress="0.2"
+      ></ws-drawer-item>
+    </ws-drawer-item>
   </ws-drawer-item>
 
-  <ws-drawer-item item-id="reports" title="Reports" badge="12">
-    <i slot="icon" class="ri-bar-chart-line" aria-hidden="true"></i>
-  </ws-drawer-item>
-  <ws-drawer-item
-    item-id="locked"
-    title="Locked lesson"
-    subtitle="Disabled"
-    disabled
-  >
-    <i slot="icon" class="ri-lock-line" aria-hidden="true"></i>
-  </ws-drawer-item>
-  <ws-drawer-item item-id="settings" title="Settings">
-    <i slot="icon" class="ri-settings-3-line" aria-hidden="true"></i>
+  <ws-drawer-item item-id="resources" title="Resources" badge="4">
+    <i slot="icon" class="ri-book-open-line" aria-hidden="true"></i>
   </ws-drawer-item>
 
-  <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
+  <div slot="footer" class="drawer-footer-note">
+    Course progress updates as lessons are selected.
+  </div>
 </ws-drawer>
-
-<script type="module">
-  const drawer = document.querySelector('ws-drawer');
-  drawer.addEventListener('ws-drawer-item-click', (event) => {
-    drawer.selectedItemId = event.detail.itemId;
-  });
-</script>
 ```
 
 ## API
@@ -106,7 +109,7 @@ order: 4
 | `ws-drawer-item` | `title`            | `string`  | —       | Primary label.                                             |
 | `ws-drawer-item` | `subtitle`         | `string`  | —       | Optional supporting label.                                 |
 | `ws-drawer-item` | `badge`            | `string`  | —       | Optional count or short status.                            |
-| `ws-drawer-item` | `progress`         | `number`  | —       | Progress value from 0 to 1.                                |
+| `ws-drawer-item` | `progress`         | `number`  | —       | Progress value from 0 to 1; `1` shows a completion check.  |
 | `ws-drawer-item` | `expanded`         | `boolean` | `false` | Shows nested drawer items.                                 |
 | `ws-drawer-item` | `selected`         | `boolean` | `false` | Reflects selected state. Usually controlled by the drawer. |
 | `ws-drawer-item` | `disabled`         | `boolean` | `false` | Prevents activation.                                       |

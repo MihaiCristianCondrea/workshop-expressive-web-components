@@ -247,6 +247,25 @@ export const wsDrawerItemStyles = css`
     opacity: 1;
   }
 
+  .complete-icon {
+    align-items: center;
+    block-size: var(--ws-drawer-complete-icon-size, 18px);
+    color: var(--ws-color-primary, #6c5cff);
+    display: inline-flex;
+    inline-size: var(--ws-drawer-complete-icon-size, 18px);
+    margin-block-start: var(--ws-spacing-xs, 4px);
+  }
+
+  .complete-icon svg {
+    block-size: 100%;
+    fill: currentcolor;
+    inline-size: 100%;
+  }
+
+  :host([selected]) .complete-icon {
+    color: currentcolor;
+  }
+
   .progress-track {
     background: var(--ws-color-surface-variant, #f1f5f9);
     border-radius: var(--ws-shape-full, 999px);

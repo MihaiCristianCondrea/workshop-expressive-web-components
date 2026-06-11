@@ -529,3 +529,58 @@ th {
     position: static;
   }
 }
+
+.button-size-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.button-size-matrix h4 {
+  margin: 0 0 12px;
+}
+
+.button-column {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabs-demo-grid {
+  align-items: stretch;
+  gap: 24px;
+}
+
+.tabs-demo-grid > div {
+  background: color-mix(
+    in srgb,
+    var(--ws-color-surface, #ffffff) 72%,
+    transparent
+  );
+  border: 1px solid var(--ws-color-outline-variant, #e2e8f0);
+  border-radius: var(--ws-shape-medium, 8px);
+  min-inline-size: 0;
+  padding: 20px;
+}
+
+.tabs-demo-grid ws-tabs {
+  max-inline-size: 100%;
+}
+
+.tabs-demo-grid ws-tabs[orientation='vertical'] {
+  inline-size: min(100%, 260px);
+}
+
+.drawer-demo-panel {
+  justify-items: start;
+}
+
+.drawer-demo-panel ws-drawer {
+  --ws-drawer-width: min(100%, 360px);
+  --ws-drawer-padding: 18px;
+  --ws-drawer-item-gap: 8px;
+  --ws-drawer-item-indent: 14px;
+  --ws-drawer-nested-item-min-height: 34px;
+}

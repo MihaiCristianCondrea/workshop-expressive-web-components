@@ -143,6 +143,18 @@ export class WsDrawerItem extends LitElement {
   }
 
   private renderProgress(progressValue: number) {
+    if (progressValue >= 1) {
+      return html`
+        <span class="complete-icon" role="img" aria-label="Complete">
+          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+            <path
+              d="M9.55 17.45 4.8 12.7l1.4-1.4 3.35 3.35 8.25-8.25 1.4 1.4-9.65 9.65Z"
+            ></path>
+          </svg>
+        </span>
+      `;
+    }
+
     return html`
       <div
         class="progress-track"

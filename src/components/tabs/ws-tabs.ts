@@ -29,6 +29,9 @@ export class WsTabs extends LitElement {
   @query('.tabs')
   private tabsElement?: HTMLElement;
 
+  @query('slot')
+  private slotElement?: HTMLSlotElement;
+
   private readonly resizeObserver = new ResizeObserver(() => {
     this.updateIndicator();
   });
@@ -111,17 +114,21 @@ export class WsTabs extends LitElement {
   };
 
   private get selectedTab() {
+    return this.tabs.find((tab) => tab.selected) ?? null;
+  }
+
+  private get tabs() {
     return (
-      Array.from(this.querySelectorAll<WsTab>('ws-tab')).find(
-        (tab) => tab.selected
-      ) ?? null
+      this.slotElement
+        ?.assignedElements({flatten: true})
+        .filter((element): element is WsTab => element instanceof WsTab) ?? []
     );
   }
 
   private observeTabs() {
     this.resizeObserver.disconnect();
     if (this.tabsElement) this.resizeObserver.observe(this.tabsElement);
-    this.querySelectorAll<WsTab>('ws-tab').forEach((tab) => {
+    this.tabs.forEach((tab) => {
       this.resizeObserver.observe(tab);
     });
   }
@@ -136,9 +143,19 @@ export class WsTabs extends LitElement {
       .composedPath()
       .find((target): target is WsTab => target instanceof WsTab);
 
-    if (!clickedTab || clickedTab.hasAttribute('disabled')) return;
+    if (
+      !clickedTab ||
+      clickedTab.hasAttribute('disabled') ||
+      !this.tabs.includes(clickedTab)
+    ) {
+      return;
+    }
 
-    this.querySelectorAll<WsTab>('ws-tab').forEach((tab) => {
+    if (clickedTab.href.startsWith('#')) {
+      event.preventDefault();
+    }
+
+    this.tabs.forEach((tab) => {
       tab.selected = tab === clickedTab;
     });
 
