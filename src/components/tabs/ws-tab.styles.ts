@@ -4,7 +4,12 @@ export const wsTabStyles = css`
   :host {
     color: var(--ws-color-on-surface-variant, #64748b);
     display: inline-flex;
-    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      system-ui,
+      sans-serif
+    );
   }
 
   :host([hidden]) {
@@ -24,21 +29,36 @@ export const wsTabStyles = css`
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition: background-color 180ms cubic-bezier(0.2, 0, 0, 1),
-      color 180ms cubic-bezier(0.2, 0, 0, 1);
+    outline: none;
+    transition: background-color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease);
   }
 
   .tab::after {
     background: var(--ws-color-primary, #6c5cff);
-    block-size: 3px;
-    border-radius: 3px 3px 0 0;
+    block-size: var(--ws-tab-indicator-size, 3px);
+    border-radius: var(
+        --ws-tab-indicator-radius,
+        var(--ws-shape-extra-small, 4px)
+      )
+      var(--ws-tab-indicator-radius, var(--ws-shape-extra-small, 4px)) 0 0;
     content: '';
-    inset-block-end: 6px;
+    inset-block-end: var(--ws-spacing-sm, 8px);
     inset-inline: var(--ws-spacing-lg, 16px);
     position: absolute;
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 260ms cubic-bezier(0.2, 0, 0, 1);
+    transition: transform var(--ws-motion-duration-slow, 240ms)
+      var(--ws-motion-easing-standard, ease);
+  }
+
+  .tab:focus-visible {
+    box-shadow: 0 0 0 var(--ws-focus-ring-inner-size, 2px)
+        var(--ws-color-surface, #ffffff),
+      0 0 0 var(--ws-focus-ring-outer-size, 4px)
+        var(--ws-color-primary, #6c5cff);
   }
 
   .tab:hover {

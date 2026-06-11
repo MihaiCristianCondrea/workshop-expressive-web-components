@@ -2,11 +2,16 @@ import {css} from 'lit';
 
 export const wsBrandMarkStyles = css`
   :host {
-    --ws-brand-mark-size: 48px;
+    --ws-brand-mark-size: var(--ws-spacing-xxl, 32px);
     --ws-brand-mark-gradient: var(--ws-color-surface, #ffffff);
     color: var(--ws-color-on-surface, #0f172a);
     display: inline-block;
-    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      system-ui,
+      sans-serif
+    );
     gap: var(--ws-spacing-md, 12px);
     min-inline-size: 0;
   }
@@ -50,7 +55,7 @@ export const wsBrandMarkStyles = css`
 
   .text {
     display: grid;
-    gap: 2px;
+    gap: calc(var(--ws-spacing-xs, 4px) / 2);
     min-inline-size: 0;
   }
 

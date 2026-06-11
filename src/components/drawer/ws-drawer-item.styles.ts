@@ -2,7 +2,12 @@ import {css} from 'lit';
 
 export const wsDrawerItemStyles = css`
   :host {
-    font-family: var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif);
+    font-family: var(
+      --ws-font-family,
+      'Google Sans Flex',
+      system-ui,
+      sans-serif
+    );
     --ws-drawer-item-depth: 0;
     display: block;
     color: var(--ws-color-on-surface, #0f172a);
@@ -27,7 +32,8 @@ export const wsDrawerItemStyles = css`
     outline: none;
     padding-block: var(--ws-spacing-md, 12px);
     padding-inline: calc(
-        var(--ws-spacing-md, 12px) + (var(--ws-drawer-item-depth) * 18px)
+        var(--ws-spacing-md, 12px) +
+          (var(--ws-drawer-item-depth) * var(--ws-drawer-item-indent, 18px))
       )
       var(--ws-spacing-sm, 8px);
     position: relative;
@@ -58,8 +64,10 @@ export const wsDrawerItemStyles = css`
   }
 
   .item:focus-visible {
-    box-shadow: 0 0 0 2px var(--ws-color-surface, #ffffff),
-      0 0 0 4px var(--ws-color-primary, #6c5cff);
+    box-shadow: 0 0 0 var(--ws-focus-ring-inner-size, 2px)
+        var(--ws-color-surface, #ffffff),
+      0 0 0 var(--ws-focus-ring-outer-size, 4px)
+        var(--ws-color-primary, #6c5cff);
   }
 
   :host([disabled]) .item {
@@ -69,7 +77,7 @@ export const wsDrawerItemStyles = css`
 
   :host([data-nested]) .item {
     border-radius: var(--ws-shape-small, 6px);
-    min-block-size: 36px;
+    min-block-size: var(--ws-drawer-nested-item-min-height, 36px);
     padding-block: var(--ws-spacing-sm, 8px);
   }
 
@@ -94,17 +102,17 @@ export const wsDrawerItemStyles = css`
   }
 
   .icon {
-    block-size: 20px;
-    font-size: 20px;
+    block-size: var(--ws-drawer-item-icon-size, 20px);
+    font-size: var(--ws-drawer-item-icon-size, 20px);
     font-weight: normal;
-    inline-size: 20px;
+    inline-size: var(--ws-drawer-item-icon-size, 20px);
     line-height: 1;
   }
 
   :host([data-nested]) .icon {
-    block-size: 16px;
-    font-size: 16px;
-    inline-size: 16px;
+    block-size: var(--ws-drawer-nested-item-icon-size, 16px);
+    font-size: var(--ws-drawer-nested-item-icon-size, 16px);
+    inline-size: var(--ws-drawer-nested-item-icon-size, 16px);
   }
 
   .icon > i,
@@ -120,21 +128,21 @@ export const wsDrawerItemStyles = css`
 
   :host([data-settings-spin]) .icon > i,
   :host([data-settings-spin]) .icon ::slotted(*) {
-    animation: ws-drawer-settings-spin 320ms
-      var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1));
+    animation: ws-drawer-settings-spin var(--ws-motion-duration-slow, 240ms)
+      var(--ws-motion-easing-emphasized, ease);
   }
 
   .bullet {
     background: currentcolor;
-    block-size: 5px;
+    block-size: var(--ws-drawer-bullet-size, 5px);
     border-radius: var(--ws-shape-full, 999px);
-    inline-size: 5px;
+    inline-size: var(--ws-drawer-bullet-size, 5px);
     opacity: 0.55;
   }
 
   :host([selected]) .bullet {
-    block-size: 7px;
-    inline-size: 7px;
+    block-size: var(--ws-drawer-selected-bullet-size, 7px);
+    inline-size: var(--ws-drawer-selected-bullet-size, 7px);
     opacity: 1;
   }
 
@@ -142,7 +150,7 @@ export const wsDrawerItemStyles = css`
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    gap: 1px;
+    gap: var(--ws-drawer-item-text-gap, 1px);
     min-inline-size: 0;
   }
 
@@ -188,7 +196,7 @@ export const wsDrawerItemStyles = css`
     flex: 0 0 auto;
     font: var(--ws-typography-label-small);
     font-weight: 700;
-    padding: 2px var(--ws-spacing-sm, 8px);
+    padding: var(--ws-drawer-badge-padding-block, 2px) var(--ws-spacing-sm, 8px);
   }
 
   :host([selected]) .badge {
@@ -197,8 +205,8 @@ export const wsDrawerItemStyles = css`
   }
 
   .arrow {
-    block-size: 20px;
-    inline-size: 20px;
+    block-size: var(--ws-drawer-item-icon-size, 20px);
+    inline-size: var(--ws-drawer-item-icon-size, 20px);
     margin-inline-start: calc(-1 * var(--ws-spacing-xs, 4px));
   }
 
@@ -219,7 +227,7 @@ export const wsDrawerItemStyles = css`
     opacity: 0;
     overflow: hidden;
     transition: grid-template-rows var(--ws-motion-duration-medium, 180ms)
-        var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1)),
+        var(--ws-motion-easing-emphasized, ease),
       margin-block-start var(--ws-motion-duration-medium, 180ms)
         var(--ws-motion-easing-standard, ease),
       opacity var(--ws-motion-duration-medium, 180ms)
@@ -242,7 +250,7 @@ export const wsDrawerItemStyles = css`
   .progress-track {
     background: var(--ws-color-surface-variant, #f1f5f9);
     border-radius: var(--ws-shape-full, 999px);
-    block-size: 4px;
+    block-size: var(--ws-drawer-progress-height, 4px);
     inline-size: 100%;
     margin-block-start: var(--ws-spacing-sm, 8px);
     overflow: hidden;

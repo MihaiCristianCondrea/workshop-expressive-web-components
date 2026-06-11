@@ -5,6 +5,31 @@ import '../components/breadcrumbs/ws-breadcrumbs.js';
 import type {WsBreadcrumbs} from '../components/breadcrumbs/ws-breadcrumbs.js';
 
 suite('ws-breadcrumbs', () => {
+  test('parses declarative JSON from the crumbs attribute', async () => {
+    const el = await fixture<WsBreadcrumbs>(
+      '<ws-breadcrumbs crumbs=\'[{"id":"home","label":"Home","href":"/"},{"id":"docs","label":"Docs"}]\'></ws-breadcrumbs>'
+    );
+
+    assert.deepEqual(el.crumbs, [
+      {id: 'home', label: 'Home', href: '/'},
+      {id: 'docs', label: 'Docs', href: undefined},
+    ]);
+    assert.lengthOf(el.shadowRoot!.querySelectorAll('a.crumb'), 1);
+    assert.equal(
+      el.shadowRoot!.querySelector('[aria-current="page"]')!.textContent,
+      'Docs'
+    );
+  });
+
+  test('ignores invalid crumbs JSON declaratively', async () => {
+    const el = await fixture<WsBreadcrumbs>(
+      '<ws-breadcrumbs crumbs="not json"></ws-breadcrumbs>'
+    );
+
+    assert.deepEqual(el.crumbs, []);
+    assert.isNull(el.shadowRoot!.querySelector('.breadcrumbs'));
+  });
+
   test('renders links and marks the final crumb as current', async () => {
     const el = await fixture<WsBreadcrumbs>(html`
       <ws-breadcrumbs></ws-breadcrumbs>

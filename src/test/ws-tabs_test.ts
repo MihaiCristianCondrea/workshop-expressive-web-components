@@ -22,7 +22,7 @@ suite('ws-tabs', () => {
     assert.lengthOf(el.querySelectorAll('ws-tab'), 2);
   });
 
-  test('forwards selected state and current semantics', async () => {
+  test('keeps anchor navigation semantics while forwarding selected state', async () => {
     const el = await fixture<WsTab>(html`
       <ws-tab href="/api/" selected>API</ws-tab>
     `);
@@ -31,5 +31,17 @@ suite('ws-tabs', () => {
     assert.equal(anchor.getAttribute('href'), '/api/');
     assert.equal(anchor.getAttribute('aria-selected'), 'true');
     assert.equal(anchor.getAttribute('aria-current'), 'page');
+    assert.equal(anchor.getAttribute('role'), 'tab');
+  });
+
+  test('omits current semantics when a tab is not selected', async () => {
+    const el = await fixture<WsTab>(html`
+      <ws-tab href="/examples/">Examples</ws-tab>
+    `);
+    const anchor = el.shadowRoot!.querySelector<HTMLAnchorElement>('a')!;
+
+    assert.equal(anchor.getAttribute('href'), '/examples/');
+    assert.equal(anchor.getAttribute('aria-selected'), 'false');
+    assert.isFalse(anchor.hasAttribute('aria-current'));
   });
 });

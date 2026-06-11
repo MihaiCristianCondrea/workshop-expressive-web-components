@@ -2,7 +2,7 @@ import {css} from 'lit';
 
 export const wsTabsStyles = css`
   :host {
-    --ws-tabs-gap: 4px;
+    --ws-tabs-gap: var(--ws-spacing-xs, 4px);
     display: inline-flex;
     min-inline-size: 0;
   }
