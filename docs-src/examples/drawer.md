@@ -4,6 +4,7 @@ title: Workshop Expressive Web Components ⌲ Examples ⌲ Drawer navigation
 tags: example
 name: Drawer navigation
 description: ws-drawer header, footer, nested items, badges, progress, disabled, and selection
+order: 4
 ---
 
 <div class="demo-panel">

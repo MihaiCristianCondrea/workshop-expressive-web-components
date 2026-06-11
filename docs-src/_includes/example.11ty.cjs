@@ -12,30 +12,28 @@ module.exports = function (data) {
 };
 
 const renderExample = ({name, content, collections, page}) => {
+  const examples = collections.example ?? [];
+
   return `
-    <h1>Example: ${name}</h1>
+    <h1>${name}</h1>
     <section class="examples">
-      <nav class="collection">
+      <nav class="collection" aria-label="Component examples">
+        <strong>Components</strong>
         <ul>
-          ${
-            collections.example === undefined
-              ? ''
-              : collections.example
-                  .map(
-                    (post) => `
-                  <li class=${post.url === page.url ? 'selected' : ''}>
-                    <a href="${relative(
-                      page.url,
-                      post.url
-                    )}">${post.data.description.replace(/</g, '&lt;')}</a>
+          ${examples
+            .map(
+              (post) => `
+                  <li class="${post.url === page.url ? 'selected' : ''}">
+                    <a href="${relative(page.url, post.url)}">${(
+                post.data.name ?? post.data.description
+              ).replace(/</g, '&lt;')}</a>
                   </li>
                 `
-                  )
-                  .join('')
-          }
+            )
+            .join('')}
         </ul>
       </nav>
-      <div>
+      <div class="example-content">
         ${content}
       </div>
     </section>

@@ -5,216 +5,52 @@ title: Workshop Expressive Web Components ⌲ Home
 
 # Workshop Expressive Web Components
 
-Lit implementations of the Workshop Expressive primitives. The web package now documents the current component set: foundation shape tokens, `<ws-button>`, `<ws-drawer>`, and `<ws-drawer-item>`.
+Lit implementations of the Workshop Expressive primitives. The package includes foundation tokens, navigation surfaces, controls, and documentation helpers for building expressive web interfaces.
 
-## Shape tokens
+<div class="demo-panel intro-panel">
+  <h2>Install</h2>
+  <p>Install dependencies, build the component library, and import the theme plus the components you need.</p>
 
-The radius scale matches the original Workshop Compose `WsShapes` scale: 4, 6, 8, 12, and 16 px. Components use these tokens instead of pill-shaped defaults unless the component explicitly needs a fully round shape.
-
-<section class="token-grid" aria-label="Shape tokens">
-  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p>4px</p></ws-card>
-  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p>6px</p></ws-card>
-  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p>8px</p></ws-card>
-  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p>12px</p></ws-card>
-  <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p>16px</p></ws-card>
-</section>
-
-```css
-:root {
-  --ws-shape-extra-small: 4px;
-  --ws-shape-small: 6px;
-  --ws-shape-medium: 8px;
-  --ws-shape-large: 12px;
-  --ws-shape-extra-large: 16px;
-}
+```bash
+npm install
+npm run build
 ```
 
-## Button variants
-
-Buttons use the Compose sizes (`small` 36px, `medium` 44px, `large` 52px), `--ws-shape-medium` corner radius, and only render leading icon space when an icon is actually assigned to `slot="icon"`.
-
-<section class="demo-panel">
-    <div class="button-row" aria-label="Button variants">
-      <ws-button variant="primary" size="medium">Continue</ws-button>
-      <ws-button variant="secondary" size="medium">Save</ws-button>
-      <ws-button variant="outlined" size="medium">Cancel</ws-button>
-      <ws-button variant="ghost" size="medium">Learn more</ws-button>
-    </div>
-</section>
-
-```html
-<ws-button variant="primary" size="medium">Continue</ws-button>
-<ws-button variant="secondary" size="medium">Save</ws-button>
-<ws-button variant="outlined" size="medium">Cancel</ws-button>
-<ws-button variant="ghost" size="medium">Learn more</ws-button>
+```ts
+import '@workshop/expressive-web-components/foundation/theme.css';
+import '@workshop/expressive-web-components/components/button/ws-button.js';
+import '@workshop/expressive-web-components/components/switch/ws-switch.js';
 ```
 
-## Button sizes and icon states
+  <p>The library exposes icon slots and does not inject an icon font into consuming apps. Install Remix Icon when you want to use the icon classes shown in these docs.</p>
 
-<section class="demo-panel">
-    <div class="button-row" aria-label="Button sizes and icons">
-      <ws-button variant="primary" size="small">Small</ws-button>
-      <ws-button variant="primary" size="medium">Medium</ws-button>
-      <ws-button variant="primary" size="large">Large</ws-button>
-      <ws-button variant="outlined" aria-label="Add">
-        <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
-      </ws-button>
-      <ws-button variant="secondary">
-        <i slot="icon" class="ri-external-link-line" aria-hidden="true"></i>
-        Open
-      </ws-button>
-    </div>
-</section>
-
-```html
-<ws-button variant="primary" size="small">Small</ws-button>
-<ws-button variant="primary" size="medium">Medium</ws-button>
-<ws-button variant="primary" size="large">Large</ws-button>
-<ws-button variant="outlined" aria-label="Add">
-  <i slot="icon" class="ri-add-line" aria-hidden="true"></i>
-</ws-button>
-<ws-button variant="secondary">
-  <i slot="icon" class="ri-external-link-line" aria-hidden="true"></i>
-  Open
-</ws-button>
+```bash
+npm install remixicon
 ```
 
-## Button interaction states
+```ts
+import 'remixicon/fonts/remixicon.css';
+```
+</div>
 
-<section class="demo-panel">
-    <div class="button-row" aria-label="Button states">
-      <ws-button variant="primary" disabled>Disabled</ws-button>
-      <ws-button variant="secondary" loading aria-label="Saving">Saving</ws-button>
-      <ws-button variant="outlined">
-        <i slot="icon" class="ri-arrow-right-up-line" aria-hidden="true"></i>
-        Open details
-      </ws-button>
-    </div>
-</section>
+## What is included
 
-```html
-<ws-button variant="primary" disabled>Disabled</ws-button>
-<ws-button variant="secondary" loading aria-label="Saving">Saving</ws-button>
-<ws-button variant="outlined">
-  <i slot="icon" class="ri-arrow-right-up-line" aria-hidden="true"></i>
-  Open details
-</ws-button>
+- Foundation color, spacing, shape, elevation, motion, and typography tokens.
+- Components for buttons, switches, drawers, breadcrumbs, tabs, cards, and code blocks.
+- Documentation shell components used by this site.
+
+## Explore the examples
+
+The component demos now live on the Examples page so each primitive has focused guidance and copyable snippets.
+
+<p><a class="button-link" href="/examples/">Browse examples</a></p>
+
+## Local documentation workflow
+
+Generate the GitHub Pages demo locally when you want to preview the full documentation site:
+
+```bash
+npm run docs
 ```
 
-## Drawer navigation
-
-`<ws-drawer>` coordinates selection and emits `ws-drawer-item-click` for leaf items. `<ws-drawer-item>` supports header/footer composition, nested groups, selection, disabled items, badges, subtitles, icons, and progress values.
-
-<section class="demo-panel">
-    <ws-drawer id="home-drawer" selected-item-id="overview">
-      <div slot="header" class="drawer-header">
-        <strong>Workshop</strong>
-        <span>Expressive docs</span>
-      </div>
-      <ws-drawer-item item-id="overview" title="Overview"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i></ws-drawer-item>
-      <ws-drawer-item item-id="components" title="Components" badge="2" expanded>
-        <i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>
-        <ws-drawer-item item-id="button" title="Button" subtitle="Variants and states" progress="1"></ws-drawer-item>
-        <ws-drawer-item item-id="drawer" title="Drawer" subtitle="Tree navigation" progress="0.8"></ws-drawer-item>
-      </ws-drawer-item>
-      <ws-drawer-item item-id="api" title="API reference"><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i></ws-drawer-item>
-      <ws-drawer-item item-id="locked" title="Locked lesson" subtitle="Disabled" disabled><i slot="icon" class="ri-lock-line" aria-hidden="true"></i></ws-drawer-item>
-      <div slot="footer" class="drawer-footer-note">Version 0.1.0</div>
-    </ws-drawer>
-</section>
-
-```html
-<ws-drawer selected-item-id="overview">
-  <div slot="header" class="drawer-header">
-    <strong>Workshop</strong>
-    <span>Expressive docs</span>
-  </div>
-
-  <ws-drawer-item item-id="overview" title="Overview"
-    ><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i
-  ></ws-drawer-item>
-  <ws-drawer-item item-id="components" title="Components" badge="2" expanded>
-    <i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>
-    <ws-drawer-item
-      item-id="button"
-      title="Button"
-      subtitle="Variants and states"
-      progress="1"
-    ></ws-drawer-item>
-    <ws-drawer-item
-      item-id="drawer"
-      title="Drawer"
-      subtitle="Tree navigation"
-      progress="0.8"
-    ></ws-drawer-item>
-  </ws-drawer-item>
-  <ws-drawer-item item-id="api" title="API reference"
-    ><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i
-  ></ws-drawer-item>
-  <ws-drawer-item
-    item-id="locked"
-    title="Locked lesson"
-    subtitle="Disabled"
-    disabled
-    ><i slot="icon" class="ri-lock-line" aria-hidden="true"></i
-  ></ws-drawer-item>
-
-  <div slot="footer">Version 0.1.0</div>
-</ws-drawer>
-```
-
-<script type="module">
-  const homeDrawer = document.querySelector('#home-drawer');
-  homeDrawer?.addEventListener('ws-drawer-item-click', event => {
-    homeDrawer.selectedItemId = event.detail.itemId;
-  });
-</script>
-
-## Navigation tabs and breadcrumbs
-
-Tabs and breadcrumbs are part of the Workshop component library so app shells and documentation can share the same navigation treatments.
-
-<section class="demo-panel">
-  <div class="button-row" aria-label="Navigation components">
-    <ws-tabs aria-label="Demo sections">
-      <ws-tab selected href="#overview"><i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>Overview</ws-tab>
-      <ws-tab href="#components"><i slot="icon" class="ri-puzzle-line" aria-hidden="true"></i>Components</ws-tab>
-      <ws-tab href="#api"><i slot="icon" class="ri-code-box-line" aria-hidden="true"></i>API</ws-tab>
-    </ws-tabs>
-    <ws-breadcrumbs id="demo-breadcrumbs"></ws-breadcrumbs>
-  </div>
-</section>
-
-```html
-<ws-tabs aria-label="Demo sections">
-  <ws-tab selected href="#overview">
-    <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
-    Overview
-  </ws-tab>
-  <ws-tab href="#components">Components</ws-tab>
-  <ws-tab href="#api">API</ws-tab>
-</ws-tabs>
-
-<ws-breadcrumbs id="demo-breadcrumbs"></ws-breadcrumbs>
-<script>
-  document.querySelector('#demo-breadcrumbs').crumbs = [
-    {id: 'home', label: 'Home', href: '/'},
-    {id: 'components', label: 'Components', href: '/components/'},
-    {id: 'tabs', label: 'Tabs'},
-  ];
-</script>
-```
-
-<script>
-  document.querySelector('#demo-breadcrumbs').crumbs = [
-    {id: 'home', label: 'Home', href: '#'},
-    {id: 'components', label: 'Components', href: '#'},
-    {id: 'tabs', label: 'Tabs'},
-  ];
-</script>
-
-## Next steps
-
-- Browse the examples for focused button and drawer recipes.
-- Use the API page for generated attributes, properties, events, slots, and CSS parts.
-- Import `src/foundation/theme.css` or your built package styles before rendering the components.
+The generated `/docs/index.html` loads the bundled demo with relative module paths so it works from a GitHub Pages project URL such as `/workshop-expressive-web-components/`.

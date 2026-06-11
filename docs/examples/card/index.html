@@ -5,8 +5,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshop Expressive Web Components ⌲ Home</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Workshop Expressive Web Components ⌲ Examples ⌲ Cards</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <script>
       (() => {
         const storedTheme = localStorage.getItem('ws-docs-theme');
@@ -22,8 +22,8 @@
       href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
     >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
-    <link rel="stylesheet" href="docs.css">
-    <script type="module" src="ws-button.bundled.js"></script>
+    <link rel="stylesheet" href="../../docs.css">
+    <script type="module" src="../../ws-button.bundled.js"></script>
   </head>
   <body class="ws-theme">
     <ws-docs-shell>
@@ -31,11 +31,11 @@
 
 <nav class="site-nav" aria-label="Primary">
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
-  <ws-tab selected href="" aria-current="page">
+  <ws-tab href="../../">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
     <span>Home</span>
   </ws-tab>
-  <ws-tab href="examples/">
+  <ws-tab selected href="../" aria-current="page">
     <i slot="icon" class="ri-layout-grid-line" aria-hidden="true"></i>
     <span>Examples</span>
   </ws-tab>
@@ -53,31 +53,63 @@
 </ws-hero>
       </div>
       <ws-page>
-        <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home"}]'></ws-breadcrumbs>
-        <h1>Workshop Expressive Web Components</h1>
-<p>Lit implementations of the Workshop Expressive primitives. The package includes foundation tokens, navigation surfaces, controls, and documentation helpers for building expressive web interfaces.</p>
-<div class="demo-panel intro-panel">
-  <h2>Install</h2>
-  <p>Install dependencies, build the component library, and import the theme plus the components you need.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span><br><span class="token function">npm</span> run build</code></pre>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/foundation/theme.css'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/components/button/ws-button.js'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token string">'@workshop/expressive-web-components/components/switch/ws-switch.js'</span><span class="token punctuation">;</span></code></pre>
-  <p>The library exposes icon slots and does not inject an icon font into consuming apps. Install Remix Icon when you want to use the icon classes shown in these docs.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> remixicon</code></pre>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'remixicon/fonts/remixicon.css'</span><span class="token punctuation">;</span></code></pre>
+        <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../../"},{"id":"examples","label":"Examples","href":"../"},{"id":"current","label":"Cards"}]'></ws-breadcrumbs>
+
+    <h1>Cards</h1>
+    <section class="examples">
+      <nav class="collection" aria-label="Component examples">
+        <strong>Components</strong>
+        <ul>
+
+                  <li class="">
+                    <a href="../tokens/">Design tokens</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../">Buttons</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../switch/">Switch</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../drawer/">Drawer navigation</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../breadcrumbs/">Breadcrumbs</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../tabs/">Tabs</a>
+                  </li>
+
+                  <li class="selected">
+                    <a href="">Cards</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../code-block/">Code block</a>
+                  </li>
+
+        </ul>
+      </nav>
+      <div class="example-content">
+        <div class="demo-panel card-grid">
+  <ws-card>
+    <h3>Project health</h3>
+    <p>Use cards to group related content on a consistent surface.</p>
+  </ws-card>
+  <ws-card>
+    <h3>Token ready</h3>
+    <p>Cards automatically inherit the active light or dark theme tokens.</p>
+  </ws-card>
 </div>
-<h2>What is included</h2>
-<ul>
-<li>Foundation color, spacing, shape, elevation, motion, and typography tokens.</li>
-<li>Components for buttons, switches, drawers, breadcrumbs, tabs, cards, and code blocks.</li>
-<li>Documentation shell components used by this site.</li>
-</ul>
-<h2>Explore the examples</h2>
-<p>The component demos now live on the Examples page so each primitive has focused guidance and copyable snippets.</p>
-<p><a class="button-link" href="/examples/">Browse examples</a></p>
-<h2>Local documentation workflow</h2>
-<p>Generate the GitHub Pages demo locally when you want to preview the full documentation site:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run docs</code></pre>
-<p>The generated <code>/docs/index.html</code> loads the bundled demo with relative module paths so it works from a GitHub Pages project URL such as <code>/workshop-expressive-web-components/</code>.</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-card</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Project health<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Use cards to group related content on a consistent surface.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-card</span><span class="token punctuation">></span></span></code></pre>
+
+      </div>
+    </section>
 
       </ws-page>
       <div slot="footer">
