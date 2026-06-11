@@ -20,7 +20,7 @@ const remixIconCssImport = () => ({
 });
 
 export default {
-  input: 'docs-entry.js',
+  input: 'dist/docs-entry.js',
   output: {
     file: 'ws-button.bundled.js',
     format: 'esm',
