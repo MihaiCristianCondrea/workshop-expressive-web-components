@@ -88,7 +88,9 @@ const renderToc = (headings) => {
 };
 
 const renderExample = ({name, content, collections, page}) => {
-  const examples = collections.example ?? [];
+  const examples = [...(collections.example ?? [])].sort(
+    (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+  );
   const {html, headings} = addHeadingIds(content);
 
   return `
@@ -115,5 +117,38 @@ const renderExample = ({name, content, collections, page}) => {
       </div>
       ${renderToc(headings)}
     </section>
+    <script>
+      (() => {
+        const tocLinks = Array.from(document.querySelectorAll('.example-toc a'));
+        if (!tocLinks.length) return;
+
+        const byId = new Map(tocLinks.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+        const headings = Array.from(document.querySelectorAll('.example-content h2[id], .example-content h3[id]'));
+
+        const setCurrent = id => {
+          tocLinks.forEach(link => link.removeAttribute('aria-current'));
+          byId.get(id)?.setAttribute('aria-current', 'true');
+        };
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => setCurrent(decodeURIComponent(link.hash.slice(1))));
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          setCurrent(headings[0]?.id);
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          if (visible?.target?.id) setCurrent(visible.target.id);
+        }, {rootMargin: '0px 0px -70% 0px', threshold: 0.1});
+
+        headings.forEach(heading => observer.observe(heading));
+        setCurrent(headings[0]?.id);
+      })();
+    </script>
   `;
 };

@@ -75,9 +75,19 @@
       </nav>
       <div class="example-content">
         <h1>Breadcrumbs</h1>
-        <div class="demo-panel">
+        <p>Breadcrumbs show a user's position in a hierarchy and provide quick navigation to parent pages.</p>
+<h2 id="live-demo">Live demo</h2>
+<div class="demo-panel component-demo">
   <ws-breadcrumbs id="demo-breadcrumbs"></ws-breadcrumbs>
 </div>
+<script>
+  document.querySelector('#demo-breadcrumbs').crumbs = [
+    {id: 'home', label: 'Home', href: '#'},
+    {id: 'components', label: 'Components', href: '#'},
+    {id: 'breadcrumbs', label: 'Breadcrumbs'},
+  ];
+</script>
+<h2 id="code">Code</h2>
 <ws-code-block language="html" copy code="&lt;ws-breadcrumbs id=&quot;demo-breadcrumbs&quot;&gt;&lt;/ws-breadcrumbs&gt;
 &lt;script&gt;
   document.querySelector('#demo-breadcrumbs').crumbs = [
@@ -87,22 +97,126 @@
   ];
 &lt;/script&gt;
 "></ws-code-block>
-<script>
-  document.querySelector('#demo-breadcrumbs').crumbs = [
-    {id: 'home', label: 'Home', href: '#'},
-    {id: 'components', label: 'Components', href: '#'},
-    {id: 'breadcrumbs', label: 'Breadcrumbs'},
-  ];
-</script>
+<h2 id="api">API</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>crumbs</code></td>
+<td><code>Array&lt;{ id, label, href? }&gt;</code></td>
+<td><code>[]</code></td>
+<td>Ordered breadcrumb model. The last crumb is treated as the current page when <code>href</code> is omitted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<p>`ws-breadcrumbs` is model-driven and does not expose content slots.</p>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Detail</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ws-breadcrumb-click</code></td>
+<td><code>{ crumb }</code></td>
+<td>Fired when a linked breadcrumb is clicked.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility-notes">Accessibility notes</h2>
+<ul>
+<li>Use breadcrumbs as supplemental navigation, not the only way to move around the site.</li>
+<li>Keep the current page crumb unlinked.</li>
+</ul>
+<h2 id="design-notes">Design notes</h2>
+<ul>
+<li>Use short labels that match destination titles.</li>
+<li>Avoid showing breadcrumbs for shallow flows with no meaningful hierarchy.</li>
+</ul>
 
       </div>
 
-      <aside class="example-toc" aria-label="Table of contents">
-        <strong>Table of contents</strong>
-        <p>No sections yet.</p>
-      </aside>
+    <aside class="example-toc" aria-label="Table of contents">
+      <strong>Table of contents</strong>
+      <ul>
+
+              <li class="toc-level-2">
+                <a href="#live-demo">Live demo</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#code">Code</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#api">API</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#slots">Slots</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#events">Events</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#accessibility-notes">Accessibility notes</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#design-notes">Design notes</a>
+              </li>
+
+      </ul>
+    </aside>
 
     </section>
+    <script>
+      (() => {
+        const tocLinks = Array.from(document.querySelectorAll('.example-toc a'));
+        if (!tocLinks.length) return;
+
+        const byId = new Map(tocLinks.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+        const headings = Array.from(document.querySelectorAll('.example-content h2[id], .example-content h3[id]'));
+
+        const setCurrent = id => {
+          tocLinks.forEach(link => link.removeAttribute('aria-current'));
+          byId.get(id)?.setAttribute('aria-current', 'true');
+        };
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => setCurrent(decodeURIComponent(link.hash.slice(1))));
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          setCurrent(headings[0]?.id);
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          if (visible?.target?.id) setCurrent(visible.target.id);
+        }, {rootMargin: '0px 0px -70% 0px', threshold: 0.1});
+
+        headings.forEach(heading => observer.observe(heading));
+        setCurrent(headings[0]?.id);
+      })();
+    </script>
 
         </div>
       </ws-page>
@@ -113,7 +227,15 @@
     <strong>Workshop Expressive Web Components</strong>
     <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
   </div>
-  <a href="https://lit.dev/">Built with Lit</a>
+  <a class="lit-link" href="https://lit.dev/" aria-label="Built with Lit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="40" height="50" aria-hidden="true">
+      <path fill="var(--lit-logo-dark-cyan, #00e8ff)" d="M40 120l20-60l90 90l-30 50l-40-40h-20"></path>
+      <path fill="var(--lit-logo-dark-blue, #283198)" d="M80 160 L80 80 L120 40 L 120 120 M0 160 L40 200 L40 120 L20 120"></path>
+      <path fill="var(--lit-logo-blue, #324fff)" d="M40 120v-80l40-40v80M120 200v-80l40-40v80M0 160v-80l40 40"></path>
+      <path fill="var(--lit-logo-cyan, #0ff)" d="M40 200v-80l40 40"></path>
+    </svg>
+    <span>Built with Lit</span>
+  </a>
 </ws-footer>
       </div>
     </ws-docs-shell>

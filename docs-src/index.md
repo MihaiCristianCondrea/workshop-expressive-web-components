@@ -41,12 +41,6 @@ import 'remixicon/fonts/remixicon.css';
 - Components for buttons, switches, drawers, breadcrumbs, tabs, cards, and code blocks.
 - Documentation shell components used by this site.
 
-## Explore the examples
-
-The component demos now live on the Examples page so each primitive has focused guidance and copyable snippets.
-
-<p><a class="button-link" href="/examples/">Browse examples</a></p>
-
 ## Local documentation workflow
 
 Generate the GitHub Pages demo locally when you want to preview the full documentation site:

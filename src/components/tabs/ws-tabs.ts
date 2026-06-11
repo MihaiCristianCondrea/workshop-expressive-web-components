@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property, query} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
 import {WsTab} from './ws-tab.js';
@@ -12,6 +12,7 @@ export type WsTabsOrientation = 'horizontal' | 'vertical';
  *
  * @slot - One or more `ws-tab` elements.
  * @csspart tabs - The tablist container.
+ * @csspart indicator - The animated active-tab indicator.
  */
 @customElement('ws-tabs')
 export class WsTabs extends LitElement {
@@ -25,6 +26,35 @@ export class WsTabs extends LitElement {
   @property({reflect: true})
   orientation: WsTabsOrientation = 'horizontal';
 
+  @query('.tabs')
+  private tabsElement?: HTMLElement;
+
+  private readonly resizeObserver = new ResizeObserver(() => {
+    this.updateIndicator();
+  });
+
+  override connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('resize', this.updateIndicator);
+  }
+
+  override disconnectedCallback() {
+    window.removeEventListener('resize', this.updateIndicator);
+    this.resizeObserver.disconnect();
+    super.disconnectedCallback();
+  }
+
+  override firstUpdated() {
+    this.observeTabs();
+    this.updateIndicator();
+  }
+
+  override updated(changedProperties: Map<string, unknown>) {
+    if (changedProperties.has('orientation')) {
+      this.updateComplete.then(() => this.updateIndicator());
+    }
+  }
+
   override render() {
     return html`
       <div
@@ -35,9 +65,70 @@ export class WsTabs extends LitElement {
         aria-orientation=${this.orientation}
         @click=${this.selectClickedTab}
       >
-        <slot></slot>
+        <div class="indicator" part="indicator" aria-hidden="true"></div>
+        <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
+  }
+
+  private readonly updateIndicator = () => {
+    const tabsElement = this.tabsElement;
+    const selectedTab = this.selectedTab;
+
+    if (!tabsElement || !selectedTab) {
+      this.style.setProperty('--ws-tabs-indicator-opacity', '0');
+      return;
+    }
+
+    const hostRect = tabsElement.getBoundingClientRect();
+    const selectedRect = selectedTab.getBoundingClientRect();
+
+    if (this.orientation === 'vertical') {
+      this.style.setProperty('--ws-tabs-indicator-inline-size', '3px');
+      this.style.setProperty(
+        '--ws-tabs-indicator-block-size',
+        `${selectedRect.height}px`
+      );
+      this.style.setProperty('--ws-tabs-indicator-x', '0px');
+      this.style.setProperty(
+        '--ws-tabs-indicator-y',
+        `${selectedRect.top - hostRect.top}px`
+      );
+    } else {
+      this.style.setProperty(
+        '--ws-tabs-indicator-inline-size',
+        `${selectedRect.width}px`
+      );
+      this.style.setProperty('--ws-tabs-indicator-block-size', '3px');
+      this.style.setProperty(
+        '--ws-tabs-indicator-x',
+        `${selectedRect.left - hostRect.left}px`
+      );
+      this.style.setProperty('--ws-tabs-indicator-y', '0px');
+    }
+
+    this.style.setProperty('--ws-tabs-indicator-opacity', '1');
+  };
+
+  private get selectedTab() {
+    return (
+      Array.from(this.querySelectorAll<WsTab>('ws-tab')).find(
+        (tab) => tab.selected
+      ) ?? null
+    );
+  }
+
+  private observeTabs() {
+    this.resizeObserver.disconnect();
+    if (this.tabsElement) this.resizeObserver.observe(this.tabsElement);
+    this.querySelectorAll<WsTab>('ws-tab').forEach((tab) => {
+      this.resizeObserver.observe(tab);
+    });
+  }
+
+  private handleSlotChange() {
+    this.observeTabs();
+    this.updateComplete.then(() => this.updateIndicator());
   }
 
   private selectClickedTab(event: MouseEvent) {
@@ -50,6 +141,8 @@ export class WsTabs extends LitElement {
     this.querySelectorAll<WsTab>('ws-tab').forEach((tab) => {
       tab.selected = tab === clickedTab;
     });
+
+    this.updateComplete.then(() => this.updateIndicator());
 
     this.dispatchEvent(
       new CustomEvent('ws-tab-change', {

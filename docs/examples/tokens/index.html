@@ -76,23 +76,26 @@
       <div class="example-content">
         <h1>Design tokens</h1>
         <p>Foundation tokens are CSS custom properties that keep components visually consistent across light and dark themes.</p>
-<div class="demo-panel">
-  <h2 id="shape-tokens">Shape tokens</h2>
+<h2 id="live-demo">Live demo</h2>
+<div class="demo-panel component-demo">
+  <h3 id="shape-tokens">Shape tokens</h3>
   <section class="token-grid" aria-label="Shape tokens">
-    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p>4px</p></ws-card>
-    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p>6px</p></ws-card>
-    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p>8px</p></ws-card>
-    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p>12px</p></ws-card>
-    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p>16px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="--swatch-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p><code>--ws-shape-extra-small</code><br>4px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="--swatch-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p><code>--ws-shape-small</code><br>6px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="--swatch-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p><code>--ws-shape-medium</code><br>8px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="--swatch-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p><code>--ws-shape-large</code><br>12px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="--swatch-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p><code>--ws-shape-extra-large</code><br>16px</p></ws-card>
   </section>
-  <h2 id="color-tokens">Color tokens</h2>
+  <h3 id="color-tokens">Color tokens</h3>
   <section class="token-grid" aria-label="Color tokens">
-    <ws-card><div class="color-swatch" style="background: var(--ws-color-primary)"></div><strong>primary</strong><p>Brand actions</p></ws-card>
-    <ws-card><div class="color-swatch" style="background: var(--ws-color-secondary)"></div><strong>secondary</strong><p>Supporting actions</p></ws-card>
-    <ws-card><div class="color-swatch" style="background: var(--ws-color-tertiary)"></div><strong>tertiary</strong><p>Success accents</p></ws-card>
-    <ws-card><div class="color-swatch" style="background: var(--ws-color-surface)"></div><strong>surface</strong><p>Cards and panels</p></ws-card>
+    <ws-card><div class="color-swatch" style="--swatch-color: var(--ws-color-primary, #6c5cff)"></div><strong>primary</strong><p><code>--ws-color-primary</code><br>Brand actions</p></ws-card>
+    <ws-card><div class="color-swatch" style="--swatch-color: var(--ws-color-secondary, #3b82f6)"></div><strong>secondary</strong><p><code>--ws-color-secondary</code><br>Supporting actions</p></ws-card>
+    <ws-card><div class="color-swatch" style="--swatch-color: var(--ws-color-tertiary, #10b981)"></div><strong>tertiary</strong><p><code>--ws-color-tertiary</code><br>Success accents</p></ws-card>
+    <ws-card><div class="color-swatch" style="--swatch-color: var(--ws-color-surface, #ffffff)"></div><strong>surface</strong><p><code>--ws-color-surface</code><br>Cards and panels</p></ws-card>
+    <ws-card><div class="color-swatch" style="--swatch-color: var(--ws-color-on-surface, #0f172a)"></div><strong>on-surface</strong><p><code>--ws-color-on-surface</code><br>Primary text</p></ws-card>
   </section>
 </div>
+<h2 id="code">Code</h2>
 <ws-code-block language="css" copy code=".demo {
   background: var(--ws-color-surface);
   border: 1px solid var(--ws-color-outline-variant);
@@ -100,6 +103,52 @@
   color: var(--ws-color-on-surface);
 }
 "></ws-code-block>
+<h2 id="api">API</h2>
+<table>
+<thead>
+<tr>
+<th>Token group</th>
+<th>Tokens</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Color roles</td>
+<td><code>--ws-color-primary</code>, <code>--ws-color-secondary</code>, <code>--ws-color-tertiary</code></td>
+<td>Action and accent color roles.</td>
+</tr>
+<tr>
+<td>Surfaces</td>
+<td><code>--ws-color-background</code>, <code>--ws-color-surface</code>, <code>--ws-color-surface-variant</code></td>
+<td>Page, cards, panels, and subtle containers.</td>
+</tr>
+<tr>
+<td>Content</td>
+<td><code>--ws-color-on-background</code>, <code>--ws-color-on-surface</code>, <code>--ws-color-on-surface-variant</code></td>
+<td>Text and icon colors placed on matching surfaces.</td>
+</tr>
+<tr>
+<td>Shape</td>
+<td><code>--ws-shape-extra-small</code> through <code>--ws-shape-extra-large</code>, <code>--ws-shape-full</code></td>
+<td>Radius scale for controls, cards, pills, and focus affordances.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<p>Design tokens are CSS custom properties and do not expose slots.</p>
+<h2 id="events">Events</h2>
+<p>Design tokens do not dispatch events.</p>
+<h2 id="accessibility-notes">Accessibility notes</h2>
+<ul>
+<li>Keep foreground tokens paired with compatible background tokens.</li>
+<li>Verify contrast when adding new custom token overrides.</li>
+</ul>
+<h2 id="design-notes">Design notes</h2>
+<ul>
+<li>Prefer semantic roles like <code>--ws-color-surface</code> over hard-coded hex values.</li>
+<li>Use the shape scale consistently so components feel like part of the same family.</li>
+</ul>
 
       </div>
 
@@ -108,17 +157,78 @@
       <ul>
 
               <li class="toc-level-2">
+                <a href="#live-demo">Live demo</a>
+              </li>
+
+              <li class="toc-level-3">
                 <a href="#shape-tokens">Shape tokens</a>
               </li>
 
-              <li class="toc-level-2">
+              <li class="toc-level-3">
                 <a href="#color-tokens">Color tokens</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#code">Code</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#api">API</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#slots">Slots</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#events">Events</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#accessibility-notes">Accessibility notes</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#design-notes">Design notes</a>
               </li>
 
       </ul>
     </aside>
 
     </section>
+    <script>
+      (() => {
+        const tocLinks = Array.from(document.querySelectorAll('.example-toc a'));
+        if (!tocLinks.length) return;
+
+        const byId = new Map(tocLinks.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+        const headings = Array.from(document.querySelectorAll('.example-content h2[id], .example-content h3[id]'));
+
+        const setCurrent = id => {
+          tocLinks.forEach(link => link.removeAttribute('aria-current'));
+          byId.get(id)?.setAttribute('aria-current', 'true');
+        };
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => setCurrent(decodeURIComponent(link.hash.slice(1))));
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          setCurrent(headings[0]?.id);
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          if (visible?.target?.id) setCurrent(visible.target.id);
+        }, {rootMargin: '0px 0px -70% 0px', threshold: 0.1});
+
+        headings.forEach(heading => observer.observe(heading));
+        setCurrent(headings[0]?.id);
+      })();
+    </script>
 
         </div>
       </ws-page>
@@ -129,7 +239,15 @@
     <strong>Workshop Expressive Web Components</strong>
     <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
   </div>
-  <a href="https://lit.dev/">Built with Lit</a>
+  <a class="lit-link" href="https://lit.dev/" aria-label="Built with Lit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="40" height="50" aria-hidden="true">
+      <path fill="var(--lit-logo-dark-cyan, #00e8ff)" d="M40 120l20-60l90 90l-30 50l-40-40h-20"></path>
+      <path fill="var(--lit-logo-dark-blue, #283198)" d="M80 160 L80 80 L120 40 L 120 120 M0 160 L40 200 L40 120 L20 120"></path>
+      <path fill="var(--lit-logo-blue, #324fff)" d="M40 120v-80l40-40v80M120 200v-80l40-40v80M0 160v-80l40 40"></path>
+      <path fill="var(--lit-logo-cyan, #0ff)" d="M40 200v-80l40 40"></path>
+    </svg>
+    <span>Built with Lit</span>
+  </a>
 </ws-footer>
       </div>
     </ws-docs-shell>

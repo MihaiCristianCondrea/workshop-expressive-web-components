@@ -39,24 +39,6 @@ export const wsTabStyles = css`
         var(--ws-motion-easing-standard, ease);
   }
 
-  .tab::after {
-    background: var(--ws-color-primary, #6c5cff);
-    block-size: var(--ws-tab-indicator-size, 3px);
-    border-radius: var(
-        --ws-tab-indicator-radius,
-        var(--ws-shape-extra-small, 4px)
-      )
-      var(--ws-tab-indicator-radius, var(--ws-shape-extra-small, 4px)) 0 0;
-    content: '';
-    inset-block-end: var(--ws-spacing-sm, 8px);
-    inset-inline: var(--ws-spacing-lg, 16px);
-    position: absolute;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform var(--ws-motion-duration-slow, 240ms)
-      var(--ws-motion-easing-standard, ease);
-  }
-
   .tab:focus-visible {
     box-shadow: 0 0 0 var(--ws-focus-ring-inner-size, 2px)
         var(--ws-color-surface, #ffffff),
@@ -85,10 +67,6 @@ export const wsTabStyles = css`
     );
   }
 
-  :host([selected]) .tab::after {
-    transform: scaleX(1);
-  }
-
   .icon,
   ::slotted([slot='icon']) {
     align-items: center;
@@ -106,27 +84,5 @@ export const wsTabStyles = css`
     justify-content: flex-start;
     min-block-size: var(--ws-tab-vertical-height, 44px);
     text-align: start;
-  }
-
-  :host-context(ws-tabs[orientation='vertical']) .tab::after {
-    block-size: auto;
-    inline-size: var(--ws-tab-indicator-size, 3px);
-    inset-block: var(--ws-spacing-sm, 8px);
-    inset-inline: 0 auto;
-    transform: scaleY(0);
-    transform-origin: center;
-    border-radius: 0 var(--ws-shape-extra-small, 4px)
-      var(--ws-shape-extra-small, 4px) 0;
-  }
-
-  :host-context(ws-tabs[orientation='vertical'][dir='rtl']) .tab::after,
-  :host-context([dir='rtl'] ws-tabs[orientation='vertical']) .tab::after {
-    inset-inline: auto 0;
-    border-radius: var(--ws-shape-extra-small, 4px) 0 0
-      var(--ws-shape-extra-small, 4px);
-  }
-
-  :host([selected]):host-context(ws-tabs[orientation='vertical']) .tab::after {
-    transform: scaleY(1);
   }
 `;

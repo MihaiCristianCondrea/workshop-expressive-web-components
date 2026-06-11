@@ -75,16 +75,24 @@
       </nav>
       <div class="example-content">
         <h1>Switch</h1>
-        <div class="demo-panel">
+        <p>Switches toggle a binary setting on or off and should reflect the saved state immediately.</p>
+<h2 id="live-demo">Live demo</h2>
+<div class="demo-panel component-demo">
+  <h3 id="states">States</h3>
   <div class="button-row">
     <ws-switch aria-label="Enable notifications"></ws-switch>
+    <ws-switch checked aria-label="Use dark mode"></ws-switch>
+    <ws-switch disabled aria-label="Disabled switch"></ws-switch>
+  </div>
+  <h3 id="icons">Icons</h3>
+  <div class="button-row">
     <ws-switch checked aria-label="Use dark mode">
       <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
       <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
     </ws-switch>
-    <ws-switch disabled aria-label="Disabled switch"></ws-switch>
   </div>
 </div>
+<h2 id="code">Code</h2>
 <ws-code-block language="html" copy code="&lt;ws-switch aria-label=&quot;Enable notifications&quot;&gt;&lt;/ws-switch&gt;
 
 &lt;ws-switch checked aria-label=&quot;Use dark mode&quot;&gt;
@@ -94,15 +102,162 @@
 
 &lt;ws-switch disabled aria-label=&quot;Disabled switch&quot;&gt;&lt;/ws-switch&gt;
 "></ws-code-block>
+<h2 id="api">API</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>checked</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Current on/off state.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Prevents interaction.</td>
+</tr>
+<tr>
+<td><code>aria-label</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Required when the switch has no external label.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>checked-icon</code></td>
+<td>Icon displayed inside the handle when checked.</td>
+</tr>
+<tr>
+<td><code>unchecked-icon</code></td>
+<td>Icon displayed inside the handle when unchecked.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td>Fired when user interaction changes <code>checked</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility-notes">Accessibility notes</h2>
+<ul>
+<li>Give every switch a clear accessible name.</li>
+<li>Use switches for settings that take effect immediately; use checkboxes for form submission choices.</li>
+<li>Do not rely on the icon alone to communicate state.</li>
+</ul>
+<h2 id="design-notes">Design notes</h2>
+<ul>
+<li>Pair icon switches with nearby text when the setting is not obvious.</li>
+<li>Disabled switches should explain why the setting cannot be changed in surrounding help text.</li>
+</ul>
 
       </div>
 
-      <aside class="example-toc" aria-label="Table of contents">
-        <strong>Table of contents</strong>
-        <p>No sections yet.</p>
-      </aside>
+    <aside class="example-toc" aria-label="Table of contents">
+      <strong>Table of contents</strong>
+      <ul>
+
+              <li class="toc-level-2">
+                <a href="#live-demo">Live demo</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#states">States</a>
+              </li>
+
+              <li class="toc-level-3">
+                <a href="#icons">Icons</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#code">Code</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#api">API</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#slots">Slots</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#events">Events</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#accessibility-notes">Accessibility notes</a>
+              </li>
+
+              <li class="toc-level-2">
+                <a href="#design-notes">Design notes</a>
+              </li>
+
+      </ul>
+    </aside>
 
     </section>
+    <script>
+      (() => {
+        const tocLinks = Array.from(document.querySelectorAll('.example-toc a'));
+        if (!tocLinks.length) return;
+
+        const byId = new Map(tocLinks.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+        const headings = Array.from(document.querySelectorAll('.example-content h2[id], .example-content h3[id]'));
+
+        const setCurrent = id => {
+          tocLinks.forEach(link => link.removeAttribute('aria-current'));
+          byId.get(id)?.setAttribute('aria-current', 'true');
+        };
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => setCurrent(decodeURIComponent(link.hash.slice(1))));
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          setCurrent(headings[0]?.id);
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          if (visible?.target?.id) setCurrent(visible.target.id);
+        }, {rootMargin: '0px 0px -70% 0px', threshold: 0.1});
+
+        headings.forEach(heading => observer.observe(heading));
+        setCurrent(headings[0]?.id);
+      })();
+    </script>
 
         </div>
       </ws-page>
@@ -113,7 +268,15 @@
     <strong>Workshop Expressive Web Components</strong>
     <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
   </div>
-  <a href="https://lit.dev/">Built with Lit</a>
+  <a class="lit-link" href="https://lit.dev/" aria-label="Built with Lit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="40" height="50" aria-hidden="true">
+      <path fill="var(--lit-logo-dark-cyan, #00e8ff)" d="M40 120l20-60l90 90l-30 50l-40-40h-20"></path>
+      <path fill="var(--lit-logo-dark-blue, #283198)" d="M80 160 L80 80 L120 40 L 120 120 M0 160 L40 200 L40 120 L20 120"></path>
+      <path fill="var(--lit-logo-blue, #324fff)" d="M40 120v-80l40-40v80M120 200v-80l40-40v80M0 160v-80l40 40"></path>
+      <path fill="var(--lit-logo-cyan, #0ff)" d="M40 200v-80l40 40"></path>
+    </svg>
+    <span>Built with Lit</span>
+  </a>
 </ws-footer>
       </div>
     </ws-docs-shell>
