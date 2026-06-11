@@ -3,7 +3,9 @@ import {css} from 'lit';
 export const wsSwitchStyles = css`
   :host {
     display: inline-flex;
+    align-items: center;
     vertical-align: middle;
+    line-height: 0;
     --_track-width: var(--ws-switch-track-width, 52px);
     --_track-height: var(--ws-switch-track-height, 32px);
     --_handle-size: var(--ws-switch-handle-size, 24px);
@@ -18,7 +20,11 @@ export const wsSwitchStyles = css`
     background: transparent;
     cursor: pointer;
     display: inline-flex;
+    align-items: center;
+    margin: 0;
     padding: var(--ws-switch-hit-area-padding, 4px);
+    font: inherit;
+    line-height: 0;
     -webkit-tap-highlight-color: transparent;
   }
 

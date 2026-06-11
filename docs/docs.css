@@ -41,7 +41,7 @@ p, li {
   line-height: 1.6;
 }
 
-code:not([class]) {
+.docs-content code:not([class]) {
   border: 1px solid var(--ws-color-outline-variant, #e2e8f0);
   border-radius: var(--ws-shape-extra-small, 4px);
   padding: 1px 6px;
@@ -51,7 +51,7 @@ code:not([class]) {
   font-size: 0.9em;
 }
 
-pre[class*='language-'] {
+.docs-content pre[class*='language-'] {
   border-radius: var(--ws-shape-large, 12px);
   box-shadow: var(--ws-elevation-sm, 0 1px 2px rgb(15 23 42 / 8%));
   margin: 24px 0;
@@ -110,6 +110,16 @@ th {
   background: var(--ws-color-surface-variant, #f1f5f9);
   font-weight: 600;
   color: var(--ws-color-on-surface, #0f172a);
+}
+
+.docs-content {
+  min-width: 0;
+}
+
+.theme-switch {
+  flex: 0 0 auto;
+  line-height: 0;
+  --ws-switch-hit-area-padding: 4px;
 }
 
 /* Docs specific layout helpers */
@@ -233,76 +243,76 @@ th {
 }
 
 /* Theme-aware Prism syntax highlighting for markdown code fences. */
-pre[class*='language-'] {
+.docs-content pre[class*='language-'] {
   border: 1px solid var(--ws-color-code-border, #e2e8f0);
   background: var(--ws-color-code-background, #ffffff);
 }
 
-code[class*='language-'],
-pre[class*='language-'] {
+.docs-content code[class*='language-'],
+.docs-content pre[class*='language-'] {
   color: var(--ws-color-code-on-background, #0f172a);
   font-family: var(--ws-code-font-family, 'Google Sans Code', ui-monospace, monospace);
   text-shadow: none;
 }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.docs-content .token.comment,
+.docs-content .token.prolog,
+.docs-content .token.doctype,
+.docs-content .token.cdata {
   color: var(--ws-color-code-token-comment, #64748b);
 }
 
-.token.punctuation {
+.docs-content .token.punctuation {
   color: var(--ws-color-code-token-punctuation, #475569);
 }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.constant,
-.token.symbol,
-.token.deleted {
+.docs-content .token.property,
+.docs-content .token.tag,
+.docs-content .token.boolean,
+.docs-content .token.constant,
+.docs-content .token.symbol,
+.docs-content .token.deleted {
   color: var(--ws-color-code-token-tag, #2563eb);
 }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
+.docs-content .token.selector,
+.docs-content .token.attr-name,
+.docs-content .token.string,
+.docs-content .token.char,
+.docs-content .token.builtin,
+.docs-content .token.inserted {
   color: var(--ws-color-code-token-string, #047857);
 }
 
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
+.docs-content .token.operator,
+.docs-content .token.entity,
+.docs-content .token.url,
+.docs-content .language-css .token.string,
+.docs-content .style .token.string {
   color: var(--ws-color-code-token-operator, #9333ea);
   background: transparent;
 }
 
-.token.atrule,
-.token.attr-value,
-.token.keyword {
+.docs-content .token.atrule,
+.docs-content .token.attr-value,
+.docs-content .token.keyword {
   color: var(--ws-color-code-token-keyword, #7c3aed);
 }
 
-.token.function,
-.token.class-name {
+.docs-content .token.function,
+.docs-content .token.class-name {
   color: var(--ws-color-code-token-attr, #be123c);
 }
 
-.token.regex,
-.token.important,
-.token.variable,
-.token.number {
+.docs-content .token.regex,
+.docs-content .token.important,
+.docs-content .token.variable,
+.docs-content .token.number {
   color: var(--ws-color-code-token-number, #c2410c);
 }
 
-:root,
-:root[data-ws-theme='light'] {
+.docs-content,
+:root[data-ws-theme='light'] .docs-content {
   --ws-color-code-background: #ffffff;
   --ws-color-code-on-background: #0f172a;
   --ws-color-code-border: #e2e8f0;
@@ -316,7 +326,7 @@ pre[class*='language-'] {
   --ws-color-code-token-operator: #9333ea;
 }
 
-:root[data-ws-theme='dark'] {
+:root[data-ws-theme='dark'] .docs-content {
   --ws-color-code-background: #0f172a;
   --ws-color-code-on-background: #f8fafc;
   --ws-color-code-border: rgb(255 255 255 / 12%);
@@ -331,7 +341,7 @@ pre[class*='language-'] {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-ws-theme='light']) {
+  :root:not([data-ws-theme='light']) .docs-content {
     --ws-color-code-background: #0f172a;
     --ws-color-code-on-background: #f8fafc;
     --ws-color-code-border: rgb(255 255 255 / 12%);
