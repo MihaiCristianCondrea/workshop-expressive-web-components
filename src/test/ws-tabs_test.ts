@@ -6,6 +6,11 @@ import '../components/tabs/ws-tabs.js';
 import type {WsTab} from '../components/tabs/ws-tab.js';
 import type {WsTabs} from '../components/tabs/ws-tabs.js';
 
+const nextFrame = () =>
+  new Promise<void>((resolve) => {
+    requestAnimationFrame(() => resolve());
+  });
+
 suite('ws-tabs', () => {
   test('renders slotted tabs inside the tablist', async () => {
     const el = await fixture<WsTabs>(html`
@@ -92,9 +97,50 @@ suite('ws-tabs', () => {
     assert.isFalse(el.hasAttribute('indicator-animated'));
 
     settingsAnchor.click();
-    await el.updateComplete;
+    await nextFrame();
 
     assert.isTrue(el.hasAttribute('indicator-animated'));
+  });
+
+  test('animates the indicator when selected state changes externally', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#overview" selected>Overview</ws-tab>
+        <ws-tab href="#settings">Settings</ws-tab>
+      </ws-tabs>
+    `);
+    const [overview, settings] = Array.from(
+      el.querySelectorAll<WsTab>('ws-tab')
+    );
+
+    await nextFrame();
+    assert.isFalse(el.hasAttribute('indicator-animated'));
+
+    overview.selected = false;
+    settings.selected = true;
+    await overview.updateComplete;
+    await settings.updateComplete;
+    await nextFrame();
+
+    assert.isTrue(el.hasAttribute('indicator-animated'));
+  });
+
+  test('does not animate while repositioning for orientation changes', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#overview" selected>Overview</ws-tab>
+        <ws-tab href="#settings">Settings</ws-tab>
+      </ws-tabs>
+    `);
+
+    await nextFrame();
+    el.removeAttribute('indicator-animated');
+    el.orientation = 'vertical';
+    await el.updateComplete;
+    await nextFrame();
+
+    assert.isFalse(el.hasAttribute('indicator-animated'));
+    assert.equal(el.getAttribute('orientation'), 'vertical');
   });
 
   test('ignores clicked tabs that do not belong to the current group', async () => {

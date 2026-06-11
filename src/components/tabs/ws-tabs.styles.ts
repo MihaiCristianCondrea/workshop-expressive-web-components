@@ -53,6 +53,13 @@ export const wsTabsStyles = css`
         var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1));
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    :host([indicator-animated]) .indicator {
+      transition-duration: 1ms;
+      transition-timing-function: linear;
+    }
+  }
+
   :host([orientation='vertical']) {
     display: flex;
     inline-size: 100%;

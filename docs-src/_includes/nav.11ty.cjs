@@ -27,7 +27,7 @@ module.exports = function ({page}) {
 
   return `
 <ws-app-bar class="site-nav" aria-label="Primary" sticky>
-  <ws-tabs class="site-tabs" aria-label="Documentation sections">
+  <ws-tabs class="site-tabs" aria-label="Documentation sections" defer-navigation prefetch>
   ${links}
   </ws-tabs>
   <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>

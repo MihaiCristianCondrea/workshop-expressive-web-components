@@ -97,7 +97,7 @@ const renderExample = ({name, content, collections, page}) => {
     <section class="examples">
       <nav class="collection" aria-label="Component examples">
         <strong>Components</strong>
-        <ws-tabs class="collection-tabs" orientation="vertical" aria-label="Component examples">
+        <ws-tabs class="collection-tabs" orientation="vertical" aria-label="Component examples" defer-navigation prefetch>
           ${examples
             .map(
               (post) => `

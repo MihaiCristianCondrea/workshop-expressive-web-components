@@ -55,13 +55,15 @@ order: 6
 
 ## API
 
-| Element   | Property                | Type                         | Default        | Description                                   |
-| --------- | ----------------------- | ---------------------------- | -------------- | --------------------------------------------- |
-| `ws-tabs` | `orientation`           | `'horizontal' \| 'vertical'` | `'horizontal'` | Sets layout and `aria-orientation`.           |
-| `ws-tabs` | `aria-label`            | `string`                     | —              | Accessible label for the tab list.            |
-| `ws-tab`  | `href`                  | `string`                     | `'#'`          | Link destination.                             |
-| `ws-tab`  | `selected`              | `boolean`                    | `false`        | Marks the active tab.                         |
-| `ws-tab`  | `current-when-selected` | `string`                     | `'page'`       | `aria-current` value forwarded when selected. |
+| Element   | Property                | Type                         | Default        | Description                                                          |
+| --------- | ----------------------- | ---------------------------- | -------------- | -------------------------------------------------------------------- |
+| `ws-tabs` | `orientation`           | `'horizontal' \| 'vertical'` | `'horizontal'` | Sets layout and `aria-orientation`.                                  |
+| `ws-tabs` | `aria-label`            | `string`                     | —              | Accessible label for the tab list.                                   |
+| `ws-tabs` | `defer-navigation`      | `boolean`                    | `false`        | Delays same-origin page navigation until selection motion completes. |
+| `ws-tabs` | `prefetch`              | `boolean`                    | `false`        | Prefetches same-origin tab destinations.                             |
+| `ws-tab`  | `href`                  | `string`                     | `'#'`          | Link destination.                                                    |
+| `ws-tab`  | `selected`              | `boolean`                    | `false`        | Marks the active tab.                                                |
+| `ws-tab`  | `current-when-selected` | `string`                     | `'page'`       | `aria-current` value forwarded when selected.                        |
 
 ## Slots
 
@@ -76,6 +78,13 @@ order: 6
 | Event           | Detail          | Description                               |
 | --------------- | --------------- | ----------------------------------------- |
 | `ws-tab-change` | `{ tab, href }` | Fired when a tab is clicked and selected. |
+
+## Motion and navigation
+
+- The active indicator animates whenever the selected tab changes after the first render, including changes made by app state, router updates, or direct `selected` property changes.
+- Hash links such as `#overview` stay on the current page, so `ws-tabs` can update selection immediately.
+- For full-page navigation, add `defer-navigation prefetch` to `ws-tabs`. The component keeps normal anchor semantics, prefetches same-origin destinations, and waits for the shared tab motion duration before navigating so users see selection feedback before a new HTML document loads.
+- Customize tab motion with the shared `--ws-motion-*` custom properties; tabs also honor `prefers-reduced-motion`.
 
 ## Accessibility notes
 

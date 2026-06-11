@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 :root {
   --ws-purple: #6c5cff;
   --ws-purple-dark: #4f46e5;
@@ -27,6 +31,11 @@
   --ws-color-on-surface: #0f172a;
   --ws-color-on-surface-variant: #64748b;
   --ws-color-on-secondary-container: #0f172a;
+  --ws-motion-duration-fast: 120ms;
+  --ws-motion-duration-medium: 180ms;
+  --ws-motion-duration-slow: 240ms;
+  --ws-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ws-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
 }
 
 :root[data-ws-theme='dark'] {
