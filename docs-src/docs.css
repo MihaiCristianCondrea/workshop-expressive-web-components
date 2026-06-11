@@ -370,7 +370,7 @@ th {
 }
 
 .tabs-demo-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 }
 
 .lit-link {
@@ -562,11 +562,12 @@ th {
   border: 1px solid var(--ws-color-outline-variant, #e2e8f0);
   border-radius: var(--ws-shape-medium, 8px);
   min-inline-size: 0;
+  overflow-x: auto;
   padding: 20px;
 }
 
 .tabs-demo-grid ws-tabs {
-  max-inline-size: 100%;
+  max-inline-size: max-content;
 }
 
 .tabs-demo-grid ws-tabs[orientation='vertical'] {

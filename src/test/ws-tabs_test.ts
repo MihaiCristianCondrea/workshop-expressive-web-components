@@ -78,6 +78,25 @@ suite('ws-tabs', () => {
     assert.isTrue(settings.selected);
   });
 
+  test('only animates the indicator after a user selection change', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#overview" selected>Overview</ws-tab>
+        <ws-tab href="#settings">Settings</ws-tab>
+      </ws-tabs>
+    `);
+    const settings = el.querySelectorAll<WsTab>('ws-tab')[1];
+    const settingsAnchor =
+      settings.shadowRoot!.querySelector<HTMLAnchorElement>('a')!;
+
+    assert.isFalse(el.hasAttribute('indicator-animated'));
+
+    settingsAnchor.click();
+    await el.updateComplete;
+
+    assert.isTrue(el.hasAttribute('indicator-animated'));
+  });
+
   test('ignores clicked tabs that do not belong to the current group', async () => {
     const el = await fixture<WsTabs>(html`
       <ws-tabs>
