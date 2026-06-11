@@ -48,4 +48,26 @@ suite('ws-breadcrumbs', () => {
     );
     assert.lengthOf(el.shadowRoot!.querySelectorAll('.separator'), 2);
   });
+
+  test('marks a clicked link crumb as active', async () => {
+    const el = await fixture<WsBreadcrumbs>(html`
+      <ws-breadcrumbs></ws-breadcrumbs>
+    `);
+    el.crumbs = [
+      {id: 'home', label: 'Home', href: '#home'},
+      {id: 'components', label: 'Components'},
+    ];
+    await el.updateComplete;
+
+    el.shadowRoot!.querySelector<HTMLAnchorElement>('a.crumb')!.click();
+    await el.updateComplete;
+
+    assert.equal(
+      el.shadowRoot!.querySelector('a.crumb')!.getAttribute('aria-current'),
+      'location'
+    );
+    assert.isTrue(
+      el.shadowRoot!.querySelector('a.crumb')!.classList.contains('active')
+    );
+  });
 });

@@ -92,25 +92,25 @@ const renderExample = ({name, content, collections, page}) => {
   const {html, headings} = addHeadingIds(content);
 
   return `
-    <h1>${name}</h1>
     <section class="examples">
       <nav class="collection" aria-label="Component examples">
         <strong>Components</strong>
-        <ul>
+        <ws-tabs class="collection-tabs" orientation="vertical" aria-label="Component examples">
           ${examples
             .map(
               (post) => `
-                  <li class="${post.url === page.url ? 'selected' : ''}">
-                    <a href="${relative(page.url, post.url)}">${(
+                <ws-tab${
+                  post.url === page.url ? ' selected' : ''
+                } href="${relative(page.url, post.url)}">${(
                 post.data.name ?? post.data.description
-              ).replace(/</g, '&lt;')}</a>
-                  </li>
-                `
+              ).replace(/</g, '&lt;')}</ws-tab>
+              `
             )
             .join('')}
-        </ul>
+        </ws-tabs>
       </nav>
       <div class="example-content">
+        <h1>${name}</h1>
         ${html}
       </div>
       ${renderToc(headings)}

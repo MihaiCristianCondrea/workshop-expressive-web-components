@@ -1,6 +1,7 @@
 ---
 layout: page.11ty.cjs
 title: Workshop Expressive Web Components ⌲ Home
+hideBreadcrumbs: true
 ---
 
 # Workshop Expressive Web Components
@@ -31,6 +32,7 @@ npm install remixicon
 ```ts
 import 'remixicon/fonts/remixicon.css';
 ```
+
 </div>
 
 ## What is included

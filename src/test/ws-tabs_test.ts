@@ -44,4 +44,37 @@ suite('ws-tabs', () => {
     assert.equal(anchor.getAttribute('aria-selected'), 'false');
     assert.isFalse(anchor.hasAttribute('aria-current'));
   });
+
+  test('reflects vertical orientation to the tablist', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs orientation="vertical" aria-label="Components">
+        <ws-tab href="/examples/" selected>Buttons</ws-tab>
+      </ws-tabs>
+    `);
+    const tablist = el.shadowRoot!.querySelector('[role="tablist"]')!;
+
+    assert.equal(tablist.getAttribute('aria-orientation'), 'vertical');
+  });
+
+  test('selects a clicked tab and clears sibling selection', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#overview" selected>Overview</ws-tab>
+        <ws-tab href="#settings">Settings</ws-tab>
+      </ws-tabs>
+    `);
+    const [overview, settings] = Array.from(
+      el.querySelectorAll<WsTab>('ws-tab')
+    );
+    const settingsAnchor =
+      settings.shadowRoot!.querySelector<HTMLAnchorElement>('a')!;
+
+    settingsAnchor.click();
+    await el.updateComplete;
+    await overview.updateComplete;
+    await settings.updateComplete;
+
+    assert.isFalse(overview.selected);
+    assert.isTrue(settings.selected);
+  });
 });

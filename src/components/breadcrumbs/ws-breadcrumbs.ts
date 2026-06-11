@@ -1,5 +1,6 @@
 import {LitElement, html, nothing} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
+import {customElement, property, state} from 'lit/decorators.js';
 
 import {wsBreadcrumbsStyles} from './ws-breadcrumbs.styles.js';
 
@@ -23,6 +24,9 @@ export class WsBreadcrumbs extends LitElement {
   /** Crumbs to render. Use the `crumbs` attribute with JSON or set this property. */
   @property({attribute: false})
   crumbs: WsCrumb[] = [];
+
+  @state()
+  private activeCrumbId?: string;
 
   static override get observedAttributes() {
     return [...super.observedAttributes, 'crumbs'];
@@ -87,17 +91,35 @@ export class WsBreadcrumbs extends LitElement {
   private renderCrumb(crumb: WsCrumb, index: number) {
     const isLast = index === this.crumbs.length - 1;
     const label = crumb.label;
+    const isActive = this.activeCrumbId === crumb.id;
+    const classes = `crumb${isActive ? ' active' : ''}`;
     const crumbTemplate = isLast
-      ? html`<span class="crumb" part="crumb" aria-current="page"
+      ? html`<span class=${classes} part="crumb" aria-current="page"
           >${label}</span
         >`
-      : html`<a class="crumb" part="crumb" href=${crumb.href ?? '#'}
+      : html`<a
+          class=${classes}
+          part="crumb"
+          href=${crumb.href ?? '#'}
+          aria-current=${ifDefined(isActive ? 'location' : undefined)}
+          @click=${() => this.activateCrumb(crumb)}
           >${label}</a
         >`;
 
     return html`
       ${crumbTemplate} ${isLast ? nothing : this.renderSeparator()}
     `;
+  }
+
+  private activateCrumb(crumb: WsCrumb) {
+    this.activeCrumbId = crumb.id;
+    this.dispatchEvent(
+      new CustomEvent('ws-breadcrumb-click', {
+        detail: {crumb},
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   private renderSeparator() {

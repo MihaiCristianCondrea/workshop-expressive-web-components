@@ -26,6 +26,7 @@ export type {WsDrawerItemClickDetail} from './components/drawer/index.js';
 export {WsBrandMark} from './components/brand/index.js';
 
 export {WsTab, WsTabs} from './components/tabs/index.js';
+export type {WsTabsOrientation} from './components/tabs/index.js';
 export {WsBreadcrumbs} from './components/breadcrumbs/index.js';
 export type {WsCrumb} from './components/breadcrumbs/index.js';
 
