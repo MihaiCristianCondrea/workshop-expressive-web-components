@@ -34,7 +34,6 @@ module.exports = function (data) {
     >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
     <link rel="stylesheet" href="${relative(page.url, '/docs.css')}">
-    <link href="${relative(page.url, '/prism-okaidia.css')}" rel="stylesheet" />
     <script type="module" src="${relative(
       page.url,
       '/ws-button.bundled.js'
@@ -66,15 +65,15 @@ module.exports = function (data) {
 
         const syncToggle = () => {
           const theme = preferredTheme();
-          toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+          toggle?.toggleAttribute('checked', theme === 'dark');
           toggle?.setAttribute(
             'aria-label',
             theme === 'dark' ? 'Use light theme' : 'Use dark theme'
           );
         };
 
-        toggle?.addEventListener('click', () => {
-          const next = preferredTheme() === 'dark' ? 'light' : 'dark';
+        toggle?.addEventListener('change', () => {
+          const next = toggle.checked ? 'dark' : 'light';
           document.documentElement.dataset.wsTheme = next;
           localStorage.setItem('ws-docs-theme', next);
           syncToggle();

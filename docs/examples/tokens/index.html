@@ -1,0 +1,169 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Expressive Web Components ⌲ Examples ⌲ Design tokens</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem('ws-docs-theme');
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.dataset.wsTheme = storedTheme;
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
+    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet" href="../../docs.css">
+    <script type="module" src="../../ws-button.bundled.js"></script>
+  </head>
+  <body class="ws-theme">
+    <ws-docs-shell>
+      <div slot="nav">
+
+<nav class="site-nav" aria-label="Primary">
+  <ws-tabs class="site-tabs" aria-label="Documentation sections">
+  <ws-tab href="../../">
+    <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
+    <span>Home</span>
+  </ws-tab>
+  <ws-tab selected href="../" aria-current="page">
+    <i slot="icon" class="ri-layout-grid-line" aria-hidden="true"></i>
+    <span>Examples</span>
+  </ws-tab>
+  </ws-tabs>
+  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+    <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
+    <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
+  </ws-switch>
+</nav>
+      </div>
+      <div slot="hero">
+
+<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
+  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
+</ws-hero>
+      </div>
+      <ws-page>
+        <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../../"},{"id":"examples","label":"Examples","href":"../"},{"id":"current","label":"Design tokens"}]'></ws-breadcrumbs>
+
+    <h1>Design tokens</h1>
+    <section class="examples">
+      <nav class="collection" aria-label="Component examples">
+        <strong>Components</strong>
+        <ul>
+
+                  <li class="selected">
+                    <a href="">Design tokens</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../">Buttons</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../switch/">Switch</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../drawer/">Drawer navigation</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../breadcrumbs/">Breadcrumbs</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../tabs/">Tabs</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../card/">Cards</a>
+                  </li>
+
+                  <li class="">
+                    <a href="../code-block/">Code block</a>
+                  </li>
+
+        </ul>
+      </nav>
+      <div class="example-content">
+        <p>Foundation tokens are CSS custom properties that keep components visually consistent across light and dark themes.</p>
+<div class="demo-panel">
+  <h2>Shape tokens</h2>
+  <section class="token-grid" aria-label="Shape tokens">
+    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-small, 4px)"></div><strong>extra-small</strong><p>4px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-small, 6px)"></div><strong>small</strong><p>6px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-medium, 8px)"></div><strong>medium</strong><p>8px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-large, 12px)"></div><strong>large</strong><p>12px</p></ws-card>
+    <ws-card><div class="shape-swatch" style="border-radius: var(--ws-shape-extra-large, 16px)"></div><strong>extra-large</strong><p>16px</p></ws-card>
+  </section>
+  <h2>Color tokens</h2>
+  <section class="token-grid" aria-label="Color tokens">
+    <ws-card><div class="color-swatch" style="background: var(--ws-color-primary)"></div><strong>primary</strong><p>Brand actions</p></ws-card>
+    <ws-card><div class="color-swatch" style="background: var(--ws-color-secondary)"></div><strong>secondary</strong><p>Supporting actions</p></ws-card>
+    <ws-card><div class="color-swatch" style="background: var(--ws-color-tertiary)"></div><strong>tertiary</strong><p>Success accents</p></ws-card>
+    <ws-card><div class="color-swatch" style="background: var(--ws-color-surface)"></div><strong>surface</strong><p>Cards and panels</p></ws-card>
+  </section>
+</div>
+<pre class="language-css"><code class="language-css"><span class="token selector">.demo</span> <span class="token punctuation">{</span><br>  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--ws-color-surface<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--ws-color-outline-variant<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--ws-shape-large<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--ws-color-on-surface<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+
+      </div>
+    </section>
+
+      </ws-page>
+      <div slot="footer">
+
+<ws-footer>
+  <div>
+    <strong>Workshop Expressive Web Components</strong>
+    <p>Foundation tokens, buttons, and drawer navigation primitives for the web.</p>
+  </div>
+  <a href="https://lit.dev/">Built with Lit</a>
+</ws-footer>
+      </div>
+    </ws-docs-shell>
+    <script>
+      (() => {
+        const toggle = document.querySelector('[data-theme-toggle]');
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const preferredTheme = () =>
+          document.documentElement.dataset.wsTheme || (media.matches ? 'dark' : 'light');
+
+        const syncToggle = () => {
+          const theme = preferredTheme();
+          toggle?.toggleAttribute('checked', theme === 'dark');
+          toggle?.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Use light theme' : 'Use dark theme'
+          );
+        };
+
+        toggle?.addEventListener('change', () => {
+          const next = toggle.checked ? 'dark' : 'light';
+          document.documentElement.dataset.wsTheme = next;
+          localStorage.setItem('ws-docs-theme', next);
+          syncToggle();
+        });
+
+        media.addEventListener?.('change', () => {
+          if (!localStorage.getItem('ws-docs-theme')) {
+            delete document.documentElement.dataset.wsTheme;
+            syncToggle();
+          }
+        });
+
+        syncToggle();
+      })();
+    </script>
+  </body>
+</html>

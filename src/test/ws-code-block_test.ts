@@ -57,6 +57,17 @@ suite('ws-code-block', () => {
     );
   });
 
+
+  test('adds syntax token spans for supported languages', async () => {
+    const el = await fixture<WsCodeBlock>(
+      html`<ws-code-block language="html" code="<ws-button variant='primary'>Create</ws-button>"></ws-code-block>`
+    );
+
+    assert.exists(el.shadowRoot!.querySelector('.token.tag'));
+    assert.exists(el.shadowRoot!.querySelector('.token.attr'));
+    assert.exists(el.shadowRoot!.querySelector('.token.string'));
+  });
+
   test('renders copy button when copy attribute is present', async () => {
     const el = await fixture<WsCodeBlock>(
       html`<ws-code-block copy code="test"></ws-code-block>`

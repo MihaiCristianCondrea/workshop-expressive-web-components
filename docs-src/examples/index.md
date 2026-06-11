@@ -4,6 +4,7 @@ title: Workshop Expressive Web Components ⌲ Examples ⌲ Buttons
 tags: example
 name: Buttons
 description: ws-button variants, sizes, icons, and interaction states
+order: 2
 ---
 
 <div class="demo-panel">

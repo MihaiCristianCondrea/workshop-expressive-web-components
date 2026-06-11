@@ -3,8 +3,6 @@ const relative = require('./relative-path.cjs');
 const items = [
   {url: '/', label: 'Home', icon: 'ri-home-5-line'},
   {url: '/examples/', label: 'Examples', icon: 'ri-layout-grid-line'},
-  {url: '/api/', label: 'API', icon: 'ri-code-box-line'},
-  {url: '/install/', label: 'Install', icon: 'ri-download-cloud-2-line'},
 ];
 
 module.exports = function ({page}) {
@@ -32,13 +30,9 @@ module.exports = function ({page}) {
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   ${links}
   </ws-tabs>
-  <button class="theme-switch" type="button" aria-label="Use dark theme" aria-pressed="false" data-theme-toggle>
-    <span class="theme-switch__track" aria-hidden="true">
-      <span class="theme-switch__handle">
-        <i class="ri-sun-line theme-switch__sun" aria-hidden="true"></i>
-        <i class="ri-moon-line theme-switch__moon" aria-hidden="true"></i>
-      </span>
-    </span>
-  </button>
+  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+    <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
+    <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
+  </ws-switch>
 </nav>`;
 };
