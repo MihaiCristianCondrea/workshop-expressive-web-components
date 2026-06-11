@@ -22,5 +22,4 @@ my-element.d.ts.map
 # only generated for size check
 my-element.bundled.js
 ws-button.bundled.js
-# GitHub Pages needs the generated demo bundle committed.
-!docs/ws-button.bundled.js
+# GitHub Actions generates the docs site from docs-src; keep docs/ output untracked.
