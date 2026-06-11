@@ -147,4 +147,86 @@ suite('ws-drawer', () => {
       'inline-size: 40%'
     );
   });
+
+  test('supports keyboard activation and visible item navigation', async () => {
+    const el = await fixture<WsDrawer>(html`
+      <ws-drawer>
+        <ws-drawer-item item-id="home" title="Home"></ws-drawer-item>
+        <ws-drawer-item item-id="learn" title="Learn" expanded>
+          <ws-drawer-item item-id="compose" title="Compose"></ws-drawer-item>
+        </ws-drawer-item>
+        <ws-drawer-item item-id="settings" title="Settings"></ws-drawer-item>
+      </ws-drawer>
+    `);
+    const home = el.querySelector<WsDrawerItem>('[item-id="home"]')!;
+    const learn = el.querySelector<WsDrawerItem>('[item-id="learn"]')!;
+    const compose = el.querySelector<WsDrawerItem>('[item-id="compose"]')!;
+    const settings = el.querySelector<WsDrawerItem>('[item-id="settings"]')!;
+    const homeButton = home.shadowRoot!.querySelector<HTMLElement>('.item')!;
+    const learnButton = learn.shadowRoot!.querySelector<HTMLElement>('.item')!;
+    const composeButton =
+      compose.shadowRoot!.querySelector<HTMLElement>('.item')!;
+    const settingsButton =
+      settings.shadowRoot!.querySelector<HTMLElement>('.item')!;
+    const eventPromise = oneEvent(el, 'ws-drawer-item-click');
+
+    homeButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'Enter', bubbles: true})
+    );
+    const event = await eventPromise;
+    assert.deepEqual(event.detail, {itemId: 'home'});
+
+    homeButton.focus();
+    homeButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true})
+    );
+    assert.equal(learn.shadowRoot!.activeElement, learnButton);
+
+    learnButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true})
+    );
+    assert.equal(compose.shadowRoot!.activeElement, composeButton);
+
+    composeButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true})
+    );
+    assert.equal(settings.shadowRoot!.activeElement, settingsButton);
+
+    settingsButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowUp', bubbles: true})
+    );
+    assert.equal(compose.shadowRoot!.activeElement, composeButton);
+  });
+
+  test('supports keyboard expansion, collapse, and parent focus', async () => {
+    const el = await fixture<WsDrawer>(html`
+      <ws-drawer>
+        <ws-drawer-item item-id="learn" title="Learn">
+          <ws-drawer-item item-id="compose" title="Compose"></ws-drawer-item>
+        </ws-drawer-item>
+      </ws-drawer>
+    `);
+    const learn = el.querySelector<WsDrawerItem>('[item-id="learn"]')!;
+    const compose = el.querySelector<WsDrawerItem>('[item-id="compose"]')!;
+    const learnButton = learn.shadowRoot!.querySelector<HTMLElement>('.item')!;
+    const composeButton =
+      compose.shadowRoot!.querySelector<HTMLElement>('.item')!;
+
+    learnButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowRight', bubbles: true})
+    );
+    await learn.updateComplete;
+    assert.isTrue(learn.expanded);
+
+    composeButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true})
+    );
+    assert.equal(learn.shadowRoot!.activeElement, learnButton);
+
+    learnButton.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true})
+    );
+    await learn.updateComplete;
+    assert.isFalse(learn.expanded);
+  });
 });

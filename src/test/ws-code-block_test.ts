@@ -29,6 +29,34 @@ suite('ws-code-block', () => {
     assert.isNull(el.shadowRoot!.querySelector('.copy-button'));
   });
 
+  test('renders slotted plain text code for declarative usage', async () => {
+    const el = await fixture<WsCodeBlock>(html`
+      <ws-code-block language="html">
+        &lt;ws-button variant="primary"&gt;Continue&lt;/ws-button&gt;
+      </ws-code-block>
+    `);
+    await el.updateComplete;
+
+    assert.include(
+      el.shadowRoot!.querySelector('code')!.textContent,
+      '<ws-button variant="primary">Continue</ws-button>'
+    );
+  });
+
+  test('renders template content for declarative HTML examples', async () => {
+    const el = await fixture<WsCodeBlock>(html`
+      <ws-code-block language="html">
+        <template><ws-button variant="primary">Continue</ws-button></template>
+      </ws-code-block>
+    `);
+    await el.updateComplete;
+
+    assert.equal(
+      el.shadowRoot!.querySelector('code')!.textContent,
+      '<ws-button variant="primary">Continue</ws-button>'
+    );
+  });
+
   test('renders copy button when copy attribute is present', async () => {
     const el = await fixture<WsCodeBlock>(
       html`<ws-code-block copy code="test"></ws-code-block>`

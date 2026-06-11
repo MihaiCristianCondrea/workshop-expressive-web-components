@@ -1,5 +1,10 @@
 import {LitElement, html, nothing} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
+import {
+  customElement,
+  property,
+  queryAssignedNodes,
+  state,
+} from 'lit/decorators.js';
 
 import {wsCodeBlockStyles} from './ws-code-block.styles.js';
 
@@ -27,11 +32,22 @@ export class WsCodeBlock extends LitElement {
   @state()
   private copied = false;
 
+  @state()
+  private slottedCode = '';
+
+  @queryAssignedNodes({flatten: true})
+  private codeNodes!: Node[];
+
+  private get displayCode() {
+    return this.code || this.slottedCode;
+  }
+
   private async copyCode() {
-    if (!this.code.trim()) return;
+    const code = this.displayCode;
+    if (!code.trim()) return;
 
     try {
-      await navigator.clipboard.writeText(this.code);
+      await navigator.clipboard.writeText(code);
       this.copied = true;
 
       window.setTimeout(() => {
@@ -40,7 +56,7 @@ export class WsCodeBlock extends LitElement {
 
       this.dispatchEvent(
         new CustomEvent('ws-code-copy', {
-          detail: {code: this.code},
+          detail: {code},
           bubbles: true,
           composed: true,
         })
@@ -51,7 +67,10 @@ export class WsCodeBlock extends LitElement {
   }
 
   override render() {
+    const code = this.displayCode;
+
     return html`
+      <slot class="source" @slotchange=${this.syncSlottedCode}></slot>
       <figure class="code-block">
         <figcaption class="header">
           <span class="language">${this.language}</span>
@@ -71,9 +90,34 @@ export class WsCodeBlock extends LitElement {
             : nothing}
         </figcaption>
 
-        <pre><code>${this.code}</code></pre>
+        <pre><code>${code}</code></pre>
       </figure>
     `;
+  }
+
+  private syncSlottedCode() {
+    const code = this.codeNodes
+      .map((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent ?? '';
+        }
+
+        if (node instanceof HTMLTemplateElement) {
+          return node.innerHTML;
+        }
+
+        if (node instanceof Element) {
+          return node.outerHTML;
+        }
+
+        return '';
+      })
+      .join('')
+      .replace(/^\n|\n$/g, '');
+
+    if (this.slottedCode !== code) {
+      this.slottedCode = code;
+    }
   }
 }
 

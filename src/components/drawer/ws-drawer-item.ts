@@ -165,12 +165,84 @@ export class WsDrawerItem extends LitElement {
   }
 
   private onKeydown(event: KeyboardEvent) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
-      return;
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.activate();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.focusSibling(1);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.focusSibling(-1);
+        break;
+      case 'ArrowRight':
+        if (this.hasChildren && !this.expanded) {
+          event.preventDefault();
+          this.expanded = true;
+        }
+        break;
+      case 'ArrowLeft':
+        if (this.hasChildren && this.expanded) {
+          event.preventDefault();
+          this.expanded = false;
+          return;
+        }
+
+        if (this.focusParentItem()) {
+          event.preventDefault();
+        }
+        break;
+    }
+  }
+
+  private focusSibling(direction: 1 | -1) {
+    const items = this.getVisibleDrawerItems();
+    const currentIndex = items.indexOf(this);
+    const nextItem = items[currentIndex + direction];
+
+    nextItem?.focusItem();
+  }
+
+  private focusParentItem() {
+    const parent = this.parentElement?.closest<WsDrawerItem>('ws-drawer-item');
+    if (!parent) {
+      return false;
     }
 
-    event.preventDefault();
-    this.activate();
+    parent.focusItem();
+    return true;
+  }
+
+  private focusItem() {
+    this.shadowRoot?.querySelector<HTMLElement>('.item')?.focus();
+  }
+
+  private getVisibleDrawerItems() {
+    const root = (this.closest('ws-drawer') ??
+      this.getRootNode()) as ParentNode;
+    return Array.from(
+      root.querySelectorAll<WsDrawerItem>('ws-drawer-item')
+    ).filter((item) => item.isVisibleDrawerItem());
+  }
+
+  private isVisibleDrawerItem() {
+    if (this.disabled) {
+      return false;
+    }
+
+    let parent = this.parentElement?.closest<WsDrawerItem>('ws-drawer-item');
+    while (parent) {
+      if (!parent.expanded) {
+        return false;
+      }
+      parent = parent.parentElement?.closest<WsDrawerItem>('ws-drawer-item');
+    }
+
+    return true;
   }
 
   private activate() {
