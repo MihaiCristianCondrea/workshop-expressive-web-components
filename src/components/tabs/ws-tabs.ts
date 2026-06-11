@@ -32,6 +32,8 @@ export class WsTabs extends LitElement {
   @query('slot')
   private slotElement?: HTMLSlotElement;
 
+  private indicatorAnimationTimeout = 0;
+
   private readonly resizeObserver = new ResizeObserver(() => {
     this.updateIndicator();
   });
@@ -43,6 +45,7 @@ export class WsTabs extends LitElement {
 
   override disconnectedCallback() {
     window.removeEventListener('resize', this.updateIndicator);
+    window.clearTimeout(this.indicatorAnimationTimeout);
     this.resizeObserver.disconnect();
     super.disconnectedCallback();
   }
@@ -68,10 +71,29 @@ export class WsTabs extends LitElement {
         aria-orientation=${this.orientation}
         @click=${this.selectClickedTab}
       >
-        <div class="indicator" part="indicator" aria-hidden="true"></div>
+        <div
+          class="indicator"
+          part="indicator"
+          aria-hidden="true"
+          @transitionend=${this.handleIndicatorTransitionEnd}
+        ></div>
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
+  }
+
+  private animateIndicator() {
+    window.clearTimeout(this.indicatorAnimationTimeout);
+    this.toggleAttribute('indicator-animated', true);
+    this.indicatorAnimationTimeout = window.setTimeout(() => {
+      this.toggleAttribute('indicator-animated', false);
+    }, 320);
+  }
+
+  private handleIndicatorTransitionEnd(event: TransitionEvent) {
+    if (event.target !== event.currentTarget) return;
+    window.clearTimeout(this.indicatorAnimationTimeout);
+    this.toggleAttribute('indicator-animated', false);
   }
 
   private readonly updateIndicator = () => {
@@ -153,6 +175,10 @@ export class WsTabs extends LitElement {
 
     if (clickedTab.href.startsWith('#')) {
       event.preventDefault();
+    }
+
+    if (clickedTab !== this.selectedTab) {
+      this.animateIndicator();
     }
 
     this.tabs.forEach((tab) => {

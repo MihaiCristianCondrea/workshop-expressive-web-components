@@ -38,6 +38,11 @@ export const wsTabsStyles = css`
       var(--ws-tabs-indicator-x),
       var(--ws-tabs-indicator-y)
     );
+    transition: none;
+    z-index: 1;
+  }
+
+  :host([indicator-animated]) .indicator {
     transition: inline-size var(--ws-motion-duration-slow, 240ms)
         var(--ws-motion-easing-standard, ease),
       block-size var(--ws-motion-duration-slow, 240ms)
@@ -46,7 +51,6 @@ export const wsTabsStyles = css`
         var(--ws-motion-easing-standard, ease),
       transform var(--ws-motion-duration-slow, 240ms)
         var(--ws-motion-easing-emphasized, cubic-bezier(0.2, 0, 0, 1));
-    z-index: 1;
   }
 
   :host([orientation='vertical']) {
