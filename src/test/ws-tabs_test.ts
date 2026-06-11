@@ -77,4 +77,30 @@ suite('ws-tabs', () => {
     assert.isFalse(overview.selected);
     assert.isTrue(settings.selected);
   });
+
+  test('ignores clicked tabs that do not belong to the current group', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#outer" selected>Outer</ws-tab>
+        <div>
+          <ws-tabs>
+            <ws-tab href="#inner" selected>Inner</ws-tab>
+            <ws-tab href="#inner-two">Inner two</ws-tab>
+          </ws-tabs>
+        </div>
+      </ws-tabs>
+    `);
+    const outer = el.querySelector<WsTab>('ws-tab')!;
+    const nestedSecond = el.querySelectorAll<WsTab>('ws-tab')[2];
+    const nestedAnchor =
+      nestedSecond.shadowRoot!.querySelector<HTMLAnchorElement>('a')!;
+
+    nestedAnchor.click();
+    await el.updateComplete;
+    await outer.updateComplete;
+    await nestedSecond.updateComplete;
+
+    assert.isTrue(outer.selected);
+    assert.isTrue(nestedSecond.selected);
+  });
 });

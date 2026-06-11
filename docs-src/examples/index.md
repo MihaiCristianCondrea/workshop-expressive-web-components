@@ -20,11 +20,35 @@ order: 2
     <ws-button variant="ghost">Ghost</ws-button>
   </div>
 
-  <h3>Sizes</h3>
-  <div class="button-row">
-    <ws-button size="small">Small</ws-button>
-    <ws-button size="medium">Medium</ws-button>
-    <ws-button size="large">Large</ws-button>
+  <h3>Sizes by variant</h3>
+  <div class="button-size-matrix" aria-label="Button variants by size">
+    <section>
+      <h4>Large</h4>
+      <div class="button-column">
+        <ws-button size="large" variant="primary">Primary</ws-button>
+        <ws-button size="large" variant="secondary">Secondary</ws-button>
+        <ws-button size="large" variant="outlined">Outlined</ws-button>
+        <ws-button size="large" variant="ghost">Ghost</ws-button>
+      </div>
+    </section>
+    <section>
+      <h4>Medium</h4>
+      <div class="button-column">
+        <ws-button size="medium" variant="primary">Primary</ws-button>
+        <ws-button size="medium" variant="secondary">Secondary</ws-button>
+        <ws-button size="medium" variant="outlined">Outlined</ws-button>
+        <ws-button size="medium" variant="ghost">Ghost</ws-button>
+      </div>
+    </section>
+    <section>
+      <h4>Small</h4>
+      <div class="button-column">
+        <ws-button size="small" variant="primary">Primary</ws-button>
+        <ws-button size="small" variant="secondary">Secondary</ws-button>
+        <ws-button size="small" variant="outlined">Outlined</ws-button>
+        <ws-button size="small" variant="ghost">Ghost</ws-button>
+      </div>
+    </section>
   </div>
 
   <h3>States and icons</h3>
@@ -49,9 +73,20 @@ order: 2
 <ws-button variant="outlined">Outlined</ws-button>
 <ws-button variant="ghost">Ghost</ws-button>
 
-<ws-button size="small">Small</ws-button>
-<ws-button size="medium">Medium</ws-button>
-<ws-button size="large">Large</ws-button>
+<ws-button size="large" variant="primary">Primary</ws-button>
+<ws-button size="large" variant="secondary">Secondary</ws-button>
+<ws-button size="large" variant="outlined">Outlined</ws-button>
+<ws-button size="large" variant="ghost">Ghost</ws-button>
+
+<ws-button size="medium" variant="primary">Primary</ws-button>
+<ws-button size="medium" variant="secondary">Secondary</ws-button>
+<ws-button size="medium" variant="outlined">Outlined</ws-button>
+<ws-button size="medium" variant="ghost">Ghost</ws-button>
+
+<ws-button size="small" variant="primary">Primary</ws-button>
+<ws-button size="small" variant="secondary">Secondary</ws-button>
+<ws-button size="small" variant="outlined">Outlined</ws-button>
+<ws-button size="small" variant="ghost">Ghost</ws-button>
 
 <ws-button variant="primary" disabled>Disabled</ws-button>
 <ws-button variant="secondary" loading aria-label="Loading">Loading</ws-button>

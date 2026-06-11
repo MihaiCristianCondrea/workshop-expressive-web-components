@@ -102,7 +102,7 @@ export class WsBreadcrumbs extends LitElement {
           part="crumb"
           href=${crumb.href ?? '#'}
           aria-current=${ifDefined(isActive ? 'location' : undefined)}
-          @click=${() => this.activateCrumb(crumb)}
+          @click=${(event: MouseEvent) => this.activateCrumb(crumb, event)}
           >${label}</a
         >`;
 
@@ -111,7 +111,11 @@ export class WsBreadcrumbs extends LitElement {
     `;
   }
 
-  private activateCrumb(crumb: WsCrumb) {
+  private activateCrumb(crumb: WsCrumb, event: MouseEvent) {
+    if (!crumb.href || crumb.href === '#') {
+      event.preventDefault();
+    }
+
     this.activeCrumbId = crumb.id;
     this.dispatchEvent(
       new CustomEvent('ws-breadcrumb-click', {

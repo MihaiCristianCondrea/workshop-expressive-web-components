@@ -148,6 +148,24 @@ suite('ws-drawer', () => {
     );
   });
 
+  test('replaces filled progress with a completion icon', async () => {
+    const item = await fixture<WsDrawerItem>(html`
+      <ws-drawer-item
+        item-id="complete"
+        title="Complete"
+        progress="1"
+      ></ws-drawer-item>
+    `);
+
+    assert.isNull(item.shadowRoot!.querySelector('.progress-track'));
+    assert.equal(
+      item
+        .shadowRoot!.querySelector('.complete-icon')!
+        .getAttribute('aria-label'),
+      'Complete'
+    );
+  });
+
   test('supports keyboard activation and visible item navigation', async () => {
     const el = await fixture<WsDrawer>(html`
       <ws-drawer>

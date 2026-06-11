@@ -70,4 +70,21 @@ suite('ws-breadcrumbs', () => {
       el.shadowRoot!.querySelector('a.crumb')!.classList.contains('active')
     );
   });
+
+  test('prevents placeholder breadcrumb links from scrolling to the top', async () => {
+    const el = await fixture<WsBreadcrumbs>(html`
+      <ws-breadcrumbs></ws-breadcrumbs>
+    `);
+    el.crumbs = [
+      {id: 'home', label: 'Home', href: '#'},
+      {id: 'components', label: 'Components'},
+    ];
+    await el.updateComplete;
+    const link = el.shadowRoot!.querySelector<HTMLAnchorElement>('a.crumb')!;
+    const event = new MouseEvent('click', {bubbles: true, cancelable: true});
+
+    link.dispatchEvent(event);
+
+    assert.isTrue(event.defaultPrevented);
+  });
 });
