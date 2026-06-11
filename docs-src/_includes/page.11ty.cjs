@@ -48,8 +48,10 @@ module.exports = function (data) {
         ${header(data)}
       </div>
       <ws-page>
-        ${breadcrumbs(data)}
-        ${content}
+        <div class="docs-content">
+          ${breadcrumbs(data)}
+          ${content}
+        </div>
       </ws-page>
       <div slot="footer">
         ${footer(data)}
