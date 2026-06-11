@@ -28,11 +28,14 @@ export const wsTabStyles = css`
     padding: 0 var(--ws-spacing-lg, 16px);
     position: relative;
     text-align: center;
+    inline-size: 100%;
     text-decoration: none;
     outline: none;
     transition: background-color var(--ws-motion-duration-medium, 180ms)
         var(--ws-motion-easing-standard, ease),
       color var(--ws-motion-duration-medium, 180ms)
+        var(--ws-motion-easing-standard, ease),
+      transform var(--ws-motion-duration-fast, 120ms)
         var(--ws-motion-easing-standard, ease);
   }
 
@@ -66,6 +69,10 @@ export const wsTabStyles = css`
     color: var(--ws-color-primary, #6c5cff);
   }
 
+  .tab:active {
+    transform: scale(0.98);
+  }
+
   :host([selected]) {
     color: var(--ws-color-primary, #6c5cff);
   }
@@ -89,5 +96,37 @@ export const wsTabStyles = css`
     font-size: 1em;
     justify-content: center;
     line-height: 1;
+  }
+  :host-context(ws-tabs[orientation='vertical']) {
+    display: flex;
+    inline-size: 100%;
+  }
+
+  :host-context(ws-tabs[orientation='vertical']) .tab {
+    justify-content: flex-start;
+    min-block-size: var(--ws-tab-vertical-height, 44px);
+    text-align: start;
+  }
+
+  :host-context(ws-tabs[orientation='vertical']) .tab::after {
+    block-size: auto;
+    inline-size: var(--ws-tab-indicator-size, 3px);
+    inset-block: var(--ws-spacing-sm, 8px);
+    inset-inline: 0 auto;
+    transform: scaleY(0);
+    transform-origin: center;
+    border-radius: 0 var(--ws-shape-extra-small, 4px)
+      var(--ws-shape-extra-small, 4px) 0;
+  }
+
+  :host-context(ws-tabs[orientation='vertical'][dir='rtl']) .tab::after,
+  :host-context([dir='rtl'] ws-tabs[orientation='vertical']) .tab::after {
+    inset-inline: auto 0;
+    border-radius: var(--ws-shape-extra-small, 4px) 0 0
+      var(--ws-shape-extra-small, 4px);
+  }
+
+  :host([selected]):host-context(ws-tabs[orientation='vertical']) .tab::after {
+    transform: scaleY(1);
   }
 `;

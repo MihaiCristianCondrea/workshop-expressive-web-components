@@ -17,4 +17,16 @@ export const wsTabsStyles = css`
     gap: var(--ws-tabs-gap);
     min-inline-size: 0;
   }
+
+  :host([orientation='vertical']) {
+    display: flex;
+    inline-size: 100%;
+  }
+
+  :host([orientation='vertical']) .tabs {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    inline-size: 100%;
+  }
 `;
