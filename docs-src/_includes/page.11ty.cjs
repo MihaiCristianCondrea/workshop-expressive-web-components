@@ -1,4 +1,3 @@
-const header = require('./header.11ty.cjs');
 const footer = require('./footer.11ty.cjs');
 const nav = require('./nav.11ty.cjs');
 const breadcrumbs = require('./breadcrumbs.11ty.cjs');
@@ -44,12 +43,9 @@ module.exports = function (data) {
       <div slot="nav">
         ${nav(data)}
       </div>
-      <div slot="hero">
-        ${header(data)}
-      </div>
       <ws-page>
         <div class="docs-content">
-          ${breadcrumbs(data)}
+          ${data.hideBreadcrumbs ? '' : breadcrumbs(data)}
           ${content}
         </div>
       </ws-page>

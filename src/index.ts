@@ -1,5 +1,6 @@
 import './foundation/theme.css';
 import './components/button/ws-button.js';
+import './components/app-bar/ws-app-bar.js';
 import './components/drawer/ws-drawer.js';
 import './components/drawer/ws-drawer-item.js';
 import './components/brand/ws-brand-mark.js';
@@ -13,6 +14,8 @@ import './components/switch/ws-switch.js';
 import './components/docs-shell/ws-docs-shell.js';
 import './components/docs-shell/ws-hero.js';
 import './components/docs-shell/ws-footer.js';
+
+export {WsAppBar} from './components/app-bar/index.js';
 
 export {WsButton} from './components/button/index.js';
 export type {WsButtonSize, WsButtonVariant} from './components/button/index.js';

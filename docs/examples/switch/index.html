@@ -29,7 +29,7 @@
     <ws-docs-shell>
       <div slot="nav">
 
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   <ws-tab href="../../">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
@@ -40,21 +40,15 @@
     <span>Examples</span>
   </ws-tab>
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>
-      </div>
-      <div slot="hero">
-
-<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
-  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
-</ws-hero>
+</ws-app-bar>
       </div>
       <ws-page>
         <div class="docs-content">
-          <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../../"},{"id":"examples","label":"Examples","href":"../"},{"id":"current","label":"Switch"}]'></ws-breadcrumbs>
+
 
     <h1>Switch</h1>
     <section class="examples">
@@ -107,9 +101,23 @@
     <ws-switch disabled aria-label="Disabled switch"></ws-switch>
   </div>
 </div>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-switch</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Enable notifications<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-switch</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-switch</span> <span class="token attr-name">checked</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Use dark mode<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unchecked-icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-sun-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checked-icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-moon-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-switch</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-switch</span> <span class="token attr-name">disabled</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Disabled switch<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-switch</span><span class="token punctuation">></span></span></code></pre>
+<ws-code-block language="html" copy code="&lt;ws-switch aria-label=&quot;Enable notifications&quot;&gt;&lt;/ws-switch&gt;
+
+&lt;ws-switch checked aria-label=&quot;Use dark mode&quot;&gt;
+  &lt;i slot=&quot;unchecked-icon&quot; class=&quot;ri-sun-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;i slot=&quot;checked-icon&quot; class=&quot;ri-moon-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+&lt;/ws-switch&gt;
+
+&lt;ws-switch disabled aria-label=&quot;Disabled switch&quot;&gt;&lt;/ws-switch&gt;
+"></ws-code-block>
 
       </div>
+
+      <aside class="example-toc" aria-label="Table of contents">
+        <strong>Table of contents</strong>
+        <p>No sections yet.</p>
+      </aside>
+
     </section>
 
         </div>

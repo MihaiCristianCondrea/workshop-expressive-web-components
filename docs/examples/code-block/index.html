@@ -29,7 +29,7 @@
     <ws-docs-shell>
       <div slot="nav">
 
-<nav class="site-nav" aria-label="Primary">
+<ws-app-bar class="site-nav" aria-label="Primary" sticky>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   <ws-tab href="../../">
     <i slot="icon" class="ri-home-5-line" aria-hidden="true"></i>
@@ -40,21 +40,15 @@
     <span>Examples</span>
   </ws-tab>
   </ws-tabs>
-  <ws-switch class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
+  <ws-switch slot="trailing" class="theme-switch" aria-label="Use dark theme" data-theme-toggle>
     <i slot="unchecked-icon" class="ri-sun-line" aria-hidden="true"></i>
     <i slot="checked-icon" class="ri-moon-line" aria-hidden="true"></i>
   </ws-switch>
-</nav>
-      </div>
-      <div slot="hero">
-
-<ws-hero eyebrow="Workshop Expressive" hero-title="Web Components" description="Lit-powered design system primitives with Workshop theme tokens.">
-  <ws-brand-mark slot="mark" size="96px" style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 24px 80px rgb(15 23 42 / 22%);" aria-label="Workshop language logo"></ws-brand-mark>
-</ws-hero>
+</ws-app-bar>
       </div>
       <ws-page>
         <div class="docs-content">
-          <ws-breadcrumbs class="page-breadcrumbs" crumbs='[{"id":"home","label":"Home","href":"../../"},{"id":"examples","label":"Examples","href":"../"},{"id":"current","label":"Code block"}]'></ws-breadcrumbs>
+
 
     <h1>Code block</h1>
     <section class="examples">
@@ -107,9 +101,23 @@
 </template>
   </ws-code-block>
 </div>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-code-block</span> <span class="token attr-name">language</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>html<span class="token punctuation">"</span></span> <span class="token attr-name">copy</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ws-button</span> <span class="token attr-name">variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ri-add-line<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><br>      Create<br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-button</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ws-code-block</span><span class="token punctuation">></span></span></code></pre>
+<ws-code-block language="html" copy code="&lt;ws-code-block language=&quot;html&quot; copy&gt;
+  &lt;template&gt;
+    &lt;ws-button variant=&quot;primary&quot;&gt;
+      &lt;i slot=&quot;icon&quot; class=&quot;ri-add-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      Create
+    &lt;/ws-button&gt;
+  &lt;/template&gt;
+&lt;/ws-code-block&gt;
+"></ws-code-block>
 
       </div>
+
+      <aside class="example-toc" aria-label="Table of contents">
+        <strong>Table of contents</strong>
+        <p>No sections yet.</p>
+      </aside>
+
     </section>
 
         </div>
