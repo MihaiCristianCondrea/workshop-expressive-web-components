@@ -1,7 +1,32 @@
-This directory contains the sources for the static site contained in the /docs/ directory. The site is based on the [eleventy](11ty.dev) static site generator.
+# Documentation source
 
-The site is intended to be used with GitHub pages. To enable the site go to the GitHub settings and change the GitHub Pages "Source" setting to "master branch /docs folder".
+This directory contains the editable Eleventy sources for the documentation site. Treat
+`docs-src/` as the source of truth for templates, markdown content, CSS, and static
+assets. The generated `docs/` directory is build output and should not be edited by
+hand.
 
-To view the site locally, run `npm run docs:serve`.
+The site preserves the visual design from the generated docs by keeping the shared
+page shell, navigation, examples layout, markdown content, and `docs.css` in this
+source tree. To change the published appearance, update the relevant files here and
+then regenerate the site.
 
-To edit the site, add to or edit the files in this directory then run `npm run docs` to build the site. The built files must be checked in and pushed to GitHub to appear on GitHub pages.
+## Local workflow
+
+Build the component library and generate the static site:
+
+```bash
+npm run docs
+```
+
+Preview the generated site locally:
+
+```bash
+npm run docs:serve
+```
+
+## Publishing
+
+GitHub Actions builds the site from `docs-src/` and uploads the generated `docs/`
+folder as the Pages artifact. Because Pages deployment is handled by the workflow,
+do not commit generated `docs/` output unless the repository intentionally migrates
+back to a tracked `/docs` publishing model.
