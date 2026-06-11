@@ -1,6 +1,7 @@
 /node_modules/
 /lib/
 /test/
+docs/
 custom-elements.json
 # top level generated TypeScript output
 index.js
