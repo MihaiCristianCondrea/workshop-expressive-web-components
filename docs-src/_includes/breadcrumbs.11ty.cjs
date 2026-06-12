@@ -1,5 +1,8 @@
 const relative = require('./relative-path.cjs');
 
+const homeUrl =
+  'https://mihaicristiancondrea.github.io/workshop-expressive-web-components/';
+
 const sections = [
   {url: '/examples/', label: 'Examples'},
   {url: '/api/', label: 'API'},
@@ -12,7 +15,7 @@ const titles = new Map([
 ]);
 
 module.exports = function ({page, title, name}) {
-  const crumbs = [{id: 'home', label: 'Home', href: relative(page.url, '/')}];
+  const crumbs = [{id: 'home', label: 'Home', href: homeUrl}];
   const section = sections.find((item) => page.url.startsWith(item.url));
 
   if (section) {

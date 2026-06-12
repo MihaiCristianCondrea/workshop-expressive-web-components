@@ -75,10 +75,13 @@ const restartBrandAnimation = (logo: Element) => {
 const updateSiteTabs = (url: URL) => {
   for (const tab of document.querySelectorAll('ws-tabs.site-tabs ws-tab')) {
     const tabUrl = getElementUrl(tab);
+    const isHomeTab = tab.textContent?.trim() === 'Home';
     const selected = Boolean(
       tabUrl &&
-        (tabUrl.pathname === url.pathname ||
-          (tabUrl.pathname !== '/' && url.pathname.startsWith(tabUrl.pathname)))
+        (isHomeTab
+          ? sameDocument(tabUrl, url)
+          : tabUrl.pathname === url.pathname ||
+            url.pathname.startsWith(tabUrl.pathname))
     );
 
     tab.toggleAttribute('selected', selected);
@@ -156,6 +159,19 @@ const enhanceExampleToc = () => {
   setCurrentTocLink(headings[0]?.id);
 };
 
+const runContentScripts = (root: Element) => {
+  for (const script of Array.from(root.querySelectorAll('script'))) {
+    const executableScript = document.createElement('script');
+
+    for (const {name, value} of Array.from(script.attributes)) {
+      executableScript.setAttribute(name, value);
+    }
+
+    executableScript.textContent = script.textContent;
+    script.replaceWith(executableScript);
+  }
+};
+
 const replacePageContent = (html: string, url: URL) => {
   const nextDocument = new DOMParser().parseFromString(html, 'text/html');
   const currentContent = document.querySelector(contentSelector);
@@ -163,9 +179,12 @@ const replacePageContent = (html: string, url: URL) => {
 
   if (!currentContent || !nextContent) return false;
 
+  const importedContent = document.importNode(nextContent, true);
+
   document.title = nextDocument.title;
   currentPageUrl = new URL(url.href);
-  currentContent.replaceWith(document.importNode(nextContent, true));
+  currentContent.replaceWith(importedContent);
+  runContentScripts(importedContent);
   updateSiteTabs(url);
   enhanceExampleToc();
   return true;

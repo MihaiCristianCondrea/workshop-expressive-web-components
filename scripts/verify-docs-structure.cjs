@@ -19,7 +19,9 @@ const checks = [];
 const addCheck = (filePath, description, pattern) => {
   const content = read(filePath);
   const passed =
-    pattern instanceof RegExp ? pattern.test(content) : content.includes(pattern);
+    pattern instanceof RegExp
+      ? pattern.test(content)
+      : content.includes(pattern);
   checks.push({filePath, description, passed});
 };
 
@@ -27,7 +29,7 @@ const requiredCssSelectors = [
   ':root[data-ws-theme',
   'body',
   '.docs-content code:not([class])',
-  '.docs-content pre[class*=\'language-\']',
+  ".docs-content pre[class*='language-']",
   '.demo-panel',
   '.button-row',
   '.token-grid',
@@ -74,13 +76,17 @@ const requiredPageTemplate = [
   '<ws-page>',
   '<div class="docs-content">',
   'data-theme-toggle',
-  'localStorage.getItem(\'ws-docs-theme\')',
-  'localStorage.setItem(\'ws-docs-theme\'',
+  "localStorage.getItem('ws-docs-theme')",
+  "localStorage.setItem('ws-docs-theme'",
   'footer(data)',
 ];
 
 for (const snippet of requiredPageTemplate) {
-  addCheck('docs-src/_includes/page.11ty.cjs', `page template contains ${snippet}`, snippet);
+  addCheck(
+    'docs-src/_includes/page.11ty.cjs',
+    `page template contains ${snippet}`,
+    snippet
+  );
 }
 
 const requiredNavTemplate = [
@@ -89,12 +95,17 @@ const requiredNavTemplate = [
   '<a class="site-logo" slot="leading"',
   '<ws-brand-mark mark-only size="40px"',
   '<ws-switch slot="trailing" class="theme-switch"',
-  "{url: '/', label: 'Home'",
+  'https://mihaicristiancondrea.github.io/workshop-expressive-web-components/',
+  "{url: homeUrl, label: 'Home'",
   "{url: '/examples/', label: 'Examples'",
 ];
 
 for (const snippet of requiredNavTemplate) {
-  addCheck('docs-src/_includes/nav.11ty.cjs', `nav template contains ${snippet}`, snippet);
+  addCheck(
+    'docs-src/_includes/nav.11ty.cjs',
+    `nav template contains ${snippet}`,
+    snippet
+  );
 }
 
 const requiredExampleTemplate = [
@@ -107,10 +118,18 @@ const requiredExampleTemplate = [
 ];
 
 for (const snippet of requiredExampleTemplate) {
-  addCheck('docs-src/_includes/example.11ty.cjs', `example template contains ${snippet}`, snippet);
+  addCheck(
+    'docs-src/_includes/example.11ty.cjs',
+    `example template contains ${snippet}`,
+    snippet
+  );
 }
 
-addCheck('docs-src/_includes/footer.11ty.cjs', 'footer template renders ws-footer', '<ws-footer>');
+addCheck(
+  'docs-src/_includes/footer.11ty.cjs',
+  'footer template renders ws-footer',
+  '<ws-footer>'
+);
 
 const requiredGeneratedExamplesIndex = [
   '<link rel="stylesheet" href="../docs.css">',
@@ -128,11 +147,15 @@ const requiredGeneratedExamplesIndex = [
   '<div class="example-content">',
   '<aside class="example-toc"',
   '<ws-footer>',
-  'localStorage.setItem(\'ws-docs-theme\'',
+  "localStorage.setItem('ws-docs-theme'",
 ];
 
 for (const snippet of requiredGeneratedExamplesIndex) {
-  addCheck('docs/examples/index.html', `generated examples index contains ${snippet}`, snippet);
+  addCheck(
+    'docs/examples/index.html',
+    `generated examples index contains ${snippet}`,
+    snippet
+  );
 }
 
 const exampleFiles = fs
@@ -169,4 +192,6 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Documentation structure verification passed (${checks.length} checks).`);
+console.log(
+  `Documentation structure verification passed (${checks.length} checks).`
+);
