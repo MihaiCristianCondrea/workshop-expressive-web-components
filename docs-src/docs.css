@@ -301,18 +301,18 @@ th {
   transform: translateY(-1px);
 }
 
-
 .home-title {
   margin-block-end: 12px;
   color: var(--ws-color-on-background, #0f172a);
   font: var(
     --ws-typography-display-medium,
-    800 44px / 52px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
+    800 44px / 52px
+      var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
   );
 }
 
 .home-title-workshop {
-  font-weight: 900;
+  font-weight: 1000;
 }
 
 .home-title-work {
@@ -331,6 +331,8 @@ th {
 .home-title-components {
   display: inline-block;
   margin-top: 4px;
+  font-size: clamp(0.52em, 5vw, 0.68em);
+  line-height: 1.05;
 }
 
 .intro-panel h2:first-child {
