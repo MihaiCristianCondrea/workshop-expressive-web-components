@@ -125,6 +125,28 @@ suite('ws-tabs', () => {
     assert.isTrue(el.hasAttribute('indicator-animated'));
   });
 
+  test('keeps indicator animation active until transform finishes', async () => {
+    const el = await fixture<WsTabs>(html`
+      <ws-tabs>
+        <ws-tab href="#overview" selected>Overview</ws-tab>
+        <ws-tab href="#settings">Settings</ws-tab>
+      </ws-tabs>
+    `);
+    const indicator = el.shadowRoot!.querySelector<HTMLElement>('.indicator')!;
+
+    el.setAttribute('indicator-animated', '');
+
+    indicator.dispatchEvent(
+      new TransitionEvent('transitionend', {propertyName: 'opacity'})
+    );
+    assert.isTrue(el.hasAttribute('indicator-animated'));
+
+    indicator.dispatchEvent(
+      new TransitionEvent('transitionend', {propertyName: 'transform'})
+    );
+    assert.isFalse(el.hasAttribute('indicator-animated'));
+  });
+
   test('does not animate while repositioning for orientation changes', async () => {
     const el = await fixture<WsTabs>(html`
       <ws-tabs>
