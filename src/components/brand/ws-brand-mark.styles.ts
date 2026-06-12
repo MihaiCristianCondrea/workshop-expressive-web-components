@@ -77,15 +77,15 @@ export const wsBrandMarkStyles = css`
   }
 
   :host([animating]) .dot {
-    animation: dropSplash 3s 1;
+    animation: dropSplash 3s 1 both;
   }
 
   :host([animating]) .w-half {
-    animation: splashW 3s 1;
+    animation: splashW 3s 1 both;
   }
 
   :host([animating]) .drop {
-    animation: dropSplashFly 3s 1;
+    animation: dropSplashFly 3s 1 both;
   }
 
   .drop-1 {
@@ -166,8 +166,8 @@ export const wsBrandMarkStyles = css`
     }
 
     100% {
-      opacity: 0;
-      transform: translateY(-80px) scale(1, 1);
+      opacity: 1;
+      transform: translateY(0) scale(1, 1);
     }
   }
 
@@ -203,10 +203,15 @@ export const wsBrandMarkStyles = css`
       animation-timing-function: cubic-bezier(0.4, 0, 0.8, 1);
     }
 
-    85%,
-    100% {
+    85% {
       opacity: 0;
       stroke-dashoffset: -85;
+      transform: scale(1);
+    }
+
+    100% {
+      opacity: 1;
+      stroke-dashoffset: 0;
       transform: scale(1);
     }
   }
