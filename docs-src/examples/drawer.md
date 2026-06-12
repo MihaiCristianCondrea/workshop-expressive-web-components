@@ -12,21 +12,22 @@ order: 4
 ## Live demo
 
 <div class="demo-panel component-demo drawer-demo-panel">
-  <ws-drawer id="example-drawer" selected-item-id="lesson-2">
+  <ws-drawer id="example-drawer" selected-item-id="lesson-3">
     <div slot="header" class="drawer-header">
       <strong>Design systems - Learn</strong>
-      <span>3 lessons · 1 complete</span>
+      <span>4 lessons · 2 complete</span>
     </div>
 
     <ws-drawer-item item-id="learn" title="Design systems - Learn" expanded>
       <i slot="icon" class="ri-graduation-cap-line" aria-hidden="true"></i>
       <ws-drawer-item item-id="chapter-1" title="Chapter 1: Foundations" expanded>
-        <ws-drawer-item item-id="lesson-1" title="Lesson 1" subtitle="Tokens and theme" progress="0.45"></ws-drawer-item>
-        <ws-drawer-item item-id="lesson-2" title="Lesson 2" subtitle="Components" progress="0.75"></ws-drawer-item>
-        <ws-drawer-item item-id="lesson-3" title="Lesson 3" subtitle="Patterns" progress="1"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-1" title="Lesson 1" subtitle="Tokens and theme" progress="1"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-2" title="Lesson 2" subtitle="Components" progress="1"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-3" title="Lesson 3" subtitle="Patterns" progress="0.35"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-4" title="Lesson 4" subtitle="Accessibility basics" progress="0.8"></ws-drawer-item>
       </ws-drawer-item>
       <ws-drawer-item item-id="chapter-2" title="Chapter 2: Application">
-        <ws-drawer-item item-id="lesson-4" title="Lesson 4" subtitle="Production handoff" progress="0.2"></ws-drawer-item>
+        <ws-drawer-item item-id="lesson-5" title="Lesson 5" subtitle="Production handoff" progress="0.2"></ws-drawer-item>
       </ws-drawer-item>
     </ws-drawer-item>
 
@@ -52,10 +53,10 @@ order: 4
 ## Code
 
 ```html
-<ws-drawer selected-item-id="lesson-2">
+<ws-drawer selected-item-id="lesson-3">
   <div slot="header" class="drawer-header">
     <strong>Design systems - Learn</strong>
-    <span>3 lessons · 1 complete</span>
+    <span>4 lessons · 2 complete</span>
   </div>
 
   <ws-drawer-item item-id="learn" title="Design systems - Learn" expanded>
@@ -65,25 +66,31 @@ order: 4
         item-id="lesson-1"
         title="Lesson 1"
         subtitle="Tokens and theme"
-        progress="0.45"
+        progress="1"
       ></ws-drawer-item>
       <ws-drawer-item
         item-id="lesson-2"
         title="Lesson 2"
         subtitle="Components"
-        progress="0.75"
+        progress="1"
       ></ws-drawer-item>
       <ws-drawer-item
         item-id="lesson-3"
         title="Lesson 3"
         subtitle="Patterns"
-        progress="1"
+        progress="0.35"
+      ></ws-drawer-item>
+      <ws-drawer-item
+        item-id="lesson-4"
+        title="Lesson 4"
+        subtitle="Accessibility basics"
+        progress="0.8"
       ></ws-drawer-item>
     </ws-drawer-item>
     <ws-drawer-item item-id="chapter-2" title="Chapter 2: Application">
       <ws-drawer-item
-        item-id="lesson-4"
-        title="Lesson 4"
+        item-id="lesson-5"
+        title="Lesson 5"
         subtitle="Production handoff"
         progress="0.2"
       ></ws-drawer-item>

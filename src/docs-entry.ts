@@ -97,6 +97,15 @@ const restartBrandAnimation = (logo: Element) => {
   brandMark?.restartAnimation?.();
 };
 
+const handleSiteLogoClick = async (element: Element, url: URL) => {
+  restartBrandAnimation(element);
+
+  if (sameDocument(url) && !url.hash) return;
+
+  const handled = await navigateTo(url);
+  if (!handled) window.location.href = url.href;
+};
+
 const updateSiteTabs = (url: URL) => {
   for (const tab of document.querySelectorAll('ws-tabs.site-tabs ws-tab')) {
     const tabUrl = getElementUrl(tab);
@@ -288,10 +297,14 @@ const enhanceDocsNavigation = () => {
     const element = findNavigableElement(event);
     if (!element) return;
 
-    if (element.matches(siteLogoSelector)) restartBrandAnimation(element);
-
     const url = getElementUrl(element);
     if (!url || !isDocsPageUrl(url)) return;
+
+    if (element.matches(siteLogoSelector)) {
+      event.preventDefault();
+      void handleSiteLogoClick(element, url);
+      return;
+    }
 
     if (sameDocument(url) && !url.hash) return;
 

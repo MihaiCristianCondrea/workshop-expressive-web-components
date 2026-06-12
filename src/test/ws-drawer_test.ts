@@ -158,9 +158,10 @@ suite('ws-drawer', () => {
     `);
 
     assert.isNull(item.shadowRoot!.querySelector('.progress-track'));
+    assert.isNull(item.shadowRoot!.querySelector('.text .complete-icon'));
     assert.equal(
       item
-        .shadowRoot!.querySelector('.complete-icon')!
+        .shadowRoot!.querySelector('.item > .complete-icon')!
         .getAttribute('aria-label'),
       'Complete'
     );

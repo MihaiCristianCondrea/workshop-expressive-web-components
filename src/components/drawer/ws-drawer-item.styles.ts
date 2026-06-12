@@ -250,10 +250,12 @@ export const wsDrawerItemStyles = css`
   .complete-icon {
     align-items: center;
     block-size: var(--ws-drawer-complete-icon-size, 18px);
-    color: var(--ws-color-primary, #6c5cff);
+    color: var(--ws-color-success, #16a34a);
     display: inline-flex;
+    flex: 0 0 auto;
     inline-size: var(--ws-drawer-complete-icon-size, 18px);
-    margin-block-start: var(--ws-spacing-xs, 4px);
+    justify-content: center;
+    margin-inline-start: auto;
   }
 
   .complete-icon svg {
