@@ -226,6 +226,34 @@ th {
   --ws-app-bar-backdrop-filter: blur(18px);
 }
 
+.site-logo {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  line-height: 0;
+  padding: 4px;
+  transition: background-color var(--ws-motion-duration-fast, 120ms)
+      var(--ws-motion-easing-standard, ease),
+    transform var(--ws-motion-duration-fast, 120ms)
+      var(--ws-motion-easing-standard, ease);
+}
+
+.site-logo:hover,
+.site-logo:focus-visible {
+  background: var(--ws-color-primary-container, #f5f3ff);
+  text-decoration: none;
+}
+
+.site-logo:active {
+  transform: scale(0.96);
+}
+
+.site-logo ws-brand-mark {
+  --ws-brand-mark-gradient: transparent;
+  --ws-brand-mark-radius: 999px;
+}
+
 .drawer-header {
   display: grid;
   gap: 2px;
@@ -271,6 +299,38 @@ th {
 .button-link:hover {
   text-decoration: none;
   transform: translateY(-1px);
+}
+
+
+.home-title {
+  margin-block-end: 12px;
+  color: var(--ws-color-on-background, #0f172a);
+  font: var(
+    --ws-typography-display-medium,
+    800 44px / 52px var(--ws-font-family, 'Google Sans Flex', system-ui, sans-serif)
+  );
+}
+
+.home-title-workshop {
+  font-weight: 900;
+}
+
+.home-title-work {
+  color: var(--ws-color-on-background, #0f172a);
+}
+
+.home-title-shop {
+  color: var(--ws-color-primary, #6c5cff);
+}
+
+.home-title-expressive,
+.home-title-components {
+  font-weight: 500;
+}
+
+.home-title-components {
+  display: inline-block;
+  margin-top: 4px;
 }
 
 .intro-panel h2:first-child {

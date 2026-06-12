@@ -17,6 +17,7 @@ import './components/docs-shell/ws-footer.js';
 
 const docsTabSelectors =
   'ws-tabs.site-tabs ws-tab, ws-tabs.collection-tabs ws-tab';
+const siteLogoSelector = '[data-site-logo]';
 
 const toMilliseconds = (value: string) => {
   const trimmed = value.trim();
@@ -47,6 +48,14 @@ const findDocsTab = (event: Event) =>
         target instanceof Element && target.matches(docsTabSelectors)
     );
 
+const findSiteLogo = (event: Event) =>
+  event
+    .composedPath()
+    .find(
+      (target): target is HTMLAnchorElement =>
+        target instanceof HTMLAnchorElement && target.matches(siteLogoSelector)
+    );
+
 const sameDocument = (url: URL) =>
   url.origin === window.location.origin &&
   url.pathname === window.location.pathname &&
@@ -75,6 +84,40 @@ const enhanceDocsTabNavigation = () => {
     window.setTimeout(() => {
       window.location.href = url.href;
     }, getTabsMotionDuration(tabs));
+  });
+};
+
+const restartBrandAnimation = (logo: HTMLAnchorElement) => {
+  const brandMark = logo.querySelector('ws-brand-mark') as {
+    restartAnimation?: () => void;
+  } | null;
+  brandMark?.restartAnimation?.();
+};
+
+const enhanceSiteLogoNavigation = () => {
+  document.addEventListener('click', (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const logo = findSiteLogo(event);
+    const url = logo ? getTabUrl(logo) : null;
+    if (!logo || !url || url.origin !== window.location.origin) return;
+
+    restartBrandAnimation(logo);
+    if (sameDocument(url)) return;
+
+    event.preventDefault();
+    window.setTimeout(() => {
+      window.location.href = url.href;
+    }, 320);
   });
 };
 
@@ -110,4 +153,5 @@ const scheduleDocsTabPrefetch = () => {
 };
 
 enhanceDocsTabNavigation();
+enhanceSiteLogoNavigation();
 scheduleDocsTabPrefetch();

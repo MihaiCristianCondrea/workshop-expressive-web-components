@@ -27,6 +27,12 @@ module.exports = function ({page}) {
 
   return `
 <ws-app-bar class="site-nav" aria-label="Primary" sticky>
+  <a class="site-logo" slot="leading" href="${relative(
+    page.url,
+    '/'
+  )}" aria-label="Go to WorkShop Expressive home" data-site-logo>
+    <ws-brand-mark mark-only size="40px" aria-hidden="true"></ws-brand-mark>
+  </a>
   <ws-tabs class="site-tabs" aria-label="Documentation sections">
   ${links}
   </ws-tabs>

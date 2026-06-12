@@ -1,12 +1,16 @@
 ---
 layout: page.11ty.cjs
-title: Workshop Expressive Web Components ⌲ Home
+title: WorkShop Expressive Web Components ⌲ Home
 hideBreadcrumbs: true
 ---
 
-# Workshop Expressive Web Components
+<h1 class="home-title">
+  <strong class="home-title-workshop"><span class="home-title-work">Work</span><span class="home-title-shop">Shop</span></strong>
+  <span class="home-title-expressive">Expressive</span><br>
+  <span class="home-title-components">Web Components</span>
+</h1>
 
-Lit implementations of the Workshop Expressive primitives. The package includes foundation tokens, navigation surfaces, controls, and documentation helpers for building expressive web interfaces.
+Lit implementations of the WorkShop Expressive primitives. The package includes foundation tokens, navigation surfaces, controls, and documentation helpers for building expressive web interfaces.
 
 <div class="demo-panel intro-panel">
   <h2>Install</h2>
