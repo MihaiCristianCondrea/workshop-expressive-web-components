@@ -35,6 +35,8 @@ const requiredCssSelectors = [
   '.color-swatch',
   'table',
   '.site-nav',
+  '.site-logo',
+  '.home-title',
   '.theme-switch',
   '.examples',
   '.collection',
@@ -53,7 +55,9 @@ for (const selector of requiredCssSelectors) {
 }
 
 const requiredHomeSource = [
-  '# Workshop Expressive Web Components',
+  '<h1 class="home-title">',
+  '<span class="home-title-shop">Shop</span>',
+  '<span class="home-title-components">Web Components</span>',
   '<div class="demo-panel intro-panel">',
   '## What is included',
   '## Local documentation workflow',
@@ -82,6 +86,8 @@ for (const snippet of requiredPageTemplate) {
 const requiredNavTemplate = [
   '<ws-app-bar class="site-nav"',
   '<ws-tabs class="site-tabs"',
+  '<a class="site-logo" slot="leading"',
+  '<ws-brand-mark mark-only size="40px"',
   '<ws-switch slot="trailing" class="theme-switch"',
   "{url: '/', label: 'Home'",
   "{url: '/examples/', label: 'Examples'",
@@ -112,6 +118,8 @@ const requiredGeneratedExamplesIndex = [
   '<ws-docs-shell>',
   '<ws-app-bar class="site-nav"',
   '<ws-tabs class="site-tabs"',
+  '<a class="site-logo" slot="leading"',
+  '<ws-brand-mark mark-only size="40px"',
   '<ws-switch slot="trailing" class="theme-switch"',
   '<ws-page>',
   '<div class="docs-content">',

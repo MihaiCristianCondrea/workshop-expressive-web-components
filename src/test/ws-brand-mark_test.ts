@@ -25,6 +25,28 @@ suite('ws-brand-mark', () => {
     );
   });
 
+  test('renders the animated default logo', async () => {
+    const el = await fixture<WsBrandMark>(
+      html`<ws-brand-mark></ws-brand-mark>`
+    );
+    const root = el.shadowRoot!;
+
+    assert.exists(root.querySelector('.logo'));
+    assert.lengthOf(root.querySelectorAll('.w-half'), 2);
+    assert.lengthOf(root.querySelectorAll('.drop'), 6);
+    assert.exists(root.querySelector('.dot'));
+  });
+
+  test('can render only the animated mark', async () => {
+    const el = await fixture<WsBrandMark>(html`
+      <ws-brand-mark mark-only></ws-brand-mark>
+    `);
+
+    assert.isTrue(el.markOnly);
+    assert.exists(el.shadowRoot!.querySelector('.mark'));
+    assert.notExists(el.shadowRoot!.querySelector('.text'));
+  });
+
   test('applies custom size and gradient tokens', async () => {
     const el = await fixture<WsBrandMark>(html`
       <ws-brand-mark
