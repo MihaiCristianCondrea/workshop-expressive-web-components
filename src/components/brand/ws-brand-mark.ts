@@ -41,6 +41,13 @@ export class WsBrandMark extends LitElement {
   @property({attribute: 'gradient-colors'})
   gradientColors = '';
 
+  private animationTimeout = 0;
+
+  override disconnectedCallback() {
+    window.clearTimeout(this.animationTimeout);
+    super.disconnectedCallback();
+  }
+
   override render() {
     const hostStyles = {
       '--ws-brand-mark-size': this.size,
@@ -72,12 +79,14 @@ export class WsBrandMark extends LitElement {
 
   /** Restarts the SVG motion timeline, useful when the mark is activated. */
   restartAnimation() {
-    const logo = this.shadowRoot?.querySelector('.logo');
-
-    for (const animation of logo?.getAnimations({subtree: true}) ?? []) {
-      animation.cancel();
-      animation.play();
-    }
+    window.clearTimeout(this.animationTimeout);
+    this.toggleAttribute('animating', false);
+    // Force style recalculation so repeated clicks restart the CSS timeline.
+    this.getBoundingClientRect();
+    this.toggleAttribute('animating', true);
+    this.animationTimeout = window.setTimeout(() => {
+      this.toggleAttribute('animating', false);
+    }, 3000);
   }
 
   private renderDefaultMark() {

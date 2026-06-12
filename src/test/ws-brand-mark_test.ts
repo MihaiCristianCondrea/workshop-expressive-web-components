@@ -25,7 +25,7 @@ suite('ws-brand-mark', () => {
     );
   });
 
-  test('renders the animated default logo', async () => {
+  test('renders the default logo', async () => {
     const el = await fixture<WsBrandMark>(
       html`<ws-brand-mark></ws-brand-mark>`
     );
@@ -37,7 +37,19 @@ suite('ws-brand-mark', () => {
     assert.exists(root.querySelector('.dot'));
   });
 
-  test('can render only the animated mark', async () => {
+  test('keeps the default logo static until animation is requested', async () => {
+    const el = await fixture<WsBrandMark>(
+      html`<ws-brand-mark></ws-brand-mark>`
+    );
+
+    assert.isFalse(el.hasAttribute('animating'));
+
+    el.restartAnimation();
+
+    assert.isTrue(el.hasAttribute('animating'));
+  });
+
+  test('can render only the mark', async () => {
     const el = await fixture<WsBrandMark>(html`
       <ws-brand-mark mark-only></ws-brand-mark>
     `);

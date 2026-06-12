@@ -94,13 +94,21 @@ export class WsTabs extends LitElement {
   private animateIndicator() {
     window.clearTimeout(this.indicatorAnimationTimeout);
     this.toggleAttribute('indicator-animated', true);
+    // Ensure the transition style is active before indicator variables change.
+    this.getBoundingClientRect();
     this.indicatorAnimationTimeout = window.setTimeout(() => {
       this.toggleAttribute('indicator-animated', false);
     }, 320);
   }
 
   private handleIndicatorTransitionEnd(event: TransitionEvent) {
-    if (event.target !== event.currentTarget) return;
+    if (
+      event.target !== event.currentTarget ||
+      event.propertyName !== 'transform'
+    ) {
+      return;
+    }
+
     window.clearTimeout(this.indicatorAnimationTimeout);
     this.toggleAttribute('indicator-animated', false);
   }

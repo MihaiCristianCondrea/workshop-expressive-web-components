@@ -60,6 +60,31 @@ const sameDocument = (url: URL, base = currentPageUrl) =>
   url.pathname === base.pathname &&
   url.search === base.search;
 
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const getHashTarget = (hash: string) => {
+  if (!hash) return null;
+
+  const id = decodeURIComponent(hash.slice(1));
+  const target = document.getElementById(id);
+  if (target) return target;
+
+  try {
+    return document.querySelector(hash);
+  } catch {
+    return null;
+  }
+};
+
+const scrollToHash = (hash: string) => {
+  const target = getHashTarget(hash);
+  target?.scrollIntoView({
+    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+    block: 'start',
+  });
+};
+
 const isDocsPageUrl = (url: URL) =>
   url.origin === window.location.origin &&
   url.protocol.startsWith('http') &&
@@ -202,7 +227,7 @@ const navigateTo = async (url: URL, options: {replace?: boolean} = {}) => {
           url.href
         );
       }
-      document.querySelector(url.hash)?.scrollIntoView();
+      scrollToHash(url.hash);
       setCurrentTocLink(decodeURIComponent(url.hash.slice(1)));
     }
     return true;
@@ -231,7 +256,7 @@ const navigateTo = async (url: URL, options: {replace?: boolean} = {}) => {
 
     window.scrollTo({top: 0, left: 0, behavior: 'instant'});
     if (url.hash) {
-      document.querySelector(url.hash)?.scrollIntoView();
+      scrollToHash(url.hash);
       setCurrentTocLink(decodeURIComponent(url.hash.slice(1)));
     }
     focusContentHeading();
@@ -261,10 +286,13 @@ const enhanceDocsNavigation = () => {
     }
 
     const element = findNavigableElement(event);
-    const url = element ? getElementUrl(element) : null;
-    if (!element || !url || !isDocsPageUrl(url)) return;
+    if (!element) return;
 
     if (element.matches(siteLogoSelector)) restartBrandAnimation(element);
+
+    const url = getElementUrl(element);
+    if (!url || !isDocsPageUrl(url)) return;
+
     if (sameDocument(url) && !url.hash) return;
 
     event.preventDefault();

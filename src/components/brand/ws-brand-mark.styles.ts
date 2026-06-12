@@ -54,24 +54,38 @@ export const wsBrandMarkStyles = css`
   }
 
   .dot {
-    animation: dropSplash 3s infinite;
+    opacity: 1;
+    transform: translateY(0) scale(1, 1);
     transform-box: view-box;
     transform-origin: 50px 38px;
   }
 
   .w-half {
-    animation: splashW 3s infinite;
+    opacity: 1;
     stroke-dasharray: 85;
-    stroke-dashoffset: 85;
+    stroke-dashoffset: 0;
+    transform: scale(1);
     transform-box: view-box;
     transform-origin: 50px 55px;
   }
 
   .drop {
-    animation: dropSplashFly 3s infinite;
     opacity: 0;
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(0);
     transform-box: view-box;
     transform-origin: 50px 45px;
+  }
+
+  :host([animating]) .dot {
+    animation: dropSplash 3s 1;
+  }
+
+  :host([animating]) .w-half {
+    animation: splashW 3s 1;
+  }
+
+  :host([animating]) .drop {
+    animation: dropSplashFly 3s 1;
   }
 
   .drop-1 {
@@ -218,9 +232,9 @@ export const wsBrandMarkStyles = css`
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .dot,
-    .w-half,
-    .drop {
+    :host([animating]) .dot,
+    :host([animating]) .w-half,
+    :host([animating]) .drop {
       animation-duration: 1ms;
       animation-iteration-count: 1;
     }
